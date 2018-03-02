@@ -15,7 +15,6 @@
   height: auto;
   margin: 0 40px;
   padding: 30px 0 50px;
-  border-bottom: 1px dashed #cfcfcf;
   .module-title {
     border-bottom: 1px solid #000000;
   }

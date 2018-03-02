@@ -27,7 +27,42 @@
     </div>
   </div>
 </template>
-
+<style lang="scss" scoped>
+  .base-content {
+    min-height: 210px;
+    margin: 0 208px 0 40px;
+    padding: 40px 0 50px;
+    .base-name {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .base-avatar {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 128px;
+      height: 158px;
+      background-color: red;
+      padding: 20px 40px;
+    }
+    .base-desc {
+      table {
+        width: 100%;
+        height: 100%;
+        tr {
+          height: 50px;
+          line-height: 50px;
+        }
+      }
+    }
+  }
+</style>
 <script>
   import avatar from './avatar'
 
@@ -38,16 +73,4 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .base-content {
-    min-height: 210px;
-    margin: 0 40px;
-    padding: 30px 0 50px;
-    border-bottom: 1px dashed #cfcfcf;
-    .base-avatar {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-  }
-</style>
+

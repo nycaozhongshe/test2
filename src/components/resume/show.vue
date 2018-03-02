@@ -60,6 +60,7 @@
 <style lang="scss" scoped>
   .module-item {
     position: relative;
+    border-bottom: 1px dashed #cfcfcf;
     .arr {
       position: absolute;
       left: 0;
