@@ -43,8 +43,8 @@
     },
     computed: {
       showList() {
-        return this.$store.state.moduleStatus.filter( (a, b)=> {
-          return b.sort - a.sort
+        return this.$store.state.moduleStatus.sort( (a, b)=> {
+          return b - a
         })
       }
     },

@@ -22,7 +22,7 @@ const loadingPage = r => require.ensure([], () => r(require('../components/loadi
 const changeResume = r => require.ensure([], () => r(require('../components/changeResume')), 'changeResume');
 const changePosition = r => require.ensure([], () => r(require('../components/changePosition')), 'changePosition');
 const aboutWBEDU = r => require.ensure([], () => r(require('../components/aboutWBEDU')), 'aboutWBEDU');
-const editResume = r => require.ensure([], () => r(require('../components/resume/main')), 'aboutWBEDU');
+const editResume = r => require.ensure([], () => r(require('../components/resume/main')), 'editResume');
 
 import store from '../store'
 
