@@ -1,7 +1,7 @@
 <template>
     <div class="project-module">
       <div class="project-title module-title">
-        项目经历
+        1项目经历
       </div>
     </div>
 </template>

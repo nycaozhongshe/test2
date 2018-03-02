@@ -27,6 +27,13 @@
     </div>
 </template>
 
+<style lang="scss" scoped>
+.resume-template {
+  position: relative;
+
+}
+</style>
+
 <script>
   import module from './module'
   import bus from './js/bus'
@@ -51,9 +58,7 @@
         skill,
         work,
       },
-      methods: {
-
-      },
+      methods: {},
       created() {
         // bus.$on('newModule', (type) => {
         //   this.type = type;
@@ -62,6 +67,3 @@
     }
 </script>
 
-<style>
-
-</style>

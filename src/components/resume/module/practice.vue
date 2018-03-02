@@ -1,7 +1,7 @@
 <template>
     <div class="practice-module">
       <div class="practice-title module-title">
-        活动实践
+        2活动实践
       </div>
     </div>
 </template>

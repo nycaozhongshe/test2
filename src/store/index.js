@@ -45,27 +45,27 @@ export default new Vuex.Store({
       },
       {
         type: 'internship',
-        status: false,
+        status: true,
       },
       {
         type: 'work',
-        status: false,
+        status: true,
       },
       {
         type: 'science',
-        status: false,
+        status: true,
       },
       {
         type: 'project',
-        status: false,
+        status: true,
       },
       {
         type: 'practice',
-        status: false,
+        status: true,
       },
       {
         type: 'skill',
-        status: false,
+        status: true,
       },
     ]
   },
@@ -508,6 +508,13 @@ export default new Vuex.Store({
     changeModuleStatus(state, n) {
       console.log(state.moduleStatus[n].status);
       state.moduleStatus[n].status = !state.moduleStatus[n].status;
+    },
+
+    changeModulePosition(state, n) {
+      let index = type2index(state.moduleStatus, n.type);
+      // console.log(n.type);
+      // console.log(index);
+      arrUpDown(state.moduleStatus, index, n.dire);
     }
   },
   getters: {},

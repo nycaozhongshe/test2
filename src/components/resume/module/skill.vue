@@ -1,7 +1,7 @@
 <template>
   <div class="skill-module">
     <div class="skill-title module-title">
-      技能证书
+      3技能证书
     </div>
   </div>
 </template>
