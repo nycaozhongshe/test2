@@ -38,36 +38,44 @@ export default new Vuex.Store({
       {
         type: 'baseinfo',
         status: true,
+        sort: 0
       },
       {
         type: 'education',
         status: true,
+        sort: 1
       },
       {
         type: 'internship',
         status: true,
+        sort: 2
       },
       {
         type: 'work',
         status: true,
+        sort: 3
       },
       {
         type: 'science',
         status: true,
+        sort: 4
       },
       {
         type: 'project',
         status: true,
+        sort: 5
       },
       {
         type: 'practice',
         status: true,
+        sort: 6
       },
       {
         type: 'skill',
         status: true,
+        sort: 7
       },
-    ]
+    ],
   },
 
   mutations: {
@@ -517,7 +525,9 @@ export default new Vuex.Store({
       arrUpDown(state.moduleStatus, index, n.dire);
     }
   },
-  getters: {},
+  getters: {
+
+  },
   actions: {
 
     //异步调用提交注册表单

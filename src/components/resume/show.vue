@@ -40,7 +40,14 @@
       moveDown(type) {
         this.$store.commit('changeModulePosition', {dire: 0,type: type});
       },
-    }
+    },
+    computed: {
+      showList() {
+        return this.$store.state.moduleStatus.filter( (a, b)=> {
+          return b.sort - a.sort
+        })
+      }
+    },
   }
 </script>
 
