@@ -1,0 +1,46 @@
+.setpwd {
+  padding-top: 60px;
+  background-color: #F6F8F9;
+  padding-bottom: 56px;
+  .setpwd-title {
+    text-align: center;
+    font-size: 30px;
+    color: #19a4b7;
+    padding: 106px 0 38px;
+    font-family: quote, 'PingFangSC-Regular', 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+    .line {
+      margin: 17px auto;
+      width: 120px;
+      height: 1px;
+      background-color: #19a4b7;
+    }
+  }
+  .setpwd-box {
+    background-color: #fff;
+    box-sizing: border-box;
+    width: 530px;
+    margin: 0 auto;
+    padding: 42px 66px 42px 58px;
+    .fl {
+      float: left;
+    }
+    .fr {
+      float: right;
+    }
+    .code {
+      display: block;
+      height: 50px;
+      width: 120px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      text-align: center;
+      line-height: 50px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 5px;
+      border: 1px solid #000000;
+    }
+  }
+}

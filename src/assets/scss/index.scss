@@ -1,0 +1,334 @@
+$themeColor: #C20C0C;
+$backgroundColor: #F7F8FA;
+$fontColor: #fff;
+
+html {
+  min-width: 375px;
+  letter-spacing: 0.8px;
+  .father {
+    background-color: #f6f8f9 !important;
+  }
+  font-size: 16px;
+  input {
+    outline: none;
+  }
+  input:focus {
+    outline: none;
+  }
+  button {
+    outline: none;
+  }
+  button:focus {
+    outline: none;
+  }
+  a {
+    text-decoration: none !important;
+  }
+  font-family: quote, 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+  * {
+    box-shadow: none !important;
+  }
+}
+
+//清除浮动
+.clearfix:after {
+  content: "020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+//垂直居中
+.vc {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
+//相对定位
+.pr {
+  position: relative;
+}
+
+//左浮样式
+.fl {
+  float: left;
+}
+
+//右浮样式
+.fr {
+  float: right;
+}
+
+//导航栏激活样式
+.router-active {
+  color: $themeColor !important;
+}
+#app {
+  position: relative;
+}
+//版心内容
+.content {
+  max-width: 990px;
+  min-width: 768px;
+  margin: 0 auto;
+  @media screen and (max-width: 768px) {
+    padding: 0 50px;
+  }
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.father {
+  min-width: 768px;
+  padding-top: 60px;
+  //overflow-x: hidden;
+}
+
+//顶栏
+header {
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #202020;
+  line-height: 60px;
+  font-size: 16px;
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+  border-bottom: #f2f2f2 2px solid;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  .header {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    ul {
+      padding: 0 0 0 70px;
+      li {
+        list-style: none;
+        padding-right: 70px;
+        font-size: 16px;
+        line-height: 60px;
+        font-family: quote, 'PingFang SC', 'Microsoft Yahei', 'Helvetica', 'Helvetica Neue', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+        a {
+          color: #000;
+        }
+      }
+    }
+    .logo {
+      .logo-title {
+        display: block;
+        overflow: hidden;
+        text-indent: -99999px;
+        width: 100px;
+        height: 60px;
+        background-image: url('../imgs/logo/logo_8.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+    .search-header {
+      height: 60px;
+      line-height: 60px;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      .search {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        float: left;
+        margin: 15px;
+        position: relative;
+        width: 100px;
+        height: 30px;
+        input {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          background-color: transparent;
+          border-left: transparent;
+          border-right: transparent;
+          border-top: transparent;
+          border-radius: 0;
+          border-color: #313131;
+          height: 30px;
+          width: 100px;
+          line-height: 28px;
+          padding: 0 24px 0 12px;
+          transition: all 0.3s ease;
+        }
+        button {
+          position: absolute;
+          right: 2px;
+          top: 6px;
+          border: none;
+          background: none;
+          width: 16px;
+          height: 18px;
+        }
+        input::-webkit-input-placeholder { /* WebKit browsers */
+          color: #818181;
+        }
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          color: #818181;
+        }
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color: #818181;
+        }
+        input:-ms-input-placeholder { /* Internet Explorer 10+ */
+          color: #818181;
+        }
+        a {
+          color: #ffffff;
+        }
+      }
+      .publish {
+        display: inline-block;
+        font-size: 14px;
+        height: 24px;
+        width: 100px;
+        line-height: 24px;
+        background-color: $themeColor;
+        color: #ffffff;
+        border: none;
+        -webkit-border-radius: 17px;
+        -moz-border-radius: 17px;
+        border-radius: 17px;
+        vertical-align: top;
+        margin-top: 18px;
+        margin-left: 5px;
+      }
+      .reglog {
+        margin-left: 40px;
+        vertical-align: top;
+        font-size: 16px;
+        a {
+          color: #333333;
+          vertical-align: top;
+          font-family: quote, 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+        }
+      }
+    }
+  }
+}
+
+//搜索
+.search-box {
+  height: 250px;
+  background-color: #505F6E;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  .search-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    .search-title {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .search-in {
+      position: relative;
+      .search-button {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        -webkit-transform: translate(0, -50%);
+        -moz-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+        -o-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+      }
+      input {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        width: 732px;
+        height: 62px;
+        color: #8C9DAC;
+      }
+      input::-webkit-input-placeholder { /* WebKit browsers */
+        color: #818181;
+      }
+      input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #818181;
+      }
+      input::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #818181;
+      }
+      input:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #818181;
+      }
+    }
+  }
+}
+
+//页脚
+footer {
+  height: 252px;
+  background-color: #000000;
+  color: #ffffff;
+  min-width: 768px;
+  .content {
+    position: relative;
+    height: 100%;
+    .footer-info {
+      padding-top: 40px;
+      table {
+        margin: 0 auto;
+        text-align: left;
+        font-size: 14px;
+        th {
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+        }
+        td {
+          width: 300px;
+          height: 30px;
+          line-height: 40px;
+          text-align: center;
+        }
+      }
+    }
+    .line {
+      position: absolute;
+      bottom: 15px;
+      right: 0;
+      border-top: 1px solid #414141;
+      left: 0;
+      padding-top: 10px;
+      a {
+        color: #ffffff;
+        padding: 0 10px;
+      }
+    }
+  }
+}

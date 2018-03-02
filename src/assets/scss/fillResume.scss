@@ -1,0 +1,117 @@
+.fill-resume, .change-resume {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  .content {
+    position: relative;
+    aside {
+      width: 200px;
+      background-color: #ffffff;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 20px;
+      position: fixed;
+      .fill-aside-list {
+        .fill-aside-item {
+          font-size: 1rem;
+          color: #000000;
+          text-align: center;
+          margin: 20px;
+          &.fill-aside-item-active {
+            border-left: 2px solid #c20c0c;
+          }
+        }
+      }
+    }
+    .fill-container {
+      margin-left: 200px;
+      //overflow: hidden;
+      width: 80%;
+      .line {
+        width: 100%;
+        height: 2px;
+        background-color: #e6e6e6;
+        margin-bottom: 15px;
+      }
+      .fill-btn {
+        text-align: center;
+        width: 95px;
+        height: 25px;
+        border-radius: 3px;
+        font-size: 0.875rem;
+        line-height: 5px;
+        float: right;
+      }
+      .fill-box {
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding-left: 40px;
+        .fill-block {
+          width: 100%;
+          background-color: #fff;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          padding: 28px 80px 50px 80px;
+          margin-bottom: 14px;
+          position: relative;
+          .add-remove {
+            width: 35px;
+            position: absolute;
+            bottom: 35px;
+            right: 15px;
+            line-height: 40px;
+            white-space: nowrap;
+            i {
+              margin: 0;
+              padding: 0;
+            }
+          }
+          &.job-ori {
+            margin-top: -70px;
+          }
+          &.case-analysis {
+            margin-bottom: 30px;
+          }
+          .fill-button {
+            cursor: pointer;
+            text-align: center;
+            width: 66px;
+            height: 21px;
+            background-color: #c20c0c;
+            border: none;
+            font-size: 0.75rem;
+            color: #ffffff;
+            position: absolute;
+            right: 80px;
+            top: 35px;
+            border-radius: 3px;
+            line-height: 21px;
+          }
+          .fill-block-title {
+            font-size: 1rem;
+            color: #c20c0c;
+            padding: 6px 0;
+            border-bottom: 2px solid #C20C0C;
+            margin-bottom: 20px;
+          }
+          .fill-block-item {
+            padding: 20px 0;
+            position: relative;
+            .close {
+              position: absolute;
+              right: 0;
+              bottom: -5px;
+            }
+          }
+        }
+        .personal-info-list {
+          width: 400px;
+          float: left;
+        }
+      }
+    }
+  }
+}

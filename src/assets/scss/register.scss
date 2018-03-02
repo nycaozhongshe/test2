@@ -1,0 +1,28 @@
+.register {
+  padding-top: 60px;
+  background-color: #F7F8FA;
+  .register-form {
+    width: 568px;
+    margin: 0 auto;
+    padding-top: 50px;
+    padding-bottom: 48px;
+    @media screen and (max-width: 768px) {
+      width: 400px;
+      margin: 0 auto;
+      padding-top: 50px;
+      padding-bottom: 48px;
+    }
+    #phone-pre {
+      border: none;
+      padding-left: 10px;
+      margin-top: -5px;
+      width: 70px;
+    }
+  }
+  .agreement {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+

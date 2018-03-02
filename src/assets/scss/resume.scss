@@ -1,0 +1,235 @@
+.resume {
+  padding-top: 100px;
+  margin: 0 auto;
+  position: relative;
+  background-color: #f6f8f9;
+  padding-bottom: 100px;
+  @media screen and (max-width: 768px) {
+    padding: 100px 20px;
+  }
+  .btnbox {
+    width: 95px;
+    margin: 0 auto;
+  }
+  #filbtn {
+    border: none;
+    width: 80px;
+    height: 32px;
+    background-color: #c20c0c;
+    color: #ffffff;
+    font-size: 12px;
+  }
+  #upbtn {
+    margin: 20px auto;
+  }
+  .content {
+    max-width: 990px;
+    position: relative;
+    padding-left: 200px;
+    //overflow: hidden;
+  }
+  .aside {
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .avatar {
+      .avatar-pic {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        .avatar-pic-mask {
+          height: 40px;
+          width: 100%;
+          background-color: rgba(194, 12, 12, 0.5);
+          color: #ffffff;
+          cursor: pointer;
+          &:hover {
+            color: red;
+          }
+          opacity: 0.5;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          text-align: center;
+          line-height: 40px;
+        }
+      }
+      .avatar-name {
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+        color: #c20c0c;
+        font-family: quote, 'PingFangSC-Regular', 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+        margin-top: 25px;
+        margin-bottom: 60px;
+      }
+    }
+    .user-list {
+      .user-item {
+        width: 100%;
+        height: 50px;
+        color: #ffffff;
+        background-color: #c20c0c;
+        text-align: center;
+        line-height: 50px;
+        font-size: 1rem;
+        &.user-item-active {
+          background-color: #9b0909;
+        }
+      }
+    }
+  }
+  .resume-content {
+    padding-top: 100px;
+    width: 100%;
+    .my-resume {
+      width: 100%;
+      position: relative;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      .my-resume-box {
+        margin-left: 200px;
+        .my-resume-title {
+          font-size: 1rem;
+          color: #c20c0c;
+          line-height: 20px;
+          height: 20px;
+          margin-bottom: 20px;
+          font-family: quote, AdobeHeitiStd-Regular, 'PingFangSC-Regular', 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+        }
+        .my-resume-list {
+          width: 100%;
+          .my-resume-item {
+            float: left;
+            width: 120px;
+            height: 176px;
+            position: relative;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 1px solid #C20C0C;
+            margin: 0 15px;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            border-radius: 3px;
+            cursor: pointer;
+            .vitae-name {
+              width: 100%;
+              position: absolute;
+              bottom: 0;
+              text-align: center;
+              color: #c20c0c;
+              font-size: 0.75rem;
+              border-top: 1px solid #c20c0c;
+              background-color: rgba(255,255,255,0.7);
+            }
+            &:hover {
+              .my-resume-item-mask {
+                display: block;
+              }
+              .vitae-name {
+                display: none;
+              }
+            }
+            img {
+              width: 100%;
+              height: 100%;
+            }
+            &.my-resume-new {
+              font-size: 5rem;
+              color: #F2F2F2;
+              text-align: center;
+              line-height: 166px;
+              cursor: pointer;
+            }
+            .my-resume-item-mask {
+              .el-icon {
+                font-size: 1.25rem;
+                cursor: pointer;
+              }
+              display: none;
+              height: 30px;
+              width: 100%;
+              background-color: #c20c0c;
+              opacity: 0.7;
+              line-height: 30px;
+              color: #ffffff;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 5px 10px;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              z-index: 999;
+            }
+          }
+        }
+      }
+    }
+    .my-deliver {
+      width: 100%;
+      position: relative;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      .my-deliver-box {
+        .my-deliver-title {
+          font-size: 1rem;
+          color: #c20c0c;
+          line-height: 20px;
+          height: 20px;
+          font-family: quote, AdobeHeitiStd-Regular, 'PingFangSC-Regular', 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+          margin-bottom: 20px;
+        }
+        margin-left: 200px;
+        .my-deliver-content {
+          table {
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid #F2F2F2;
+            border-top: none;
+            border-radius: 3px;
+            th {
+              height: 40px;
+              background-color: #c20c0c;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              -ms-text-align-last: left;
+              text-align-last: left;
+              color: #ffffff;
+              padding-left: 10px;
+              font-size: 0.875rem;
+              &:nth-of-type(1) {
+                width: 400px;
+              }
+            }
+            td {
+              height: 60px;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              -ms-text-align-last: left;
+              text-align-last: left;
+              padding-left: 30px;
+              font-size: 0.875rem;
+              border-bottom: 1px solid #F2F2F2;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,199 @@
+.needjob {
+  padding-top: 60px;
+  background-color: #f6f8f9;
+  padding-bottom: 150px;
+  .content {
+    max-width: 990px;
+    padding: 0;
+  }
+  .filter-container {
+    padding-top: 90px;
+    height: 140px;
+    .filter {
+      min-height: 60px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      border: 1px solid #F2F2F2;
+      background-color: #ffffff;
+      line-height: 60px;
+      position: relative;
+      .filter-title {
+        float: left;
+        font-size: 0.875rem;
+        width: 144px;
+        text-align: center;
+      }
+      .filter-tags {
+        float: left;
+        min-height: 30px;
+        width: 100%;
+        font-size: 0.875rem;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        padding-left: 144px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-top: 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+        ul {
+          li {
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 15px;
+            cursor: pointer;
+            color: #818181;
+            &:hover {
+              color: #c20c0c;
+            }
+          }
+        }
+        .filter-tag-active {
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          border-radius: 15px;
+          //background-color: #c20c0c;
+          //color: #ffffff;
+          color: #c20c0c;
+        }
+      }
+      .filter-type-tags {
+        ul {
+          li {
+            margin-right: 90px;
+          }
+        }
+      }
+      .filter-industry-tags {
+        ul {
+          li {
+            margin-right: 4px;
+          }
+        }
+      }
+      .filter-area-tags {
+        ul {
+          li {
+            margin-right: 4px;
+          }
+          .filter-area-tags-more {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+  .job-content {
+    margin-top: 80px;
+    min-height: 100px;
+    .box-card {
+      padding: 5px;
+      i {
+        display: block;
+        border-radius: 3px;
+        width: 20px;
+        height: 20px;
+        background-color: #65D3E4;
+        color: #ffffff;
+        line-height: 19px;
+      }
+      .text-item {
+        font-size: 12px;
+      }
+      .go-publish {
+        position: absolute;
+        bottom: -16px;
+        width: 100%;
+        .btn {
+          button {
+            width: 80px;
+            height: 28px;
+            line-height: 28px;
+            border: none;
+            border-radius: 14px;
+            background-color: #c20c0c;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+    .el-collapse {
+      border: none;
+      position: relative;
+      min-height: 120px;
+    }
+
+    .el-collapse-item__header {
+      height: 32px !important;
+    }
+
+    .el-tabs--border-card {
+      background-color: transparent;
+      border: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+  }
+  .job-page-container {
+    width: 100%;
+    position: relative;
+    .job-page {
+      //margin: 0 auto;
+      display: inline-block;
+      //width: 400px;
+      height: 40px;
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+      ul {
+        float: left;
+        li {
+          font-family: quote, 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+          float: left;
+          width: 32px;
+          height: 32px;
+          font-size: 0.875rem;
+          line-height: 32px;
+          text-align: center;
+          margin: 0 8px;
+          cursor: pointer;
+        }
+        li.jobPageActive {
+          background-color: #c20c0c;
+          color: #ffffff;
+          border-radius: 2px;
+        }
+      }
+      .job-page-arrow {
+        float: left;
+        text-align: center;
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        font-size: 1.5rem;
+        line-height: 32px;
+        background-color: #808080;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
+  }
+}
+

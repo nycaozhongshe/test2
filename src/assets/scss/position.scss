@@ -1,0 +1,210 @@
+.position {
+  padding-top: 60px;
+  background-color: #f6f8f9;
+  padding-bottom: 50px;
+  position: relative;
+  .banner {
+    height: 383px;
+    width: 100%;
+    background-color: #e6e6e6;
+    min-width: 350px;
+    margin: 0 auto;
+    background-image: url("../../../static/imgs/bannerbg.jpg");
+    background-position: center;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+  .position-content {
+    max-width: 990px;
+    margin: -134px auto 0;
+    background-color: transparent;
+    z-index: 999;
+    .position-desc {
+      background-color: #ffffff;
+      height: 240px;
+      position: relative;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 50px 100px;
+      .position-desc-title {
+        float: left;
+        width: 240px;
+        height: 136px;
+        background-color: #000000;
+        color: #ffffff;
+        border-radius: 2px;
+        font-size: 1.5rem;
+        line-height: 136px;
+        text-align: center;
+        font-family: quote, 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+      }
+      .position-desc-info {
+        padding: 20px;
+        margin-top: 50px;
+        margin-left: 100px;
+        float: left;
+        .position-desc-company {
+          color: #202020;
+          text-align: right;
+          margin: 10px 0 10px 10px;
+          font-size: 1rem;
+          font-family: quote, 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+        }
+        .position-desc-tags {
+          float: right;
+          text-align: right;
+          font-size: 0.75rem;
+          color: #808080;
+        }
+      }
+      .position-deliver {
+        font-size: 1.25rem;
+        width: 124px;
+        height: 44px;
+        background-color: #c20c0c;
+        border-radius: 2px;
+        border: none;
+        color: #ffffff;
+        line-height: 44px;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+        right: 100px;
+      }
+    }
+    .position-info-container {
+      padding-right: 280px;
+      position: relative;
+      .position-info {
+        position: relative;
+        margin-top: 70px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 60px 90px 70px 55px;
+        width: 100%;
+        background-color: #ffffff;
+        font-family: quote, 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+        ol {
+          li {
+            line-height: 30px;
+          }
+        }
+        .position-info-title {
+          font-size: 1rem;
+          margin-bottom: 10px;
+          height: 24px;
+          border-left: 2px solid #c20c0c;
+          padding-left: 10px;
+          position: relative;
+          overflow: hidden;
+          .position-info-line {
+            position: absolute;
+            width: 100%;
+            background-color: #eaeaea;
+            margin-left: 80px;
+            height: 2px;
+            top: 50%;
+          }
+        }
+
+        .position-info-content {
+          margin-bottom: 65px;
+        }
+        .position-info-require {
+        }
+      }
+      .position-info-company {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 24px 60px 24px;
+        position: absolute;
+        width: 250px;
+        height: 100%;
+        background-color: #ffffff;
+        right: 0;
+        top: 0;
+        margin-left: 30px;
+        .position-info-company-title {
+          font-size: 1.25rem;
+          height: 36px;
+          line-height: 36px;
+        }
+        .position-info-company-content {
+          width: 100%;
+          height: 100%;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          padding: 24px;
+          overflow-x: hidden;
+          overflow-y: scroll;
+          //padding-bottom: 24px;
+        }
+      }
+    }
+  }
+  .similar {
+    margin-top: 40px;
+    font-family: quote, 'AdobeHeitiStd-Regular', 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
+    .similar-title {
+      height: 45px;
+      position: relative;
+      h3 {
+        font-size: 1rem;
+        color: #202020;
+        margin-bottom: 5px;
+      }
+      .line {
+        width: 100px;
+        height: 2px;
+        background-color: #C20C0C;
+      }
+      .similar-back {
+        font-size: 0.75rem;
+        color: #808080;
+        float: right;
+        position: absolute;
+        right: 10px;
+        top: 30%;
+      }
+    }
+    .similar-cards {
+      .similar-card {
+        .similar-card-box {
+          height: 120px;
+          background-color: #ffffff;
+          position: relative;
+          .similar-card-foot {
+            padding-top: 30px;
+            padding-left: 30px;
+            :nth-child(1) {
+              font-family: OpenSans-Italic, "Microsoft YaHei UI";
+              font-size: 14px;
+              color: #ff4150;
+              margin-bottom: 10px;
+            }
+            :nth-child(2) {
+              font-size: 0.75rem;
+              color: #002d42;
+              font-family: OpenSans-Bold, "Microsoft YaHei UI";
+              margin-bottom: 15px;
+            }
+            :nth-child(3) {
+              font-size: 12px;
+              color: #ff4150;
+              font-family: AdobeHeitiStd-Regular, "Microsoft YaHei UI";
+            }
+          }
+        }
+      }
+    }
+  }
+}
