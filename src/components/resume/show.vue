@@ -39,6 +39,7 @@
       },
       moveDown(type) {
         this.$store.commit('changeModulePosition', {dire: 0, type: type});
+        console.log(type);
       },
     },
     computed: {

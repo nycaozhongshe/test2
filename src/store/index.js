@@ -518,7 +518,9 @@ export default new Vuex.Store({
       let index = n.index;
       let length = n.length;
       state.moduleStatus[index].status = !state.moduleStatus[index].status;
-      state.moduleStatus[index].s = length;
+      if (state.moduleStatus[index].s === 10) {
+        state.moduleStatus[index].s = length;
+      }
     },
 
     changeModulePosition(state, n) {

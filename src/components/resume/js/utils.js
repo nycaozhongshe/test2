@@ -7,16 +7,14 @@
 
 export function arrUpDown(arr, index, direct) {
   // direct 1 为向上，向前 0 为向下，向后
-  console.log(arr);
   if (direct === 1) {
-    arr.splice(index-1, 0, arr.splice(index,1)[0]);
+    arr[index].s -= 1;
+    arr[+index-1].s += 1;
   } else if (direct === 0) {
-    console.log(arr);
-    arr.splice(index+1, 0, arr.splice(index,1)[0]);
-    console.log(arr);
+    arr[index].s += 1;
+    arr[+index+1].s -= 1;
   }
 }
-
 
 
 
