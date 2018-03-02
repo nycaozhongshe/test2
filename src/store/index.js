@@ -34,50 +34,47 @@ export default new Vuex.Store({
       context: '',
       theme: ''
     },
-    // moduleStatus: [
-    //   {
-    //     type: 'baseinfo',
-    //     status: true,
-    //     sort: 0
-    //   },
-    //   {
-    //     type: 'education',
-    //     status: true,
-    //     sort: 1
-    //   },
-    //   {
-    //     type: 'internship',
-    //     status: true,
-    //     sort: 2
-    //   },
-    //   {
-    //     type: 'work',
-    //     status: true,
-    //     sort: 3
-    //   },
-    //   {
-    //     type: 'science',
-    //     status: true,
-    //     sort: 4
-    //   },
-    //   {
-    //     type: 'project',
-    //     status: true,
-    //     sort: 5
-    //   },
-    //   {
-    //     type: 'practice',
-    //     status: true,
-    //     sort: 6
-    //   },
-    //   {
-    //     type: 'skill',
-    //     status: true,
-    //     sort: 7
-    //   },
-    // ],
     moduleStatus: [
-      6,2,1,4,5
+      {
+        type: 'baseinfo',
+        status: true,
+        s: 0
+      },
+      {
+        type: 'education',
+        status: true,
+        s: 1
+      },
+      {
+        type: 'internship',
+        status: true,
+        s: 2
+      },
+      {
+        type: 'work',
+        status: true,
+        s: 3
+      },
+      {
+        type: 'science',
+        status: true,
+        s: 4
+      },
+      {
+        type: 'project',
+        status: true,
+        s: 5
+      },
+      {
+        type: 'practice',
+        status: true,
+        s: 6
+      },
+      {
+        type: 'skill',
+        status: true,
+        s: 7
+      },
     ],
   },
 

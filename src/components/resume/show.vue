@@ -1,23 +1,24 @@
 <template>
-    <div class="resume-show">
-      <div class="module-container">
-        <div class="module-item"
-             v-for="(item, index) in $store.state.moduleStatus">
-          <div class="arr-up arr" @click="moveUp(item.type)">上</div>
-          <div class="arr-down arr" @click="moveDown(item.type)">下</div>
-          <module-template
-            :key="index"
-            v-if="item.status"
-            :module-type="item.type">
-          </module-template>
-        </div>
+  <div class="resume-show">
+    <div class="module-container">
+      <div class="module-item"
+           v-for="(item, index) in showList">
+        <div class="arr-up arr" @click="moveUp(item.type)">上</div>
+        <div class="arr-down arr" @click="moveDown(item.type)">下</div>
+        <module-template
+          :key="index"
+          v-if="item.status"
+          :module-type="item.type">
+        </module-template>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
   import bus from './js/bus'
   import moduleTemplate from './template'
+
   export default {
     components: {
       moduleTemplate
@@ -35,16 +36,16 @@
     methods: {
       moveUp(type) {
         console.log(type);
-        this.$store.commit('changeModulePosition', {dire: 1,type: type});
+        this.$store.commit('changeModulePosition', {dire: 1, type: type});
       },
       moveDown(type) {
-        this.$store.commit('changeModulePosition', {dire: 0,type: type});
+        this.$store.commit('changeModulePosition', {dire: 0, type: type});
       },
     },
     computed: {
       showList() {
-        return this.$store.state.moduleStatus.sort( (a, b)=> {
-          return b - a
+        return this.$store.state.moduleStatus.sort((x, y) => {
+          return x.s - y.s
         })
       }
     },
