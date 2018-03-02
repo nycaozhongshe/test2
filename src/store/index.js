@@ -47,35 +47,36 @@ export default new Vuex.Store({
       },
       {
         type: 'internship',
-        status: true,
-        s: 2
+        status: false,
+        s: 10
       },
       {
         type: 'work',
-        status: true,
-        s: 3
+        status: false,
+        s: 10
       },
       {
         type: 'science',
-        status: true,
-        s: 4
+        status: false,
+        s: 10
       },
       {
         type: 'project',
-        status: true,
-        s: 5
+        status: false,
+        s: 10
       },
       {
         type: 'practice',
-        status: true,
-        s: 6
+        status: false,
+        s: 10
       },
       {
         type: 'skill',
-        status: true,
-        s: 7
+        status: false,
+        s: 10
       },
     ],
+    moduleLength: 2,
   },
 
   mutations: {
@@ -514,14 +515,14 @@ export default new Vuex.Store({
     },
 
     changeModuleStatus(state, n) {
-      console.log(state.moduleStatus[n].status);
-      state.moduleStatus[n].status = !state.moduleStatus[n].status;
+      let index = n.index;
+      let length = n.length;
+      state.moduleStatus[index].status = !state.moduleStatus[index].status;
+      state.moduleStatus[index].s = length;
     },
 
     changeModulePosition(state, n) {
       let index = type2index(state.moduleStatus, n.type);
-      // console.log(n.type);
-      // console.log(index);
       arrUpDown(state.moduleStatus, index, n.dire);
     }
   },

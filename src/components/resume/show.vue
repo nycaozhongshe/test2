@@ -7,7 +7,6 @@
         <div class="arr-down arr" @click="moveDown(item.type)">下</div>
         <module-template
           :key="index"
-          v-if="item.status"
           :module-type="item.type">
         </module-template>
       </div>
@@ -30,7 +29,7 @@
     },
     created() {
       bus.$on('changeModuleStatus', (index) => {
-        this.$store.commit('changeModuleStatus', index)
+        this.$store.commit('changeModuleStatus', {index:index, length: this.showList.length})
       })
     },
     methods: {
@@ -43,9 +42,14 @@
       },
     },
     computed: {
-      showList() {
+      sortList() {
         return this.$store.state.moduleStatus.sort((x, y) => {
           return x.s - y.s
+        })
+      },
+      showList() {
+        return this.sortList.filter((item) => {
+          return item.status
         })
       }
     },
