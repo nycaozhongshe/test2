@@ -3,8 +3,8 @@
     <div class="module-container">
       <div class="module-item"
            v-for="(item, index) in showList">
-        <div class="arr-up arr" @click="moveUp(item.type)">上</div>
-        <div class="arr-down arr" @click="moveDown(item.type)">下</div>
+        <div class="arr-up arr" @click="moveUp(item.type)" v-if="index > 2">上</div>
+        <div class="arr-down arr" @click="moveDown(item.type)" v-if="index < showList.length - 1 && index > 1">下</div>
         <module-template
           :key="index"
           :module-type="item.type">
