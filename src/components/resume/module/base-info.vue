@@ -10,14 +10,14 @@
       <div class="base-desc">
         <table>
           <tr>
-            <td>电话</td>
-            <td>求职意向</td>
-            <td>入职时间</td>
+            <td> <span>电话:</span><input type="text" class="module-input" placeholder="111111111"></td>
+            <td> <span>求职意向:</span><input type="text" class="module-input" placeholder="111111111"></td>
+            <td> <span>入职时间:</span><input type="text" class="module-input" placeholder="111111111"></td>
           </tr>
           <tr>
-            <td>邮箱</td>
-            <td>联系地址</td>
-            <td>实习时间</td>
+            <td><span>邮箱:</span><input type="text" class="module-input" placeholder="111111111"></td>
+            <td><span>联系地址:</span><input type="text" class="module-input" placeholder="111111111"></td>
+            <td><span>实习时间:</span><input type="text" class="module-input" placeholder="111111111"></td>
           </tr>
         </table>
       </div>
@@ -48,7 +48,6 @@
       transform: translateY(-50%);
       width: 128px;
       height: 158px;
-      background-color: red;
       padding: 20px 40px;
     }
     .base-desc {
@@ -58,6 +57,32 @@
         tr {
           height: 50px;
           line-height: 50px;
+          .module-input {
+            width: 120px;
+            padding-left: 10px;
+            border: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            &:hover {
+              border: 1px dashed #666;
+            }
+            &:focus {
+              border: 1px dashed #666;
+            }
+            &::-webkit-input-placeholder {
+              color: #9e9e9e;
+            }
+            &:-moz-placeholder {
+              color: #9e9e9e;
+            }
+            &::-moz-placeholder {
+              color: #9e9e9e;
+            }
+            &:-ms-input-placeholder {
+              color: #9e9e9e;
+            }
+          }
         }
       }
     }
