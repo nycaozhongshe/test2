@@ -17,6 +17,9 @@ export function arrUpDown(arr, index, direct) {
   }
 }
 
+
+
+
 /**
  * 根据类型返回索引
  * @param arr
