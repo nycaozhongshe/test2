@@ -32,7 +32,7 @@
     width: auto;
     textarea{
       position:absolute;
-      top: 16px;
+      top: 0;
       left:0;
       height:100%;
       resize: none;
@@ -44,7 +44,7 @@
     }
     pre{
       display:block;
-      visibility:visible;
+      visibility:hidden;
       span {
         width: 100%;
         display: inline-block;
