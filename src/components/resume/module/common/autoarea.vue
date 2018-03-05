@@ -40,6 +40,8 @@
         display: inline-block;
         height: auto;
         white-space: normal;
+        -ms-word-break: break-all;
+        word-break: break-all;
       }
     }
   }
