@@ -26,11 +26,14 @@
     width: auto;
     textarea{
       position:absolute;
-      top:0;
+      top: 16px;
       left:0;
       height:100%;
       resize: none;
       width: 100%;
+      font-size: 16px;
+      line-height: 16px;
+      letter-spacing:2px;
     }
     pre{
       display:block;
@@ -42,6 +45,9 @@
         white-space: normal;
         -ms-word-break: break-all;
         word-break: break-all;
+        font-size: 16px;
+        line-height: 16px;
+        letter-spacing:2px;
       }
     }
   }
