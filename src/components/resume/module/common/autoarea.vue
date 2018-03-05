@@ -2,7 +2,7 @@
     <div class="autoarea">
       <div class="expandingArea">
         <pre><span>{{text}}</span><br></pre>
-        <textarea type="text" v-model="text" class="module-input" cols="30"></textarea>
+        <textarea type="text" v-model="text" class="module-input" cols="30" @change="sendContent"></textarea>
       </div>
     </div>
 </template>
@@ -10,11 +10,17 @@
 <script>
     export default {
       props: [
-        'textContent'
+        'textContent',
+        'itemIndex'
       ],
       data() {
         return {
           text: this.textContent
+        }
+      },
+      methods: {
+        sendContent() {
+          this.$emit('listenTextareaChange', {text: this.text, index: this.itemIndex});
         }
       }
     }
@@ -26,7 +32,7 @@
     width: auto;
     textarea{
       position:absolute;
-      top: 0px;
+      top: 0;
       left:0;
       height:100%;
       resize: none;

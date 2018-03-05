@@ -31,10 +31,7 @@
             </div>
           </div>
           <div class="internship-other">
-            <div class="expandingArea">
-              <pre><span>{{item.edu_other}}</span><br></pre>
-              <textarea type="text" v-model="item.edu_other" class="module-input" cols="30"></textarea>
-            </div>
+            <content-list></content-list>
           </div>
         </li>
       </ul>
@@ -44,8 +41,12 @@
 
 <script>
   import defaultData from '../js/app'
+  import contentList from './common/content'
 
   export default {
+    components: {
+      contentList
+    },
     data: function () {
       return {
         internshipList: [{

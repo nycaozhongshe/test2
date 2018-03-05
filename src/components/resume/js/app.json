@@ -13,7 +13,6 @@
     "internships_time": [],
     "work_content_pr": [{
       "indexs": 0,
-      "title": "小标题",
       "context": "内容"
     }]
   },
@@ -24,9 +23,11 @@
     "internships_time": [],
     "work_content_pr": [{
       "indexs": 0,
-      "title": "小标题",
       "context": "内容"
     }]
   },
-  "4": {}
+  "contentItem": {
+    "indexs": 0,
+    "context": "请输入内容"
+  }
 }
