@@ -6,19 +6,31 @@
     <table class="skill-tab">
       <tr>
         <th>专业技能</th>
-        <td><input type="text" class="input-skill" placeholder="专业技能"/></td>
+        <!--<td><input type="text" class="input-skill" placeholder="专业技能"/></td>-->
+        <td>
+          <div class="input-area" contenteditable="true" v-model="pro_value">{{pro_value || '专业技能'}}<br /></div>
+        </td>
       </tr>
       <tr>
         <th>语言技能</th>
-        <td><input type="text" class="input-skill" placeholder="语言技能"/></td>
+        <!--<td><input type="text" class="input-skill" placeholder="语言技能"/></td>-->
+        <td>
+          <div class="input-area" contenteditable="true">语言技能<br /></div>
+        </td>
       </tr>
       <tr>
         <th>计算机技能</th>
-        <td><input type="text" class="input-skill" placeholder="计算机技能"/></td>
+        <!--<td><input type="text" class="input-skill" placeholder="计算机技能"/></td>-->
+        <td>
+          <div class="input-area" contenteditable="true">计算机技能<br /></div>
+        </td>
       </tr>
       <tr>
         <th>其它技能</th>
-        <td><input type="text" class="input-skill" placeholder="其它技能"/></td>
+        <!--<td><input type="text" class="input-skill" placeholder="其它技能"/></td>-->
+        <td>
+          <div class="input-area" contenteditable="true">其它技能<br /></div>
+        </td>
       </tr>
     </table>
   </div>
@@ -100,6 +112,38 @@
       input {
         background: #EBEBEB;
       }
+    }
+  }
+  .input-area {
+    width: 600px;
+    min-height: 26px;
+    line-height: 20px;
+    _height: 30px;
+    padding-top: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    outline: 0;
+    border: none;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-user-modify: read-write-plaintext-only;
+    border-radius: 4px;
+    &:focus {
+      border-bottom: 1px dashed #666;
+      z-index: 999;
+    }
+    &::-webkit-input-placeholder {
+      color: #9e9e9e;
+    }
+    &:-moz-placeholder {
+      color: #9e9e9e;
+    }
+    &::-moz-placeholder {
+      color: #9e9e9e;
+    }
+    &:-ms-input-placeholder {
+      color: #9e9e9e;
     }
   }
 
