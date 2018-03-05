@@ -17,6 +17,7 @@
     padding: 30px 0 50px;
     .module-title {
       border-bottom: 1px solid #000000;
+      padding-left: 10px;
     }
   }
 </style>

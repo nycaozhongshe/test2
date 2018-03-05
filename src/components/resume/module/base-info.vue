@@ -87,7 +87,7 @@
   .base-content {
     min-height: 210px;
     margin: 0 208px 0 40px;
-    padding: 40px 0 50px;
+    padding: 40px 0 15px;
     .input-title {
       float: left;
     }

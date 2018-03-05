@@ -78,3 +78,17 @@
     }
   }
 </style>
+<style lang="scss">
+  .resume-show {
+    .module-title {
+      margin-bottom: 20px;
+      padding-bottom: 5px;
+    }
+    .module-input {
+      border: none;
+      &:hover {
+        border: 1px dashed #666666;
+      }
+    }
+  }
+</style>
