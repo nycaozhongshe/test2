@@ -8,28 +8,33 @@
         <th>专业技能</th>
         <!--<td><input type="text" class="input-skill" placeholder="专业技能"/></td>-->
         <td>
-          <div class="input-area" contenteditable="true" v-model="pro_value">{{pro_value || '专业技能'}}<br /></div>
+          <div class="input-area" contenteditable="true" @click="click_skill(1)" @blur="blur_skill(1)"
+               v-model="pro_value">{{pro_value}}<br/>
+          </div>
         </td>
       </tr>
       <tr>
         <th>语言技能</th>
         <!--<td><input type="text" class="input-skill" placeholder="语言技能"/></td>-->
         <td>
-          <div class="input-area" contenteditable="true">语言技能<br /></div>
+          <div class="input-area" contenteditable="true" @click="click_skill(2)" @blur="blur_skill(2)"
+               v-model="lan_value">{{lan_value}}<br/></div>
         </td>
       </tr>
       <tr>
         <th>计算机技能</th>
         <!--<td><input type="text" class="input-skill" placeholder="计算机技能"/></td>-->
         <td>
-          <div class="input-area" contenteditable="true">计算机技能<br /></div>
+          <div class="input-area" contenteditable="true" @click="click_skill(3)" @blur="blur_skill(3)"
+               v-model="com_value">{{com_value}}<br/></div>
         </td>
       </tr>
       <tr>
         <th>其它技能</th>
         <!--<td><input type="text" class="input-skill" placeholder="其它技能"/></td>-->
         <td>
-          <div class="input-area" contenteditable="true">其它技能<br /></div>
+          <div class="input-area" contenteditable="true" @click="click_skill(4)" @blur="blur_skill(4)"
+               v-model="oth_value">{{oth_value}}<br/></div>
         </td>
       </tr>
     </table>
@@ -41,13 +46,51 @@
   export default {
     data() {
       return {
-        pro_value: '',
-        lan_value: '',
-        com_value: '',
-        oth_value: '',
+        pro_value: '专业技能',
+        lan_value: '语言技能',
+        com_value: '计算机技能',
+        oth_value: '其它技能',
       }
     },
-    methods: {}
+    methods: {
+      click_skill(param) {
+        if (param === 1 & this.pro_value == '专业技能') {
+          this.pro_value = '';
+        } else if (param === 2 & this.lan_value == '语言技能') {
+          this.lan_value = '';
+        } else if (param === 3 & this.com_value == '计算机技能') {
+          this.com_value = '';
+        } else if (param === 4 & this.oth_value == '其它技能') {
+          this.oth_value = '';
+        }
+      },
+      blur_skill(param) {
+        let content = document.getElementsByClassName('input-area');
+        if (param === 1) {
+          this.pro_value = content[0].innerText;
+          content[0].innerText = this.pro_value;
+          if (this.pro_value.replace(/\s/g, "") == '') {
+            content[0].innerText = '专业技能';
+          }
+          // console.log(this.pro_value)
+        }
+        if (param === 2) {
+          this.lan_value = content[1].innerText;
+          content[1].innerText = this.lan_value;
+          // console.log(this.lan_value);
+        }
+        if (param === 3) {
+          this.com_value = content[2].innerText;
+          content[2].innerText = this.com_value;
+          // console.log(this.com_value);
+        }
+        if (param === 4) {
+          this.oth_value = content[3].innerText;
+          content[3].innerText = this.oth_value;
+          // console.log(this.oth_value);
+        }
+      }
+    }
   }
 </script>
 
@@ -114,6 +157,7 @@
       }
     }
   }
+
   .input-area {
     width: 600px;
     min-height: 26px;
@@ -126,7 +170,7 @@
     border: none;
     word-wrap: break-word;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
     -webkit-user-modify: read-write-plaintext-only;
     border-radius: 4px;
     &:focus {
