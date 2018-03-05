@@ -10,14 +10,63 @@
       <div class="base-desc">
         <table>
           <tr>
-            <td>电话</td>
-            <td>求职意向</td>
-            <td>入职时间</td>
+            <td>
+              <span>电话:</span>
+            </td>
+            <td>
+              <div class="module-input-container"><input type="text" class="module-input" placeholder="18353122253">
+              </div>
+            </td>
+            <td>
+              <span>求职意向:</span>
+            </td>
+            <td>
+              <div class="module-input-container">
+                <select name="job-for" class="module-input">
+                  <option label="投资银行" value="投资银行"></option>
+                  <option label="证券研究" value="证券研究"></option>
+                  <option label="资产管理" value="资产管理"></option>
+                  <option label="固定收益" value="固定收益"></option>
+                  <option label="私募股权" value="私募股权"></option>
+                  <option label="银⾏保险" value="银⾏保险"></option>
+                  <option label="其他" value="其他"></option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <span>入职时间:</span>
+            </td>
+            <td>
+              <div class="module-input-container">
+                <input type="text" class="module-input" placeholder="111111111">
+              </div>
+            </td>
           </tr>
           <tr>
-            <td>邮箱</td>
-            <td>联系地址</td>
-            <td>实习时间</td>
+            <td>
+              <span>邮箱:</span>
+            </td>
+            <td>
+              <div class="module-input-container">
+                <input type="text" class="module-input" placeholder="XXXXXXXXX@XXX.com">
+              </div>
+            </td>
+            <td>
+              <span>联系地址:</span>
+            </td>
+            <td>
+              <div class="module-input-container">
+                <input type="text" class="module-input" placeholder="111111111">
+              </div>
+            </td>
+            <td>
+              <span>每周实习期:</span>
+            </td>
+            <td>
+              <div class="module-input-container">
+                <input type="text" class="module-input" placeholder="111111111">
+              </div>
+            </td>
           </tr>
         </table>
       </div>
@@ -48,7 +97,6 @@
       transform: translateY(-50%);
       width: 128px;
       height: 158px;
-      background-color: red;
       padding: 20px 40px;
     }
     .base-desc {
@@ -58,6 +106,58 @@
         tr {
           height: 50px;
           line-height: 50px;
+          position: relative;
+          td {
+            position: relative;
+            width: auto;
+            span {
+              display: block;
+              width: auto;
+              white-space: nowrap;
+            }
+            .module-input-container {
+              width: 100%;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+            }
+            select {
+              -moz-appearance: none;
+              -webkit-appearance: none;
+              appearance: none;
+              &:hover {
+                border: 1px dashed #666;
+              }
+            }
+            .module-input {
+              width: auto;
+              height: 25px;
+              border: none;
+              -webkit-box-sizing: border-box;
+              -moz-box-sizing: border-box;
+              box-sizing: border-box;
+              position: relative;
+              &:hover {
+                border: 1px dashed #666;
+              }
+              &:focus {
+                border: 1px dashed #666;
+                z-index: 999;
+              }
+              &::-webkit-input-placeholder {
+                color: #9e9e9e;
+              }
+              &:-moz-placeholder {
+                color: #9e9e9e;
+              }
+              &::-moz-placeholder {
+                color: #9e9e9e;
+              }
+              &:-ms-input-placeholder {
+                color: #9e9e9e;
+              }
+            }
+          }
         }
       }
     }
