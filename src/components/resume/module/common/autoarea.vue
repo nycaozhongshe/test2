@@ -32,7 +32,7 @@
     width: auto;
     textarea{
       position:absolute;
-      top: 0;
+      top: 16px;
       left:0;
       height:100%;
       resize: none;
@@ -40,10 +40,11 @@
       font-size: 16px;
       line-height: 20px;
       letter-spacing:0;
+      font-family: 'Microsoft YaHei';
     }
     pre{
       display:block;
-      visibility:hidden;
+      visibility:visible;
       span {
         width: 100%;
         display: inline-block;
@@ -54,6 +55,7 @@
         font-size: 16px;
         line-height: 20px;
         letter-spacing:0;
+        font-family: 'Microsoft YaHei';
       }
     }
   }
