@@ -16,7 +16,7 @@
             <div class="work-item-context work-time">
               <el-date-picker
                 type="daterange"
-                v-model="item.works_time"
+                v-model="item.work_time"
                 range-separator="至"
                 start-placeholder="开始日期"
                 end-placeholder="结束日期"
@@ -24,17 +24,17 @@
               </el-date-picker>
             </div>
             <div class="work-item-context work-school">
-              <input type="text" v-model="item.company_name_pr" class="module-input">
+              <input type="text" v-model="item.work_compony" class="module-input">
             </div>
             <div class="work-item-context work-pro">
-              <input type="text" v-model="item.department" class="module-input">
+              <input type="text" v-model="item.work_department" class="module-input">
             </div>
             <div class="work-item-context work-degree">
-              <input type="text" v-model="item.position_pr" class="module-input">
+              <input type="text" v-model="item.work_position" class="module-input">
             </div>
           </div>
           <div class="work-other">
-            <content-list></content-list>
+            <content-list :content-index="index" content-type="work" @listenContentListChange="getContent"></content-list>
           </div>
         </li>
       </ul>
@@ -60,6 +60,11 @@
       },
       removeItem(index) {
         removeListItem(this.workList, index)
+      },
+      getContent(data) {
+        let index = data.index;
+        let text = data.text;
+        this.workList[index].work_content = text;
       }
     },
     computed: {

@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="science-other">
-              <content-list></content-list>
+              <content-list :content-index="index" content-type="science" @listenContentListChange="getContent"></content-list>
             </div>
           </li>
         </ul>
@@ -58,6 +58,11 @@
         },
         removeItem(index) {
           removeListItem(this.scienceList, index)
+        },
+        getContent(data) {
+          let index = data.index;
+          let text = data.text;
+          this.scienceList[index].science_content = text;
         }
       },
       computed: {

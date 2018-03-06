@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="project-other">
-              <content-list></content-list>
+              <content-list :content-index="index" content-type="project" @listenContentListChange="getContent"></content-list>
             </div>
           </li>
         </ul>
@@ -58,6 +58,11 @@
         },
         removeItem(index) {
           removeListItem(this.projectList, index)
+        },
+        getContent(data) {
+          let index = data.index;
+          let text = data.text;
+          this.projectList[index].project_content = text;
         }
       },
       computed: {

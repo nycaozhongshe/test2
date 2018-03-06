@@ -24,17 +24,17 @@
               </el-date-picker>
             </div>
             <div class="education-item-context edu-school">
-              <input type="text" v-model="item.school_name" class="module-input">
+              <input type="text" v-model="item.edu_school" class="module-input">
             </div>
             <div class="education-item-context edu-pro">
-              <input type="text" v-model="item.major" class="module-input">
+              <input type="text" v-model="item.edu_major" class="module-input">
             </div>
             <div class="education-item-context edu-degree">
-              <input type="text" v-model="item.school_which" class="module-input">
+              <input type="text" v-model="item.edu_degree" class="module-input">
             </div>
           </div>
           <div class="education-other">
-            <autoarea :text-content="item.edu_other"></autoarea>
+            <autoarea :text-content="item.edu_other" :item-index="index" @listenTextareaChange="getContent"></autoarea>
           </div>
         </li>
       </ul>
@@ -63,6 +63,11 @@
       },
       removeItem(index) {
         removeListItem(this.eduList, index)
+      },
+      getContent(data) {
+        let index = data.index;
+        let text = data.text;
+        this.eduList[index].edu_other = text;
       }
     },
     computed: {

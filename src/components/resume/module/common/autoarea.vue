@@ -2,7 +2,7 @@
     <div class="autoarea">
       <div class="expandingArea">
         <pre><span>{{text}}</span><br></pre>
-        <textarea type="text" v-model="text" class="module-input" cols="30" @change="sendContent"></textarea>
+        <textarea type="text" v-model="text" class="module-input" cols="30"></textarea>
       </div>
     </div>
 </template>
@@ -20,7 +20,12 @@
         }
       },
       methods: {
-        sendContent() {
+        // sendContent() {
+        //   this.$emit('listenTextareaChange', {text: this.text, index: this.itemIndex, type: this.itemType});
+        // }
+      },
+      watch: {
+        text() {
           this.$emit('listenTextareaChange', {text: this.text, index: this.itemIndex, type: this.itemType});
         }
       }

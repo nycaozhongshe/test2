@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="internship-other">
-            <content-list></content-list>
+            <content-list :content-index="index" content-type="internship" @listenContentListChange="getContent"></content-list>
           </div>
         </li>
       </ul>
@@ -63,6 +63,13 @@
       },
       removeItem(index) {
         removeListItem(this.internshipList, index)
+      },
+      getContent(data) {
+        let index = data.index;
+        console.log(index);
+        let text = data.text;
+        console.log(text);
+        this.internshipList[index].internship_content = text;
       }
     },
     computed: {

@@ -3,7 +3,7 @@
     <div class="module-content-list">
       <div class="module-content-item" v-for="(item, index) in contentList" :key="item.indexs">
         <i class="module-arr">=></i>
-        <autoarea :text-content="item.context" :item-index="index" @listenTextareaChange="getTextareaContent"></autoarea>
+        <autoarea :text-content="item.content" :item-index="index" @listenTextareaChange="getTextareaContent"></autoarea>
         <i class="module-item-remove" @click="removeItem(index)" v-if="contentList.length >= 2">-</i>
       </div>
     </div>
@@ -16,12 +16,16 @@
   import defaultData from '../../js/app'
 
   export default {
+    props: [
+      'contentType',
+      'contentIndex'
+    ],
     components: {
       autoarea
     },
     data() {
       return {
-        contentList: []
+
       }
     },
     methods: {
@@ -35,12 +39,24 @@
       },
       getTextareaContent(data) {
         let index = data.index;
-        this.contentList[index].context = data.text;
+        this.contentList[index].content = data.text;
       }
     },
-    created() {
-      let t = JSON.parse(JSON.stringify(defaultData.contentItem));
-      this.contentList.push(t)
+    computed: {
+      contentList() {
+        let type = this.contentType;
+        let index = this.contentIndex;
+        let key = type + '_content';
+        return this.$store.state.resumeData[type][index][key];
+      }
+    },
+    watch: {
+      'contentList': {
+        handler: function (newVal, oldVal) {
+          this.$emit('listenContentListChange', {index: this.contentIndex, text: this.contentList})
+        },
+        deep: true
+      },
     }
   }
 </script>

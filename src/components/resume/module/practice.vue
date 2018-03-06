@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="practice-other">
-            <content-list></content-list>
+            <content-list :content-index="index" content-type="practice" @listenContentListChange="getContent"></content-list>
           </div>
         </li>
       </ul>
@@ -58,6 +58,11 @@
       },
       removeItem(index) {
         removeListItem(this.practiceList, index)
+      },
+      getContent(data) {
+        let index = data.index;
+        let text = data.text;
+        this.practiceList[index].practice_content = text;
       }
     },
     computed: {
