@@ -36,7 +36,6 @@ let mutations = {
   writeResumeData(state, n) {
     let type = n.type;
     let data = n.data;
-    console.log(state.resumeData[type]);
     state.resumeData[type] = data;
   },
 

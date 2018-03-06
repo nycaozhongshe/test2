@@ -92,13 +92,11 @@ let mutations = {
 
   //发送手机验证码
   commitSendMessage(state, n) {
-    console.log(n);
     axios({
       method: 'post',
       url: api.phoneVerificationCode,
       data: n
     }).then((res) => {
-      console.log(res);
     }).catch(() => {
       alert('发送失败');
     })
@@ -210,7 +208,6 @@ let mutations = {
 
   //提交注册表单
   commitRegForm(state, n) {
-    console.log(n);
     n.form.password = state.regtemp;
     n.form.confirm = state.regtemp;
     n.form.identification = 'reg';
@@ -260,7 +257,6 @@ let mutations = {
       url: api.changeThePhoneNumberByMobile,
       data: m
     }).then((res) => {
-      console.log(res);
       if (res.data.code == 0) {
         sessionStorage.setItem('userId', res.data.data.id);
         state.userInfo.id = res.data.data.user_id;
@@ -281,7 +277,6 @@ let mutations = {
       if (res.data.code == 6004) {
         n.router.replace('/user');
       }
-      console.log(res);
     })
   },
 
@@ -293,7 +288,6 @@ let mutations = {
       data: n.form
     }).then((res) => {
       let data = res.data;
-      console.log(data);
       if (data.code == 0) {
         n.next();
       }
@@ -303,7 +297,6 @@ let mutations = {
   //提交简历填写
   commitResumeForm(state, n) {
     let form = n.form;
-    console.log(3);
     let router = n.router;
     axios({
       method: 'post',
@@ -311,10 +304,7 @@ let mutations = {
       data: form
     }).then((res) => {
       state.fillResFlag = true;
-      console.log(5);
-      // router.go(-1);
     })
-    console.log(4);
   },
 
   //提交发布职位
@@ -327,7 +317,6 @@ let mutations = {
     }).then((res) => {
       let data = res.data;
       if (data.code == 0) {
-        console.log(data);
         n.router.push('success');
       }
     }).catch((err) => {
@@ -351,7 +340,6 @@ let mutations = {
           state.resume.resumeList = [];
         }
       }
-      // console.log(state.resume.resumeList);
     }).catch((err) => {
       if (err) {
         console.log(err);
@@ -429,7 +417,6 @@ let mutations = {
       url: api.selectVitae,
       data: n
     }).then((res) => {
-      console.log(res);
     }).catch((err) => {
       if (err) {
         console.log(err);

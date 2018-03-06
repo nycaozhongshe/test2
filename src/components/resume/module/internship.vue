@@ -66,9 +66,7 @@
       },
       getContent(data) {
         let index = data.index;
-        console.log(index);
         let text = data.text;
-        console.log(text);
         this.internshipList[index].internship_content = text;
       }
     },

@@ -16,7 +16,6 @@ let validataPhone = (rule, value, callback) => {
 };
 
 let validataPwd = (rule, value, callback) => {
-  console.log(value.length);
   // let pwdPattern = /(?=^.{6,20}$)(?=(?:.*?\d))(?=.*[a-z])(?=(?:.*?[A-Z]))(?=(?:.*?[!@#$%*()_+^&}{:;?.]){1})(?!.*\s)[0-9a-zA-Z!@#$%*()_+^&]*$/;
   if (value === '') {
     callback(new Error('请输入密码'));
