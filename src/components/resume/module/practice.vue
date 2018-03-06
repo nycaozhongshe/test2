@@ -2,7 +2,7 @@
   <div class="practice-module">
     <div class="practice-title module-title">
       活动实践
-      <div class="new-edu" @click="newPrac">
+      <div class="new-module-item" @click="newPrac">
         新增活动实践
       </div>
     </div>
@@ -89,6 +89,15 @@
     height: auto;
     margin: 0 40px;
     padding: 30px 0 50px;
+    .new-module-item {
+      display: none;
+    }
+    &:hover {
+      .new-module-item {
+        display: inline-block;
+      }
+      border: 1px solid blue;
+    }
     .module-title {
       border-bottom: 1px solid #000000;
       padding-left: 10px;

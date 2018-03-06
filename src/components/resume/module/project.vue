@@ -2,7 +2,7 @@
     <div class="project-module">
       <div class="project-title module-title">
         项目经历
-        <div class="new-edu" @click="newPro">
+        <div class="new-module-item" @click="newPro">
           新增项目经历
         </div>
       </div>
@@ -89,6 +89,15 @@
     height: auto;
     margin: 0 40px;
     padding: 30px 0 50px;
+    .new-module-item {
+      display: none;
+    }
+    &:hover {
+      .new-module-item {
+        display: inline-block;
+      }
+      border: 1px solid blue;
+    }
     .module-title {
       border-bottom: 1px solid #000000;
       padding-left: 10px;

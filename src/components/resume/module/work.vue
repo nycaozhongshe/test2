@@ -2,7 +2,7 @@
   <div class="work-module">
     <div class="work-title module-title">
       工作经历
-      <div class="new-edu" @click="newWork">
+      <div class="new-module-item" @click="newWork">
         新增工作经历
       </div>
     </div>
@@ -91,6 +91,15 @@
     height: auto;
     margin: 0 40px;
     padding: 30px 0 50px;
+    .new-module-item {
+      display: none;
+    }
+    &:hover {
+      .new-module-item {
+        display: inline-block;
+      }
+      border: 1px solid blue;
+    }
     .module-title {
       border-bottom: 1px solid #000000;
       padding-left: 10px;

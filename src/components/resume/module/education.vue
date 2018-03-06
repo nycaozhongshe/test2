@@ -2,7 +2,7 @@
   <div class="education-module">
     <div class="education-title module-title">
       教育背景
-      <div class="new-edu" @click="newEdu">
+      <div class="new-module-item" @click="newEdu">
         新增教育经历
       </div>
     </div>
@@ -94,6 +94,15 @@
     height: auto;
     margin: 0 40px;
     padding: 30px 0 50px;
+    .new-module-item {
+      display: none;
+    }
+    &:hover {
+      .new-module-item {
+        display: inline-block;
+      }
+      border: 1px solid blue;
+    }
     .module-title {
       border-bottom: 1px solid #000000;
       padding-left: 10px;
