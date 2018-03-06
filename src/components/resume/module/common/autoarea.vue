@@ -40,7 +40,7 @@
       font-size: 16px;
       line-height: 20px;
       letter-spacing:0;
-      font-family: 'Microsoft YaHei';
+      font-family: 'Microsoft YaHei',serif;
       overflow-y: hidden;
     }
     pre{
@@ -56,7 +56,7 @@
         font-size: 16px;
         line-height: 20px;
         letter-spacing:0;
-        font-family: 'Microsoft YaHei';
+        font-family: 'Microsoft YaHei',serif;
       }
     }
   }

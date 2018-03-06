@@ -48,6 +48,7 @@
 <style lang="scss" scoped>
   .module-content-item {
     position: relative;
+    margin-bottom: 3px;
     .module-arr {
       position: absolute;
       top: 50%;
