@@ -3,12 +3,12 @@
       <ul class="resume-util-list">
         <li class="resume-util-list-item"> <i>个人信息</i></li>
         <li class="resume-util-list-item"> <i>教育经历</i></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('internship')">实习经历</i> <span @click="removeModule('internship')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('work')">工作经历</i> <span @click="removeModule('work')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('science')">学术研究</i> <span @click="removeModule('science')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('project')">项目经历</i> <span @click="removeModule('project')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('practice')">活动实践</i> <span @click="removeModule('practice')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('skill')">技能证书</i> <span @click="removeModule('skill')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['internship']}"> <i @click="addModule('internship')">实习经历</i> <span v-if="statusList['internship']" @click="removeModule('internship')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['work']}"> <i @click="addModule('work')">工作经历</i> <span v-if="statusList['work']" @click="removeModule('work')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['science']}"> <i @click="addModule('science')">学术研究</i> <span v-if="statusList['science']" @click="removeModule('science')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['project']}"> <i @click="addModule('project')">项目经历</i> <span v-if="statusList['project']" @click="removeModule('project')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['practice']}"> <i @click="addModule('practice')">活动实践</i> <span v-if="statusList['practice']" @click="removeModule('practice')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['skill']}"> <i @click="addModule('skill')">技能证书</i> <span v-if="statusList['skill']" @click="removeModule('skill')">-</span></li>
       </ul>
     </div>
 </template>
@@ -16,15 +16,21 @@
 <style lang="scss" scoped>
   .resume-util {
     ul {
+      .resume-util-list-item-able {
+        color: #dddddd;
+        cursor: not-allowed;
+      }
       li {
         width: 100%;
         padding: 8px 16px 8px 16px;
         overflow: hidden;
+        cursor: pointer;
         i {
           font-style: normal;
         }
         span {
           color: #cccccc;
+          cursor: pointer;
           text-align: center;
           line-height: 18px;
           font-size: 24px;
