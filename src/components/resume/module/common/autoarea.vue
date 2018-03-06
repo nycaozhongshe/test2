@@ -41,6 +41,7 @@
       line-height: 20px;
       letter-spacing:0;
       font-family: 'Microsoft YaHei';
+      overflow-y: hidden;
     }
     pre{
       display:block;

@@ -7,7 +7,12 @@
 </template>
 
 <script>
-    export default {}
+  import contentList from './common/content'
+    export default {
+      components: {
+        contentList
+      },
+    }
 </script>
 
 <style lang="scss" scoped>

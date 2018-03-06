@@ -10,7 +10,7 @@
       <ul>
         <li v-for="(item, index) in workList">
           <div class="work-item clearfix">
-            <div class="work-item-context int-time">
+            <div class="work-item-context work-time">
               <el-date-picker
                 type="daterange"
                 v-model="item.works_time"
@@ -20,21 +20,18 @@
                 size="mini">
               </el-date-picker>
             </div>
-            <div class="work-item-context int-school">
+            <div class="work-item-context work-school">
               <input type="text" v-model="item.company_name_pr" class="module-input">
             </div>
-            <div class="work-item-context int-pro">
+            <div class="work-item-context work-pro">
               <input type="text" v-model="item.department" class="module-input">
             </div>
-            <div class="work-item-context int-degree">
+            <div class="work-item-context work-degree">
               <input type="text" v-model="item.position_pr" class="module-input">
             </div>
           </div>
           <div class="work-other">
-            <div class="expandingArea">
-              <pre><span>{{item.edu_other}}</span><br></pre>
-              <textarea type="text" v-model="item.edu_other" class="module-input" cols="30"></textarea>
-            </div>
+            <content-list></content-list>
           </div>
         </li>
       </ul>
@@ -44,8 +41,12 @@
 
 <script>
   import defaultData from '../js/app'
+  import contentList from './common/content'
 
   export default {
+    components: {
+      contentList
+    },
     data: function () {
       return {
         workList: [{
