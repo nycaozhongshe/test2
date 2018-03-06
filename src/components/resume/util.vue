@@ -1,14 +1,14 @@
 <template>
     <div class="resume-util">
-      <ul>
-        <li> <i>个人信息</i></li>
-        <li> <i>教育经历</i></li>
-        <li> <i @click="addModule('internship')">实习经历</i> <span @click="removeModule('internship')">-</span></li>
-        <li> <i @click="addModule('work')">工作经历</i> <span @click="removeModule('work')">-</span></li>
-        <li> <i @click="addModule('science')">学术研究</i> <span @click="removeModule('science')">-</span></li>
-        <li> <i @click="addModule('project')">项目经历</i> <span @click="removeModule('project')">-</span></li>
-        <li> <i @click="addModule('practice')">活动实践</i> <span @click="removeModule('practice')">-</span></li>
-        <li> <i @click="addModule('skill')">技能证书</i> <span @click="removeModule('skill')">-</span></li>
+      <ul class="resume-util-list">
+        <li class="resume-util-list-item"> <i>个人信息</i></li>
+        <li class="resume-util-list-item"> <i>教育经历</i></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('internship')">实习经历</i> <span @click="removeModule('internship')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('work')">工作经历</i> <span @click="removeModule('work')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('science')">学术研究</i> <span @click="removeModule('science')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('project')">项目经历</i> <span @click="removeModule('project')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('practice')">活动实践</i> <span @click="removeModule('practice')">-</span></li>
+        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': $store.state.moduleStatus}"> <i @click="addModule('skill')">技能证书</i> <span @click="removeModule('skill')">-</span></li>
       </ul>
     </div>
 </template>
@@ -59,6 +59,23 @@
         }
       }
     },
+    computed: {
+      statusList() {
+        let status = {
+          internship: true,
+          work: true,
+          science: true,
+          project: true,
+          practice: true,
+          skill: true,
+        };
+        for (let k in status) {
+          let index = type2index(this.$store.state.moduleStatus, k);
+          status[k] = this.$store.state.moduleStatus[index].status;
+        }
+        return status
+      }
+    }
   }
 </script>
 

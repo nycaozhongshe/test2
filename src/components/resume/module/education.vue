@@ -8,7 +8,10 @@
     </div>
     <div class="education-list">
       <ul>
-        <li v-for="(item, index) in eduList">
+        <li v-for="(item, index) in eduList" class="list-item-container">
+          <div class="remove-item" @click="removeItem(index)" v-if="eduList.length >= 2">
+            <i class="remove-item-btn">-</i>
+          </div>
           <div class="education-item clearfix">
             <div class="education-item-context edu-time">
               <el-date-picker
@@ -32,8 +35,8 @@
           </div>
           <div class="education-other">
             <!--<div class="expandingArea">-->
-              <!--<pre><span>{{item.edu_other}}</span><br></pre>-->
-              <!--<textarea type="text" v-model="item.edu_other" class="module-input" cols="30"></textarea>-->
+            <!--<pre><span>{{item.edu_other}}</span><br></pre>-->
+            <!--<textarea type="text" v-model="item.edu_other" class="module-input" cols="30"></textarea>-->
             <!--</div>-->
             <autoarea :text-content="item.edu_other"></autoarea>
           </div>
@@ -46,6 +49,8 @@
 <script>
   import defaultData from '../js/app'
   import autoarea from './common/autoarea'
+  import {removeListItem} from '../js/utils'
+
   export default {
     components: {
       autoarea
@@ -65,7 +70,11 @@
     },
     methods: {
       newEdu() {
-        this.eduList.push(defaultData['edu'])
+        let t = JSON.parse(JSON.stringify(defaultData['edu']));
+        this.eduList.push(t)
+      },
+      removeItem(index) {
+        removeListItem(this.eduList, index)
       }
     }
   }
@@ -81,6 +90,28 @@
       padding-left: 10px;
     }
     .education-list {
+      .list-item-container {
+        position: relative;
+        .remove-item {
+          cursor: pointer;
+          background-color: palevioletred;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          line-height: 15px;
+          text-align: center;
+          position: absolute;
+          right: -8px;
+          top: 0;
+          display: none;
+        }
+        &:hover {
+          border: 1px solid red;
+          .remove-item {
+            display: block;
+          }
+        }
+      }
       .education-other {
         padding-left: 25%;
       }

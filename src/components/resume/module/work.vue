@@ -8,7 +8,10 @@
     </div>
     <div class="work-list">
       <ul>
-        <li v-for="(item, index) in workList">
+        <li v-for="(item, index) in workList" class="list-item-container">
+          <div class="remove-item" @click="removeItem(index)" v-if="workList.length >= 2">
+            <i class="remove-item-btn">-</i>
+          </div>
           <div class="work-item clearfix">
             <div class="work-item-context work-time">
               <el-date-picker
@@ -42,7 +45,7 @@
 <script>
   import defaultData from '../js/app'
   import contentList from './common/content'
-
+  import {removeListItem} from '../js/utils'
   export default {
     components: {
       contentList
@@ -64,8 +67,11 @@
     },
     methods: {
       newWork() {
-        let t = defaultData['work'];
+        let t = JSON.parse(JSON.stringify(defaultData['work']));
         this.workList.push(t);
+      },
+      removeItem(index) {
+        removeListItem(this.workList, index)
       }
     }
   }
@@ -81,6 +87,28 @@
       padding-left: 10px;
     }
     .work-list {
+      .list-item-container {
+        position: relative;
+        .remove-item {
+          cursor: pointer;
+          background-color: palevioletred;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          line-height: 15px;
+          text-align: center;
+          position: absolute;
+          right: -8px;
+          top: 0;
+          display: none;
+        }
+        &:hover {
+          border: 1px solid red;
+          .remove-item {
+            display: block;
+          }
+        }
+      }
       .work-other {
         padding-left: 25%;
       }

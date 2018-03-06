@@ -8,7 +8,10 @@
     </div>
     <div class="internship-list">
       <ul>
-        <li v-for="(item, index) in internshipList">
+        <li v-for="(item, index) in internshipList" class="list-item-container">
+          <div class="remove-item" @click="removeItem(index)" v-if="internshipList.length >= 2">
+            <i class="remove-item-btn">-</i>
+          </div>
           <div class="internship-item clearfix">
             <div class="internship-item-context int-time">
               <el-date-picker
@@ -42,6 +45,7 @@
 <script>
   import defaultData from '../js/app'
   import contentList from './common/content'
+  import {removeListItem} from '../js/utils'
 
   export default {
     components: {
@@ -64,8 +68,11 @@
     },
     methods: {
       newInt() {
-        let t = defaultData['internship'];
+        let t = JSON.parse(JSON.stringify(defaultData['internship']));
         this.internshipList.push(t);
+      },
+      removeItem(index) {
+        removeListItem(this.internshipList, index)
       }
     }
   }
@@ -81,6 +88,28 @@
       padding-left: 10px;
     }
     .internship-list {
+      .list-item-container {
+        position: relative;
+        .remove-item {
+          cursor: pointer;
+          background-color: palevioletred;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          line-height: 15px;
+          text-align: center;
+          position: absolute;
+          right: -8px;
+          top: 0;
+          display: none;
+        }
+        &:hover {
+          border: 1px solid red;
+          .remove-item {
+            display: block;
+          }
+        }
+      }
       .internship-other {
         padding-left: 25%;
       }

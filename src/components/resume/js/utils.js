@@ -32,3 +32,11 @@ export function type2index(arr, type) {
   }
 }
 
+/**
+ * 删除数组中索引为index的元素
+ * @param arr
+ * @param index
+ */
+export function removeListItem(arr, index) {
+  arr.splice(index, 1);
+}

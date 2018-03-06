@@ -1,66 +1,74 @@
 <template>
-    <div class="practice-module">
-      <div class="practice-title module-title">
-        活动实践
-        <div class="new-edu" @click="newPrac">
-          新增活动实践
-        </div>
-      </div>
-      <div class="practice-list">
-        <ul>
-          <li v-for="(item, index) in practiceList">
-            <div class="practice-item clearfix">
-              <div class="practice-item-context practice-time">
-                <el-date-picker
-                  type="daterange"
-                  v-model="item.practice_time"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
-                  size="mini">
-                </el-date-picker>
-              </div>
-              <div class="practice-item-context practice-name">
-                <input type="text" v-model="item.practice_name" class="module-input">
-              </div>
-              <div class="practice-item-context practice-desc">
-                <input type="text" v-model="item.practice_desc" class="module-input">
-              </div>
-            </div>
-            <div class="practice-other">
-              <content-list></content-list>
-            </div>
-          </li>
-        </ul>
+  <div class="practice-module">
+    <div class="practice-title module-title">
+      活动实践
+      <div class="new-edu" @click="newPrac">
+        新增活动实践
       </div>
     </div>
+    <div class="practice-list">
+      <ul>
+        <li v-for="(item, index) in practiceList" class="list-item-container">
+          <div class="remove-item" @click="removeItem(index)" v-if="practiceList.length >= 2">
+            <i class="remove-item-btn">-</i>
+          </div>
+          <div class="practice-item clearfix">
+            <div class="practice-item-context practice-time">
+              <el-date-picker
+                type="daterange"
+                v-model="item.practice_time"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                size="mini">
+              </el-date-picker>
+            </div>
+            <div class="practice-item-context practice-name">
+              <input type="text" v-model="item.practice_name" class="module-input">
+            </div>
+            <div class="practice-item-context practice-desc">
+              <input type="text" v-model="item.practice_desc" class="module-input">
+            </div>
+          </div>
+          <div class="practice-other">
+            <content-list></content-list>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
   import defaultData from '../js/app'
   import contentList from './common/content'
-    export default {
-      components: {
-        contentList
+  import {removeListItem} from '../js/utils'
+
+  export default {
+    components: {
+      contentList
+    },
+    data() {
+      return {
+        practiceList: [
+          {
+            practice_time: [],
+            practice_name: '第十二届康腾全国商业案例分析大赛',
+            practice_desc: '筹委会委员'
+          }
+        ]
+      }
+    },
+    methods: {
+      newPrac() {
+        let t = JSON.parse(JSON.stringify(defaultData['practice']));
+        this.practiceList.push(t);
       },
-      data() {
-        return {
-          practiceList: [
-            {
-              practice_time: [],
-              practice_name: '第十二届康腾全国商业案例分析大赛',
-              practice_desc: '筹委会委员'
-            }
-          ]
-        }
-      },
-      methods: {
-        newPrac() {
-          let t = defaultData['practice'];
-          this.practiceList.push(t);
-        }
+      removeItem(index) {
+        removeListItem(this.practiceList, index)
       }
     }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -73,6 +81,28 @@
       padding-left: 10px;
     }
     .practice-list {
+      .list-item-container {
+        position: relative;
+        .remove-item {
+          cursor: pointer;
+          background-color: palevioletred;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          line-height: 15px;
+          text-align: center;
+          position: absolute;
+          right: -8px;
+          top: 0;
+          display: none;
+        }
+        &:hover {
+          border: 1px solid red;
+          .remove-item {
+            display: block;
+          }
+        }
+      }
       .practice-other {
         padding-left: 25%;
       }
@@ -91,7 +121,7 @@
           &:nth-of-type(3) {
             width: 20%;
             float: right;
-            >input {
+            > input {
               text-align: right;
             }
           }
