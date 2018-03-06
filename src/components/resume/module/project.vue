@@ -49,14 +49,6 @@
       },
       data() {
         return {
-          projectList: [
-            {
-              project_time: [],
-              project_name: '项目名称',
-              project_desc: '项目描述',
-              project_content: []
-            }
-          ]
         }
       },
       methods: {
@@ -67,6 +59,22 @@
         removeItem(index) {
           removeListItem(this.projectList, index)
         }
+      },
+      computed: {
+        projectList() {
+          return this.$store.state.resumeData.project;
+        }
+      },
+      watch: {
+        'projectList': {
+          handler: function (newVal, oldVal) {
+            this.$store.commit('writeResumeData', {
+              type: 'project',
+              data: this.projectList
+            })
+          },
+          deep: true
+        },
       }
     }
 </script>

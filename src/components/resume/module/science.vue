@@ -49,19 +49,6 @@
       },
       data() {
         return {
-          scienceList: [
-            {
-              science_time: [],
-              science_name: '学术研究标题',
-              science_desc: '学术研究描述',
-              science_content: [
-                {
-                  indexs: 0,
-                  content: ''
-                }
-              ]
-            }
-          ]
         }
       },
       methods: {
@@ -72,6 +59,22 @@
         removeItem(index) {
           removeListItem(this.scienceList, index)
         }
+      },
+      computed: {
+        scienceList() {
+          return this.$store.state.resumeData.science;
+        }
+      },
+      watch: {
+        'scienceList': {
+          handler: function (newVal, oldVal) {
+            this.$store.commit('writeResumeData', {
+              type: 'science',
+              data: this.scienceList
+            })
+          },
+          deep: true
+        },
       }
     }
 </script>

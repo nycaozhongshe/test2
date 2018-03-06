@@ -11,7 +11,8 @@
     export default {
       props: [
         'textContent',
-        'itemIndex'
+        'itemIndex',
+        'itemType'
       ],
       data() {
         return {
@@ -20,7 +21,7 @@
       },
       methods: {
         sendContent() {
-          this.$emit('listenTextareaChange', {text: this.text, index: this.itemIndex});
+          this.$emit('listenTextareaChange', {text: this.text, index: this.itemIndex, type: this.itemType});
         }
       }
     }

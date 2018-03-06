@@ -34,10 +34,6 @@
             </div>
           </div>
           <div class="education-other">
-            <!--<div class="expandingArea">-->
-            <!--<pre><span>{{item.edu_other}}</span><br></pre>-->
-            <!--<textarea type="text" v-model="item.edu_other" class="module-input" cols="30"></textarea>-->
-            <!--</div>-->
             <autoarea :text-content="item.edu_other"></autoarea>
           </div>
         </li>
@@ -57,15 +53,7 @@
     },
     data() {
       return {
-        eduList: [
-          {
-            edu_time: [],
-            school_name: '马歇尔商学院',
-            major: '金融学',
-            school_which: '硕士',
-            edu_other: '在这里详细描述你在校期间所学的专业，主要包括课程内容，校内任职，校内荣誉等内容...'
-          }
-        ],
+
       }
     },
     methods: {
@@ -76,6 +64,22 @@
       removeItem(index) {
         removeListItem(this.eduList, index)
       }
+    },
+    computed: {
+      eduList() {
+        return this.$store.state.resumeData.education
+      }
+    },
+    watch: {
+      'eduList': {
+        handler: function (newVal, oldVal) {
+          this.$store.commit('writeResumeData', {
+            type: 'education',
+            data: this.eduList
+          })
+        },
+        deep: true
+      },
     }
   }
 </script>

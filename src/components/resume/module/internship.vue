@@ -16,7 +16,7 @@
             <div class="internship-item-context int-time">
               <el-date-picker
                 type="daterange"
-                v-model="item.internships_time"
+                v-model="item.internship_time"
                 range-separator="至"
                 start-placeholder="开始日期"
                 end-placeholder="结束日期"
@@ -24,13 +24,13 @@
               </el-date-picker>
             </div>
             <div class="internship-item-context int-school">
-              <input type="text" v-model="item.company_name_pr" class="module-input">
+              <input type="text" v-model="item.internship_compony" class="module-input">
             </div>
             <div class="internship-item-context int-pro">
-              <input type="text" v-model="item.department" class="module-input">
+              <input type="text" v-model="item.internship_department" class="module-input">
             </div>
             <div class="internship-item-context int-degree">
-              <input type="text" v-model="item.position_pr" class="module-input">
+              <input type="text" v-model="item.internship_position" class="module-input">
             </div>
           </div>
           <div class="internship-other">
@@ -53,17 +53,7 @@
     },
     data: function () {
       return {
-        internshipList: [{
-          company_name_pr: '公司',
-          department: '部门',
-          position_pr: '职位',
-          internships_time: [],
-          work_content_pr: [{
-            indexs: 0,
-            title: '小标题',
-            context: '内容'
-          }]
-        }]
+
       }
     },
     methods: {
@@ -74,6 +64,22 @@
       removeItem(index) {
         removeListItem(this.internshipList, index)
       }
+    },
+    computed: {
+      internshipList() {
+        return this.$store.state.resumeData.internship;
+      }
+    },
+    watch: {
+      'internshipList': {
+        handler: function (newVal, oldVal) {
+          this.$store.commit('writeResumeData', {
+            type: 'internship',
+            data: this.internshipList
+          })
+        },
+        deep: true
+      },
     }
   }
 </script>

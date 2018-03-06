@@ -51,19 +51,7 @@
       contentList
     },
     data: function () {
-      return {
-        workList: [{
-          company_name_pr: '公司',
-          department: '部门',
-          position_pr: '职位',
-          works_time: [],
-          work_content_pr: [{
-            indexs: 0,
-            title: '小标题',
-            context: '内容'
-          }]
-        }]
-      }
+      return {}
     },
     methods: {
       newWork() {
@@ -73,6 +61,22 @@
       removeItem(index) {
         removeListItem(this.workList, index)
       }
+    },
+    computed: {
+      workList() {
+        return this.$store.state.resumeData.work;
+      }
+    },
+    watch: {
+      'workList': {
+        handler: function (newVal, oldVal) {
+          this.$store.commit('writeResumeData', {
+            type: 'work',
+            data: this.workList
+          })
+        },
+        deep: true
+      },
     }
   }
 </script>

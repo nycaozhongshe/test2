@@ -1,13 +1,13 @@
 <template>
   <div class="base-module">
     <div class="base-content">
-      <div class="base-name">
-        李希希
+      <div class="base-name clearfix">
+        <input type="text" v-model="info_name" class="module-input">
       </div>
       <div class="base-email">
         <span class="input-title">电子邮箱：</span>
         <div class="module-input-container clearfix">
-          <input type="text" class="module-input">
+          <input type="text" class="module-input" v-model="info_email">
         </div>
       </div>
       <div class="base-avatar">
@@ -19,13 +19,13 @@
             <td height="50px">
               <div class="module-input-container clearfix">
                 <span class="input-title">电话:</span>
-                <input type="text" class="module-input" placeholder="18353122253">
+                <input type="text" class="module-input" placeholder="18353122253" v-model="info_phone">
               </div>
             </td>
             <td height="50px">
               <div class="module-input-container clearfix">
                 <span class="input-title">求职意向:</span>
-                <select name="job-for" class="module-input">
+                <select name="job-for" class="module-input" v-model="info_direction">
                   <option label="投资银行" value="投资银行"></option>
                   <option label="证券研究" value="证券研究"></option>
                   <option label="资产管理" value="资产管理"></option>
@@ -39,7 +39,7 @@
             <td height="50px">
               <div class="module-input-container clearfix">
                 <span class="input-title">入职时间:</span>
-                <select type="text" class="module-input" placeholder="111111111">
+                <select type="text" class="module-input" placeholder="111111111" v-model="info_time">
                   <option value="1个月">1个月</option>
                 </select>
               </div>
@@ -49,7 +49,7 @@
             <td>
               <div class="module-input-container clearfix">
                 <span class="input-title">最高学历:</span>
-                <select type="text" class="module-input" placeholder="XXXXXXXXX@XXX.com">
+                <select type="text" class="module-input" v-model="info_degree">
                   <option value="本科">本科</option></select>
               </div>
             </td>
@@ -60,6 +60,7 @@
                   <el-cascader
                     :options="cityList"
                     size="mini"
+                    v-model="info_address"
                     :show-all-levels="false"
                     style="height: 50px;line-height: 50px;">
                   </el-cascader>
@@ -69,7 +70,7 @@
             <td>
               <div class="module-input-container clearfix">
                 <span class="input-title">每周实习期:</span>
-                <input type="text" class="module-input" placeholder="1" style="width: 20px;">
+                <input type="text" class="module-input" placeholder="1" style="width: 20px;" v-model="info_internship">
                 <span>天</span>
               </div>
             </td>
@@ -96,7 +97,7 @@
     }
     .module-input {
       float: left;
-      height: 25px;
+      min-height: 25px;
       border: none;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -222,6 +223,128 @@
       getWidth() {
         let minWidth = 25;
         console.dir(this.$refs.input);
+      },
+      changeBaseInfo(type, data) {
+        this.$store.commit('writeBaseInfo', {
+          type: type,
+          data: data
+        })
+      }
+    },
+    computed: {
+      info_name: {
+        get: function () {
+          return this.$store.state.resumeData.baseinfo.info_name;
+        },
+        set: function (n) {
+          this.$store.state.resumeData.baseinfo.info_name = n;
+        }
+      },
+      info_email: {
+        get: function () {
+          return this.$store.state.resumeData.baseinfo.info_email;
+        },
+        set: function (n) {
+          this.$store.state.resumeData.baseinfo.info_email = n;
+        }
+      },
+      info_phone: {
+        get: function () {
+          return this.$store.state.resumeData.baseinfo.info_phone;
+        },
+        set: function (n) {
+          this.$store.state.resumeData.baseinfo.info_phone = n;
+        }
+      },
+      info_direction: {
+        get: function () {
+          return this.$store.state.resumeData.baseinfo.info_direction;
+        },
+        set: function (n) {
+          this.$store.state.resumeData.baseinfo.info_direction = n;
+        }
+      },
+      info_time: {
+        get: function () {
+          return this.$store.state.resumeData.baseinfo.info_time;
+        },
+        set: function (n) {
+          this.$store.state.resumeData.baseinfo.info_time = n;
+        }
+      },
+      info_degree: {
+        get: function () {
+          return this.$store.state.resumeData.baseinfo.info_degree;
+        },
+        set: function (n) {
+          this.$store.state.resumeData.baseinfo.info_degree = n;
+        }
+      },
+      info_address: {
+        get: function () {
+          return this.$store.state.resumeData.baseinfo.info_address;
+        },
+        set: function (n) {
+          this.$store.state.resumeData.baseinfo.info_address = n;
+        }
+      },
+      info_internship: {
+        get: function () {
+          return this.$store.state.resumeData.baseinfo.info_internship;
+        },
+        set: function (n) {
+          this.$store.state.resumeData.baseinfo.info_internship = n;
+        }
+      },
+    },
+    watch: {
+      info_name() {
+        this.$store.commit('writeBaseInfo', {
+          type: 'info_name',
+          data: this.info_name
+        })
+      },
+      info_email() {
+        this.$store.commit('writeBaseInfo', {
+          type: 'info_email',
+          data: this.info_email
+        })
+      },
+      info_phone() {
+        this.$store.commit('writeBaseInfo', {
+          type: 'info_phone',
+          data: this.info_phone
+        })
+      },
+      info_direction() {
+        this.$store.commit('writeBaseInfo', {
+          type: 'info_direction',
+          data: this.info_direction
+        })
+      },
+      info_time() {
+        this.$store.commit('writeBaseInfo', {
+          type: 'info_time',
+          data: this.info_time
+        })
+      },
+      info_degree() {
+        this.$store.commit('writeBaseInfo', {
+          type: 'info_degree',
+          data: this.info_degree
+        })
+      },
+      info_address() {
+        this.$store.commit('writeBaseInfo', {
+          type: 'info_address',
+          data: this.info_address
+        })
+      },
+      info_internship() {
+        this.$store.commit('writeBaseInfo', {
+          type: 'info_internship',
+          data: this.info_internship
+        })
       }
     }
   }

@@ -9,7 +9,7 @@
           专业技能
         </div>
         <div class="d_content">
-          <autoarea :text-content="pro_value"></autoarea>
+          <autoarea :text-content="skills.pro_value" item-type="pro_value" @listenTextareaChange="getContent"></autoarea>
         </div>
       </div>
       <div class="d_price clearfix">
@@ -17,7 +17,7 @@
           语言技能
         </div>
         <div class="d_content">
-          <autoarea :text-content="lan_value"></autoarea>
+          <autoarea :text-content="skills.lan_value" item-type="lan_value" @listenTextareaChange="getContent"></autoarea>
         </div>
       </div>
       <div class="d_price clearfix">
@@ -25,7 +25,7 @@
           计算机技能
         </div>
         <div class="d_content">
-          <autoarea :text-content="com_value"></autoarea>
+          <autoarea :text-content="skills.com_value" item-type="com_value" @listenTextareaChange="getContent"></autoarea>
         </div>
       </div>
       <div class="d_price clearfix">
@@ -33,7 +33,7 @@
           其它技能
         </div>
         <div class="d_content">
-          <autoarea :text-content="oth_value"></autoarea>
+          <autoarea :text-content="skills.oth_value" item-type="oth_value" @listenTextareaChange="getContent"></autoarea>
         </div>
       </div>
     </div>
@@ -46,15 +46,33 @@
   export default {
     data() {
       return {
-        pro_value: '',
-        lan_value: '',
-        com_value: '',
-        oth_value: '',
       }
     },
-    methods: {},
+    methods: {
+      getContent(data) {
+        let type = data.type;
+        let text = data.text;
+        this.skills[type] = text;
+      }
+    },
     components: {
       autoarea,
+    },
+    computed: {
+      skills() {
+        return this.$store.state.resumeData.skill;
+      }
+    },
+    watch: {
+      'skills': {
+        handler: function (newVal, oldVal) {
+          this.$store.commit('writeResumeData', {
+            type: 'skill',
+            data: this.skills
+          })
+        },
+        deep: true
+      },
     }
   }
 </script>

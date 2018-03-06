@@ -49,15 +49,7 @@
       contentList
     },
     data() {
-      return {
-        practiceList: [
-          {
-            practice_time: [],
-            practice_name: '第十二届康腾全国商业案例分析大赛',
-            practice_desc: '筹委会委员'
-          }
-        ]
-      }
+      return {}
     },
     methods: {
       newPrac() {
@@ -67,6 +59,22 @@
       removeItem(index) {
         removeListItem(this.practiceList, index)
       }
+    },
+    computed: {
+      practiceList() {
+        return this.$store.state.resumeData.practice
+      }
+    },
+    watch: {
+      'practiceList': {
+        handler: function (newVal, oldVal) {
+          this.$store.commit('writeResumeData', {
+            type: 'practice',
+            data: this.practiceList
+          })
+        },
+        deep: true
+      },
     }
   }
 </script>
