@@ -2,6 +2,9 @@
     <div class="practice-module">
       <div class="practice-title module-title">
         活动实践
+        <div class="new-edu" @click="newPrac">
+          新增活动实践
+        </div>
       </div>
       <div class="practice-list">
         <ul>
@@ -34,6 +37,7 @@
 </template>
 
 <script>
+  import defaultData from '../js/app'
   import contentList from './common/content'
     export default {
       components: {
@@ -48,6 +52,12 @@
               practice_desc: '筹委会委员'
             }
           ]
+        }
+      },
+      methods: {
+        newPrac() {
+          let t = defaultData['practice'];
+          this.practiceList.push(t);
         }
       }
     }
@@ -76,10 +86,10 @@
           box-sizing: border-box;
           overflow: hidden;
           &:nth-of-type(2) {
-            width: 35%;
+            width: 55%;
           }
           &:nth-of-type(3) {
-            width: 35%;
+            width: 20%;
             float: right;
             >input {
               text-align: right;
@@ -117,20 +127,4 @@
     }
   }
 </style>
-<style lang="scss">
-  .practice-module {
-    .el-input__icon {
-      display: none;
-    }
-    .el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange.el-range-editor--mini {
-      width: 180px;
-      border: none;
-      .el-range-input:nth-of-type(2) {
-        margin-left: 5px;
-      }
-      &:hover {
-        border: 1px dashed #666666;
-      }
-    }
-  }
-</style>
+

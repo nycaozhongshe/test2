@@ -98,48 +98,8 @@
           }
         }
       }
-      .education-other {
-        /*.expandingArea {*/
-        /*position: relative;*/
-        /*width: auto;*/
-        /*textarea{*/
-        /*position:absolute;*/
-        /*top:0;*/
-        /*left:0;*/
-        /*height:100%;*/
-        /*resize: none;*/
-        /*width: 100%;*/
-        /*}*/
-        /*pre{*/
-        /*display:block;*/
-        /*visibility:hidden;*/
-        /*span {*/
-        /*width: 100%;*/
-        /*display: inline-block;*/
-        /*height: auto;*/
-        /*white-space: normal;*/
-        /*}*/
-        /*}*/
-        /*}*/
-      }
     }
   }
 
 </style>
-<style lang="scss">
-  .education-module {
-    .el-input__icon {
-      display: none;
-    }
-    .el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange.el-range-editor--mini {
-      width: 180px;
-      border: none;
-      .el-range-input:nth-of-type(2) {
-        margin-left: 5px;
-      }
-      &:hover {
-        border: 1px dashed #666666;
-      }
-    }
-  }
-</style>
+

@@ -2,6 +2,9 @@
     <div class="project-module">
       <div class="project-title module-title">
         项目经历
+        <div class="new-edu" @click="newPro">
+          新增项目经历
+        </div>
       </div>
       <div class="project-list">
         <ul>
@@ -34,6 +37,7 @@
 </template>
 
 <script>
+  import defaultData from '../js/app'
   import contentList from './common/content'
     export default {
       components: {
@@ -49,6 +53,12 @@
               project_content: []
             }
           ]
+        }
+      },
+      methods: {
+        newPro() {
+          let t = defaultData['project'];
+          this.projectList.push(t);
         }
       }
     }
@@ -114,23 +124,6 @@
             }
           }
         }
-      }
-    }
-  }
-</style>
-<style lang="scss">
-  .project-module {
-    .el-input__icon {
-      display: none;
-    }
-    .el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange.el-range-editor--mini {
-      width: 180px;
-      border: none;
-      .el-range-input:nth-of-type(2) {
-        margin-left: 5px;
-      }
-      &:hover {
-        border: 1px dashed #666666;
       }
     }
   }

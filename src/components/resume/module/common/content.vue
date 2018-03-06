@@ -49,27 +49,25 @@
   .module-content-item {
     position: relative;
     margin-bottom: 3px;
+    &:hover .module-item-remove {
+      display: block;
+    }
     .module-arr {
       position: absolute;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -moz-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      -o-transform: translateY(-50%);
-      transform: translateY(-50%);
+      top: 0;
       left: -50px;
     }
     .module-item-remove {
       line-height: 15px;
       text-align: center;
-      display: block;
+      display: none;
       font-style: normal;
       height: 15px;
       width: 15px;
       background-color: red;
       border-radius: 50%;
       position: absolute;
-      right: 0;
+      right: -7.5px;
       top: 50%;
       -webkit-transform: translateY(-50%);
       -moz-transform: translateY(-50%);

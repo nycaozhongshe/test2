@@ -125,20 +125,3 @@
     }
   }
 </style>
-<style lang="scss">
-  .internship-module {
-    .el-input__icon {
-      display: none;
-    }
-    .el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange.el-range-editor--mini {
-      width: 180px;
-      border: none;
-      .el-range-input:nth-of-type(2) {
-        margin-left: 5px;
-      }
-      &:hover {
-        border: 1px dashed #666666;
-      }
-    }
-  }
-</style>

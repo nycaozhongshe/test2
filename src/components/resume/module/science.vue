@@ -2,6 +2,9 @@
     <div class="science-module">
       <div class="science-title module-title">
         学术研究
+        <div class="new-edu" @click="newSci">
+          新增学术研究
+        </div>
       </div>
       <div class="science-list">
         <ul>
@@ -34,6 +37,7 @@
 </template>
 
 <script>
+  import defaultData from '../js/app'
   import contentList from './common/content'
     export default {
       components: {
@@ -54,6 +58,12 @@
               ]
             }
           ]
+        }
+      },
+      methods: {
+        newSci() {
+          let t = defaultData['science'];
+          this.scienceList.push(t);
         }
       }
     }
@@ -119,23 +129,6 @@
             }
           }
         }
-      }
-    }
-  }
-</style>
-<style lang="scss">
-  .science-module {
-    .el-input__icon {
-      display: none;
-    }
-    .el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange.el-range-editor--mini {
-      width: 180px;
-      border: none;
-      .el-range-input:nth-of-type(2) {
-        margin-left: 5px;
-      }
-      &:hover {
-        border: 1px dashed #666666;
       }
     }
   }

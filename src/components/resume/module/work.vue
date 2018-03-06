@@ -2,7 +2,7 @@
   <div class="work-module">
     <div class="work-title module-title">
       工作经历
-      <div class="new-edu" @click="newInt">
+      <div class="new-edu" @click="newWork">
         新增工作经历
       </div>
     </div>
@@ -63,7 +63,7 @@
       }
     },
     methods: {
-      newInt() {
+      newWork() {
         let t = defaultData['work'];
         this.workList.push(t);
       }
@@ -121,23 +121,6 @@
             }
           }
         }
-      }
-    }
-  }
-</style>
-<style lang="scss">
-  .work-module {
-    .el-input__icon {
-      display: none;
-    }
-    .el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange.el-range-editor--mini {
-      width: 180px;
-      border: none;
-      .el-range-input:nth-of-type(2) {
-        margin-left: 5px;
-      }
-      &:hover {
-        border: 1px dashed #666666;
       }
     }
   }

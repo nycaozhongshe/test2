@@ -29,7 +29,7 @@
     },
     created() {
       bus.$on('changeModuleStatus', (index) => {
-        this.$store.commit('changeModuleStatus', {index:index, length: this.showList.length})
+        this.$store.commit('changeModuleStatus', {index: index, length: this.showList.length})
       })
     },
     methods: {
@@ -80,6 +80,21 @@
 </style>
 <style lang="scss">
   .resume-show {
+    .module-container {
+      .el-input__icon {
+        display: none;
+      }
+      .el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange.el-range-editor--mini {
+        width: 180px;
+        border: none;
+        .el-range-input:nth-of-type(2) {
+          margin-left: 5px;
+        }
+        &:hover {
+          border: 1px dashed #666666;
+        }
+      }
+    }
     .module-title {
       margin-bottom: 20px;
       padding-bottom: 5px;
