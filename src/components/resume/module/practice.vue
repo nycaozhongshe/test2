@@ -1,7 +1,34 @@
 <template>
     <div class="practice-module">
       <div class="practice-title module-title">
-        2活动实践
+        活动实践
+      </div>
+      <div class="practice-list">
+        <ul>
+          <li v-for="(item, index) in practiceList">
+            <div class="practice-item clearfix">
+              <div class="practice-item-context practice-time">
+                <el-date-picker
+                  type="daterange"
+                  v-model="item.practice_time"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+                  size="mini">
+                </el-date-picker>
+              </div>
+              <div class="practice-item-context practice-name">
+                <input type="text" v-model="item.practice_name" class="module-input">
+              </div>
+              <div class="practice-item-context practice-desc">
+                <input type="text" v-model="item.practice_desc" class="module-input">
+              </div>
+            </div>
+            <div class="practice-other">
+              <content-list></content-list>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
 </template>
@@ -12,6 +39,17 @@
       components: {
         contentList
       },
+      data() {
+        return {
+          practiceList: [
+            {
+              practice_time: [],
+              practice_name: '第十二届康腾全国商业案例分析大赛',
+              practice_desc: '筹委会委员'
+            }
+          ]
+        }
+      }
     }
 </script>
 
@@ -23,6 +61,76 @@
     .module-title {
       border-bottom: 1px solid #000000;
       padding-left: 10px;
+    }
+    .practice-list {
+      .practice-other {
+        padding-left: 25%;
+      }
+      .practice-item {
+        .practice-item-context {
+          float: left;
+          padding-right: 30px;
+          width: 25%;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          overflow: hidden;
+          &:nth-of-type(2) {
+            width: 35%;
+          }
+          &:nth-of-type(3) {
+            width: 35%;
+            float: right;
+            >input {
+              text-align: right;
+            }
+          }
+          input {
+            width: 100%;
+          }
+        }
+      }
+      .practice-other {
+        .expandingArea {
+          position: relative;
+          width: auto;
+          textarea {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            resize: none;
+            width: 100%;
+          }
+          pre {
+            display: block;
+            visibility: hidden;
+            span {
+              width: 100%;
+              display: inline-block;
+              height: auto;
+              white-space: normal;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+<style lang="scss">
+  .practice-module {
+    .el-input__icon {
+      display: none;
+    }
+    .el-date-editor.el-range-editor.el-input__inner.el-date-editor--daterange.el-range-editor--mini {
+      width: 180px;
+      border: none;
+      .el-range-input:nth-of-type(2) {
+        margin-left: 5px;
+      }
+      &:hover {
+        border: 1px dashed #666666;
+      }
     }
   }
 </style>
