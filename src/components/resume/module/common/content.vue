@@ -2,12 +2,21 @@
   <div class="module-content">
     <div class="module-content-list">
       <div class="module-content-item" v-for="(item, index) in contentList" :key="item.indexs">
-        <i class="module-arr">=></i>
-        <autoarea :text-content="item.content" :item-index="index" @listenTextareaChange="getTextareaContent"></autoarea>
-        <i class="module-item-remove" @click="removeItem(index)" v-if="contentList.length >= 2">-</i>
+        <!--<i class="module-arr">></i>-->
+        <svg class="icon" aria-hidden="true" style=" top: 0; left: -45px;position: absolute;">
+          <use xlink:href="#icon-msnui-rightmini"></use>
+        </svg>
+        <autoarea :place-holder="placeHolder" :text-content="item.context" :item-index="index" @listenTextareaChange="getTextareaContent"></autoarea>
+        <i class="module-item-remove" @click="removeItem(index)" v-if="contentList.length >= 2">
+          <svg class="icon" aria-hidden="true" style="color:#c20c0c;position: absolute;top: -2px;right: -3px ">
+            <use xlink:href="#icon-ai67"></use>
+          </svg>
+        </i>
       </div>
     </div>
-    <b class="add-item" @click="addItem">+</b>
+    <b class="add-item" @click="addItem">
+      <i class="el-icon-circle-plus-outline"></i>
+    </b>
   </div>
 </template>
 
@@ -18,7 +27,9 @@
   export default {
     props: [
       'contentType',
-      'contentIndex'
+      'contentIndex',
+      'placeHolder',
+      'keyName'
     ],
     components: {
       autoarea
@@ -31,7 +42,8 @@
     methods: {
       addItem() {
         let t = JSON.parse(JSON.stringify(defaultData.contentItem));
-        t.indexs = this.contentList.length;
+        let l = this.contentList.length
+        t.indexs = +this.contentList[l-1].indexs + 1;
         this.contentList.push(t);
       },
       removeItem(index) {
@@ -39,14 +51,14 @@
       },
       getTextareaContent(data) {
         let index = data.index;
-        this.contentList[index].content = data.text;
+        this.contentList[index].context = data.text;
       }
     },
     computed: {
       contentList() {
         let type = this.contentType;
         let index = this.contentIndex;
-        let key = type + '_content';
+        let key = this.keyName;
         return this.$store.state.resumeData[type][index][key];
       }
     },
@@ -64,13 +76,19 @@
 <style lang="scss" scoped>
   .module-content {
     &:hover {
-      border: 1px solid #666666;
+      /*border: 1px solid #666666;*/
       .add-item {
         display: block;
+        cursor: pointer;
+        color: #c20c0c;
       }
     }
     .add-item {
       display: none;
+      .el-icon-circle-plus-outline{
+        font-size: 16px;
+        color:#c20c0c ;
+      }
     }
     .module-content-item {
       position: relative;
@@ -78,10 +96,8 @@
       &:hover .module-item-remove {
         display: block;
       }
-      .module-arr {
-        position: absolute;
-        top: 0;
-        left: -50px;
+      .icon{
+        font-size: 20px;
       }
       .module-item-remove {
         cursor: pointer;
@@ -91,7 +107,7 @@
         font-style: normal;
         height: 15px;
         width: 15px;
-        background-color: red;
+        background-color: white;
         border-radius: 50%;
         position: absolute;
         right: -7.5px;

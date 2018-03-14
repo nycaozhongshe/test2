@@ -23,6 +23,7 @@ const changeResume = r => require.ensure([], () => r(require('../components/chan
 const changePosition = r => require.ensure([], () => r(require('../components/changePosition')), 'changePosition');
 const aboutWBEDU = r => require.ensure([], () => r(require('../components/aboutWBEDU')), 'aboutWBEDU');
 const editResume = r => require.ensure([], () => r(require('../components/resume/main')), 'editResume');
+const resumeEntry = r => require.ensure([], () => r(require('../components/resume/resumeEntry')), 'resumeEntry');
 
 import store from '../store'
 
@@ -178,9 +179,15 @@ export default new Router({
     },
     {
       //简历编辑
-      path: '/editResume',
+      path: '/editResume/:op',
       name: 'editResume',
-      component: editResume
+      component: editResume,
+    },
+    {
+      //简历中心入口
+      path: '/resumeEntry',
+      name: 'resumeEntry',
+      component: resumeEntry
     }
   ]
 })

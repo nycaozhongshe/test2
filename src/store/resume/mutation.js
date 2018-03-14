@@ -1,5 +1,6 @@
 import {arrUpDown, type2index} from "../../components/resume/js/utils";
 
+
 let mutations = {
   changeModuleStatus(state, n) {
     let index = n.index;
@@ -24,7 +25,7 @@ let mutations = {
   writeBaseInfo(state, n) {
     let type = n.type;
     let data = n.data;
-    state.resumeData.baseinfo[type] = data;
+    state.resumeData[type] = data;
   },
 
   /**
@@ -58,6 +59,50 @@ let mutations = {
   },
   changeModuleItem(state, n) {
 
+  },
+  changeResumeData(state, n) {
+    state.resumeData = n;
+  },
+
+  getResumeStatus(state, n) {
+    let form = state.resumeData;
+    let status = state.moduleStatus;
+    if (form.internship.company_name_pr !== '') {
+      let i = type2index(status, 'internship');
+      status[i].status = true;
+    } else {
+      status[i].status = false;
+    }
+    if (form.work.company_name_wo !== '') {
+      let i = type2index(status, 'work');
+      status[i].status = true;
+    } else {
+      status[i].status = false;
+    }
+    if (form.science.science_name !== '') {
+      let i = type2index(status, 'science');
+      status[i].status = true;
+    } else {
+      status[i].status = false;
+    }
+    if (form.project.case_name !== '') {
+      let i = type2index(status, 'project');
+      status[i].status = true;
+    } else {
+      status[i].status = false;
+    }
+    if (form.practice.practice_name !== '') {
+      let i = type2index(status, 'practice');
+      status[i].status = true;
+    } else {
+      status[i].status = false;
+    }
+    if (form.skill_professional !== '') {
+      let i = type2index(status, 'skill');
+      status[i].status = true;
+    } else {
+      status[i].status = false;
+    }
   }
 }
 

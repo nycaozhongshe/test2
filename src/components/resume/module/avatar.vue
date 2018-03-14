@@ -41,7 +41,7 @@
       color: #8c939d;
       width: 178px;
       height: 178px;
-      line-height: 160px;
+      line-height: 145px;
       text-align: center;
     }
     .avatar {

@@ -3,8 +3,16 @@
     <div class="module-container">
       <div class="module-item"
            v-for="(item, index) in showList">
-        <div class="arr-up arr" @click="moveUp(item.type)" v-if="index > 2">上</div>
-        <div class="arr-down arr" @click="moveDown(item.type)" v-if="index < showList.length - 1 && index > 1">下</div>
+        <div class="arr-up arr" @click="moveUp(item.type)" v-if="index > 2">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-xiangshangjiantou"></use>
+          </svg>
+        </div>
+        <div class="arr-down arr" @click="moveDown(item.type)" v-if="index < showList.length - 1 && index > 1">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-xiangxiajiantou"></use>
+          </svg>
+        </div>
         <module-template
           :key="index"
           :module-type="item.type">
@@ -66,14 +74,20 @@
       left: 0;
       height: 20px;
       width: 20px;
+      border-radius: 50%;
       z-index: 2;
       &.arr-up {
         top: 40px;
-        background-color: red;
+        background-color: #c20c0c;
       }
       &.arr-down {
-        top: 60px;
-        background-color: blue;
+        top: 63px;
+        background-color: #0c51c2;
+      }
+      .icon {
+        font-size: 21px;
+        color: white;
+        cursor: pointer;
       }
     }
   }

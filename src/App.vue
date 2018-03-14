@@ -13,7 +13,7 @@
             <router-link class="nav" active-class="router-active" to="/job">求职信息</router-link>
           </li>
           <li class="fl">
-            <router-link class="nav" active-class="router-active" to="/editResume">简历中心</router-link>
+            <router-link class="nav" active-class="router-active" to="/resumeEntry">简历中心</router-link>
           </li>
         </ul>
         <div class="fr search-header">

@@ -62,7 +62,8 @@ router.beforeEach(({name}, from, next) => {
     'aboutwbedu',
     'polyfill',
     'test',
-    'editResume'];
+    'editResume',
+    'resumeEntry'];
   if (JSON.parse(sessionStorage.getItem('logged'))) {
     if (name === 'login') {
       next('/');

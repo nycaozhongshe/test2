@@ -10,11 +10,24 @@
         <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['practice']}"> <i @click="addModule('practice')">活动实践</i> <span v-if="statusList['practice']" @click="removeModule('practice')">-</span></li>
         <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['skill']}"> <i @click="addModule('skill')">技能证书</i> <span v-if="statusList['skill']" @click="removeModule('skill')">-</span></li>
       </ul>
+      <div class="save" @click="saveResume" v-if="$router.currentRoute.params.op === 'new'">保存</div>
+      <div class="save" @click="changeResume" v-else>保存更改</div>
     </div>
 </template>
 
 <style lang="scss" scoped>
   .resume-util {
+    overflow: hidden;
+    .save {
+      text-align: center;
+      background-color: #c20c0c;
+      color: #FFFFFF;
+      width: 60%;
+      height: 35px;
+      line-height: 35px;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
     ul {
       .resume-util-list-item-able {
         color: #dddddd;
@@ -63,6 +76,37 @@
         if(this.$store.state.moduleStatus[index].status) {
           bus.$emit('changeModuleStatus', index);
         }
+      },
+      saveResume() {
+        const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        })
+        let form = JSON.parse(JSON.stringify(this.$store.state.resumeData));
+        form.vitae_city = JSON.stringify(form.vitae_city);
+        form.id = this.$store.state.userInfo.id;
+        this.$store.dispatch('sendResume', form).then( res => {
+          if (res.data.code === '0') {
+            loading.close();
+            this.$message({
+              message: '提交成功'
+            });
+            this.$router.go(-1);
+          }
+        })
+      },
+      changeResume() {
+        let form = JSON.parse(JSON.stringify(this.$store.state.resumeData));
+        form.vitae_city = JSON.stringify(form.vitae_city);
+        delete form.expected_city;
+        delete form.other_content;
+        delete form.remark;
+        delete form.vitae_path;
+        delete form.gender;
+        form.vitae_id = this.$router.currentRoute.params.op;
+        this.$store.dispatch('changeResume', form)
       }
     },
     computed: {

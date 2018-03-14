@@ -2,12 +2,12 @@
   <div class="base-module">
     <div class="base-content">
       <div class="base-name clearfix">
-        <input type="text" v-model="info_name" class="module-input">
+        <input type="text" v-model="vitae_name" class="module-input" style="margin-left: 0;" placeholder="请输入姓名">
       </div>
       <div class="base-email">
-        <span class="input-title">电子邮箱：</span>
+        <span class="input-title">电子邮箱:</span>
         <div class="module-input-container clearfix">
-          <input type="text" class="module-input" v-model="info_email">
+          <input type="text" class="module-input"  v-model="vitae_email" style="width: 83%" placeholder="请输入邮箱">
         </div>
       </div>
       <div class="base-avatar">
@@ -18,29 +18,36 @@
           <tr>
             <td height="50px">
               <div class="module-input-container clearfix">
-                <span class="input-title">电话:</span>
-                <input type="text" class="module-input" placeholder="18353122253" v-model="info_phone">
+                <span class="input-title">联系电话:</span>
+                <input type="text" class="module-input"  v-model="vitae_mobile" placeholder="请输入手机号">
               </div>
             </td>
             <td height="50px">
               <div class="module-input-container clearfix">
                 <span class="input-title">求职意向:</span>
-                <select name="job-for" class="module-input" v-model="info_direction">
-                  <option label="投资银行" value="投资银行"></option>
-                  <option label="证券研究" value="证券研究"></option>
-                  <option label="资产管理" value="资产管理"></option>
-                  <option label="固定收益" value="固定收益"></option>
-                  <option label="私募股权" value="私募股权"></option>
-                  <option label="银⾏保险" value="银⾏保险"></option>
-                  <option label="其他" value="其他"></option>
+                <select name="job-for" class="module-input" v-model="vitae_direction" :class="{colorGred: vitae_direction ===  ''}">
+                  <option label="请选择" disabled selected hidden></option>
+                  <option label="投资银行" style="color: #1a1a1a" value="投资银行"></option>
+                  <option label="证券研究" style="color: #1a1a1a" value="证券研究"></option>
+                  <option label="资产管理" style="color: #1a1a1a" value="资产管理"></option>
+                  <option label="固定收益" style="color: #1a1a1a" value="固定收益"></option>
+                  <option label="私募股权" style="color: #1a1a1a" value="私募股权"></option>
+                  <option label="银⾏保险" style="color: #1a1a1a" value="银⾏保险"></option>
+                  <option label="其他" style="color: #1a1a1a" value="其他"></option>
                 </select>
               </div>
             </td>
-            <td height="50px">
+            <td height="30px">
               <div class="module-input-container clearfix">
                 <span class="input-title">入职时间:</span>
-                <select type="text" class="module-input" placeholder="111111111" v-model="info_time">
-                  <option value="1个月">1个月</option>
+                <select type="text" class="module-input" placeholder="111111111" v-model="vitae_entry_time" :class="{colorGred: vitae_entry_time ===  ''}">
+                  <option label="请选择" disabled selected hidden ></option>
+                  <option value="随时入职">随时入职</option>
+                  <option value="1个星期内">1个星期内</option>
+                  <option value="1个月内">1个月内</option>
+                  <option value="3个月内">3个月内</option>
+                  <option value="时间另议">时间另议</option>
+                  <option value="不填写">不填写</option>
                 </select>
               </div>
             </td>
@@ -49,20 +56,25 @@
             <td>
               <div class="module-input-container clearfix">
                 <span class="input-title">最高学历:</span>
-                <select type="text" class="module-input" v-model="info_degree">
-                  <option value="本科">本科</option></select>
+                <select type="text" class="module-input" v-model="vitae_degree" :class="{colorGred: vitae_degree ===  ''}">
+                  <option label="请选择" disabled selected hidden  ></option>
+                  <option value="博士及以上">博士及以上</option>
+                  <option value="硕士">硕士</option>
+                  <option value="本科">本科</option>
+                  <option value="专科及以下">专科及以下</option>
+                </select>
               </div>
             </td>
             <td>
               <div class="module-input-container clearfix">
                 <span class="input-title">联系地址:</span>
-                <div class="cascader-container" style="float: left;width: 100px;line-height: 50px;height: 50px;">
+                <div class="cascader-container" style="float: left;width: 110px;line-height:25px;height:25px;">
                   <el-cascader
                     :options="cityList"
                     size="mini"
-                    v-model="info_address"
+                    v-model="vitae_city"
                     :show-all-levels="false"
-                    style="height: 50px;line-height: 50px;">
+                    style="height: 25px;line-height: 25px;">
                   </el-cascader>
                 </div>
               </div>
@@ -70,7 +82,7 @@
             <td>
               <div class="module-input-container clearfix">
                 <span class="input-title">每周实习期:</span>
-                <input type="text" class="module-input" placeholder="1" style="width: 20px;" v-model="info_internship">
+                <input type="text" class="module-input" placeholder="1-7" style="width: 40px;margin-right: 5px;text-align: center" v-model="vitae_internship_time">
                 <span>天</span>
               </div>
             </td>
@@ -85,42 +97,55 @@
 </template>
 
 <style lang="scss" scoped>
+
+  .colorGred {
+    color: #b4c2db;
+  }
   .base-content {
-    min-height: 210px;
+    min-height: 140px;
     margin: 0 208px 0 40px;
-    padding: 40px 0 15px;
+    padding: 35px 0 15px;
+
+
     .input-title {
       float: left;
     }
     .module-input-container {
-      line-height: 50px;
+      line-height: 30px;
+
+      .cascader-container{
+        /*border: #e5e5e5 1px solid;*/
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        margin-left: 5px;
+        margin-top: 3px;
+      }
     }
     .module-input {
+      margin-left: 5px;
+      /*text-indent: 3px;*/
+      height: 25px;
       float: left;
       min-height: 25px;
-      border: none;
+      /*border: #e5e5e5 1px solid;*/
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
       position: relative;
       &:hover {
-        border: 1px dashed #666;
+        border: 1px dashed #c20c0c;
       }
       &:focus {
-        border: 1px dashed #666;
+        border: 1px dashed #c20c0c;
         z-index: 999;
       }
-      &::-webkit-input-placeholder {
-        color: #9e9e9e;
-      }
-      &:-moz-placeholder {
-        color: #9e9e9e;
-      }
-      &::-moz-placeholder {
-        color: #9e9e9e;
-      }
-      &:-ms-input-placeholder {
-        color: #9e9e9e;
+
+      option{
+        font-size: 14px;
       }
     }
     .module-input-container {
@@ -138,9 +163,9 @@
       }
     }
     .base-name {
-      font-size: 30px;
+      font-size: 24px;
       font-weight: bold;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
     .base-avatar {
       position: absolute;
@@ -151,31 +176,32 @@
       -ms-transform: translateY(-50%);
       -o-transform: translateY(-50%);
       transform: translateY(-50%);
-      width: 128px;
-      height: 158px;
+      width: 120px;
+      height: 148px;
       padding: 20px 40px;
     }
     .base-desc {
       position: relative;
-      width: 572px;
+      width: 602px;
       table {
-        width: 572px;
+        width: 602px;
         height: 100%;
         tr {
-          height: 50px;
-          line-height: 50px;
+          height: 30px;
+          line-height: 30px;
           td {
             display: inline-block;
             float: left;
             width: 33%;
-            height: 50px;
-            overflow: hidden;
+            height: 30px;
+            /*overflow: hidden;*/
             .module-input {
-              margin-left: 10px;
+              margin-left: 5px;
               vertical-align:middle;
-              height: 50px;
-              line-height: 50px;
-              width: 100px;
+              height: 25px;
+              line-height: 25px;
+              width: 110px;
+              margin-top: 5px;
             }
             span {
               display: block;
@@ -189,15 +215,32 @@
 </style>
 <style lang="scss">
   .base-module {
+    .el-input__inner {
+      font-size: 16px;
+      color: #9e9e9e;
+      padding: 0;
+
+    }
+    .el-cascader__label {
+      font-size: 16px;
+      font-weight: normal;
+      font-family: 微软雅黑;
+      color: #000;
+      padding-left: 0;
+    }
     .cascader-container:hover .el-input__suffix {
       display: block !important;
     }
     .el-input.el-input--mini.el-input--suffix {
       .el-input__suffix {
         display: none;
+        /*height: 25px;*/
       }
       &:hover {
-        border: 1px dashed #666;
+        border: 1px dashed #c20c0c;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
       }
       input {
         border: none;
@@ -232,118 +275,118 @@
       }
     },
     computed: {
-      info_name: {
+      vitae_name: {
         get: function () {
-          return this.$store.state.resumeData.baseinfo.info_name;
+          return this.$store.state.resumeData.vitae_name;
         },
         set: function (n) {
-          this.$store.state.resumeData.baseinfo.info_name = n;
+          this.$store.state.resumeData.vitae_name = n;
         }
       },
-      info_email: {
+      vitae_email: {
         get: function () {
-          return this.$store.state.resumeData.baseinfo.info_email;
+          return this.$store.state.resumeData.vitae_email;
         },
         set: function (n) {
-          this.$store.state.resumeData.baseinfo.info_email = n;
+          this.$store.state.resumeData.vitae_email = n;
         }
       },
-      info_phone: {
+      vitae_mobile: {
         get: function () {
-          return this.$store.state.resumeData.baseinfo.info_phone;
+          return this.$store.state.resumeData.vitae_mobile;
         },
         set: function (n) {
-          this.$store.state.resumeData.baseinfo.info_phone = n;
+          this.$store.state.resumeData.vitae_mobile = n;
         }
       },
-      info_direction: {
+      vitae_direction: {
         get: function () {
-          return this.$store.state.resumeData.baseinfo.info_direction;
+          return this.$store.state.resumeData.vitae_direction;
         },
         set: function (n) {
-          this.$store.state.resumeData.baseinfo.info_direction = n;
+          this.$store.state.resumeData.vitae_direction = n;
         }
       },
-      info_time: {
+      vitae_entry_time: {
         get: function () {
-          return this.$store.state.resumeData.baseinfo.info_time;
+          return this.$store.state.resumeData.vitae_entry_time;
         },
         set: function (n) {
-          this.$store.state.resumeData.baseinfo.info_time = n;
+          this.$store.state.resumeData.vitae_entry_time = n;
         }
       },
-      info_degree: {
+      vitae_degree: {
         get: function () {
-          return this.$store.state.resumeData.baseinfo.info_degree;
+          return this.$store.state.resumeData.vitae_degree;
         },
         set: function (n) {
-          this.$store.state.resumeData.baseinfo.info_degree = n;
+          this.$store.state.resumeData.vitae_degree = n;
         }
       },
-      info_address: {
+      vitae_city: {
         get: function () {
-          return this.$store.state.resumeData.baseinfo.info_address;
+          return this.$store.state.resumeData.vitae_city;
         },
         set: function (n) {
-          this.$store.state.resumeData.baseinfo.info_address = n;
+          this.$store.state.resumeData.vitae_city = n;
         }
       },
-      info_internship: {
+      vitae_internship_time: {
         get: function () {
-          return this.$store.state.resumeData.baseinfo.info_internship;
+          return this.$store.state.resumeData.vitae_internship_time;
         },
         set: function (n) {
-          this.$store.state.resumeData.baseinfo.info_internship = n;
+          this.$store.state.resumeData.vitae_internship_time = n;
         }
       },
     },
     watch: {
-      info_name() {
+      vitae_name() {
         this.$store.commit('writeBaseInfo', {
-          type: 'info_name',
-          data: this.info_name
+          type: 'vitae_name',
+          data: this.vitae_name
         })
       },
-      info_email() {
+      vitae_email() {
         this.$store.commit('writeBaseInfo', {
-          type: 'info_email',
-          data: this.info_email
+          type: 'vitae_email',
+          data: this.vitae_email
         })
       },
-      info_phone() {
+      vitae_mobile() {
         this.$store.commit('writeBaseInfo', {
-          type: 'info_phone',
-          data: this.info_phone
+          type: 'vitae_mobile',
+          data: this.vitae_mobile
         })
       },
-      info_direction() {
+      vitae_direction() {
         this.$store.commit('writeBaseInfo', {
-          type: 'info_direction',
-          data: this.info_direction
+          type: 'vitae_direction',
+          data: this.vitae_direction
         })
       },
-      info_time() {
+      vitae_entry_time() {
         this.$store.commit('writeBaseInfo', {
-          type: 'info_time',
-          data: this.info_time
+          type: 'vitae_entry_time',
+          data: this.vitae_entry_time
         })
       },
-      info_degree() {
+      vitae_degree() {
         this.$store.commit('writeBaseInfo', {
-          type: 'info_degree',
-          data: this.info_degree
+          type: 'vitae_degree',
+          data: this.vitae_degree
         })
       },
-      info_address() {
+      vitae_city() {
         this.$store.commit('writeBaseInfo', {
-          type: 'info_address',
-          data: this.info_address
+          type: 'vitae_city',
+          data: this.vitae_city
         })
       },
-      info_internship() {
+      vitae_internship_time() {
         this.$store.commit('writeBaseInfo', {
-          type: 'info_internship',
-          data: this.info_internship
+          type: 'vitae_internship_time',
+          data: this.vitae_internship_time
         })
       }
     }

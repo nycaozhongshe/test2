@@ -2,7 +2,7 @@
     <div class="autoarea">
       <div class="expandingArea">
         <pre><span>{{text}}</span><br></pre>
-        <textarea type="text" v-model="text" class="module-input" cols="30"></textarea>
+        <textarea type="text" v-model="text" class="module-input" cols="30" :placeholder="placeHolder"></textarea>
       </div>
     </div>
 </template>
@@ -12,11 +12,22 @@
       props: [
         'textContent',
         'itemIndex',
-        'itemType'
+        'itemType',
+        'placeHolder'
       ],
       data() {
         return {
-          text: this.textContent
+          data: this.text
+        }
+      },
+      computed: {
+        text: {
+          get: function () {
+            return this.textContent
+          },
+          set: function (newVal) {
+            this.data = newVal
+          }
         }
       },
       methods: {
@@ -25,8 +36,8 @@
         // }
       },
       watch: {
-        text() {
-          this.$emit('listenTextareaChange', {text: this.text, index: this.itemIndex, type: this.itemType});
+        data() {
+          this.$emit('listenTextareaChange', {text: this.data, index: this.itemIndex, type: this.itemType});
         }
       }
     }
@@ -43,11 +54,13 @@
       height:100%;
       resize: none;
       width: 100%;
-      font-size: 16px;
-      line-height: 20px;
+      font-size: 14px;
+      line-height: 18px;
       letter-spacing:0;
       font-family: 'Microsoft YaHei',serif;
       overflow-y: hidden;
+      background-color: transparent;
+
     }
     pre{
       display:block;
@@ -59,8 +72,8 @@
         white-space: normal;
         -ms-word-break: break-all;
         word-break: break-all;
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 14px;
+        line-height: 18px;
         letter-spacing:0;
         font-family: 'Microsoft YaHei',serif;
       }

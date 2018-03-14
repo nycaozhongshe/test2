@@ -293,7 +293,7 @@
       },
       changeResume(index) {
         let id = this.$store.state.resume.resumeList[index].vitae_id;
-        this.$router.push('/changeResume/' + id);
+        this.$router.push('/editResume/' + id);
       }
     },
     computed: {
