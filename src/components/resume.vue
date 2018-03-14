@@ -110,7 +110,7 @@
       width="30%"
       :before-close="handleClose">
       <div class="btnbox">
-        <button id="filbtn" @click="$router.push('/fillResume');">在线填写</button>
+        <button id="filbtn" @click="$router.push('/editResume/new');">在线填写</button>
         <div id="upbtn">
           <el-upload
             class="upload-demo"

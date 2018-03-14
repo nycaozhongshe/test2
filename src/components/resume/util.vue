@@ -98,6 +98,12 @@
         })
       },
       changeResume() {
+        const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        })
         let form = JSON.parse(JSON.stringify(this.$store.state.resumeData));
         form.vitae_city = JSON.stringify(form.vitae_city);
         delete form.expected_city;
@@ -105,8 +111,42 @@
         delete form.remark;
         delete form.vitae_path;
         delete form.gender;
+        delete form.certificate;
+
+        // delete form.skill_computer
+        // delete form.skill_language
+        // delete form.skill_others
+        // delete form.skill_professional
+        // delete form.vitae_city
+        // delete form.vitae_degree
+        // delete form.vitae_direction
+        // delete form.vitae_email
+        // delete form.vitae_entry_time
+        // delete form.vitae_id
+        // delete form.vitae_internship_time
+        // delete form.vitae_mobile
+        // delete form.vitae_name
+        // delete form.vitae_photo
+        // delete form.education
+        // delete form.internship[0].company_department_pr
+        // delete form.internship[0].company_name_pr
+        // delete form.internship[0].id
+        // delete form.internship[0].internships_time
+        // delete form.internship[0].position_pr
+        // delete form.internship[0].vitae_id
+        // delete form.internship[0].work_content_pr
+
+
         form.vitae_id = this.$router.currentRoute.params.op;
-        this.$store.dispatch('changeResume', form)
+        this.$store.dispatch('changeResume', form).then( res => {
+          if (res.data.code === '0') {
+            loading.close();
+            this.$message({
+              message: '提交成功'
+            });
+            this.$router.go(-1);
+          }
+        })
       }
     },
     computed: {

@@ -113,7 +113,7 @@
                     :value="item.vitae_id"></el-option>
                 </el-select>
                 <div style="margin-top: 10px;">
-                <span style="cursor: pointer;" @click="$router.push('/fillResume')">还没有在线简历？去新增</span>
+                <span style="cursor: pointer;" @click="$router.push('/editResume/new')">还没有在线简历？去新增</span>
                 </div>
               </span>
             </el-radio>

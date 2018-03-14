@@ -67,40 +67,46 @@ let mutations = {
   getResumeStatus(state, n) {
     let form = state.resumeData;
     let status = state.moduleStatus;
-    if (form.internship.company_name_pr !== '') {
+    if (!!form.internship[0].company_name_pr) {
       let i = type2index(status, 'internship');
       status[i].status = true;
     } else {
+      let i = type2index(status, 'internship');
       status[i].status = false;
     }
-    if (form.work.company_name_wo !== '') {
+    if (!!form.work[0].company_name_wo) {
       let i = type2index(status, 'work');
       status[i].status = true;
     } else {
+      let i = type2index(status, 'work');
       status[i].status = false;
     }
-    if (form.science.science_name !== '') {
+    if (!!form.science[0].science_name) {
       let i = type2index(status, 'science');
       status[i].status = true;
     } else {
+      let i = type2index(status, 'science');
       status[i].status = false;
     }
-    if (form.project.case_name !== '') {
+    if (!!form.project[0].case_name) {
       let i = type2index(status, 'project');
       status[i].status = true;
     } else {
+      let i = type2index(status, 'project');
       status[i].status = false;
     }
-    if (form.practice.practice_name !== '') {
+    if (!!form.practice[0].practice_name) {
       let i = type2index(status, 'practice');
       status[i].status = true;
     } else {
+      let i = type2index(status, 'practice');
       status[i].status = false;
     }
-    if (form.skill_professional !== '') {
+    if (!!form.skill_professional) {
       let i = type2index(status, 'skill');
       status[i].status = true;
     } else {
+      let i = type2index(status, 'skill');
       status[i].status = false;
     }
   }
