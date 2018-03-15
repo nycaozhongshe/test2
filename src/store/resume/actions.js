@@ -11,6 +11,9 @@ export default {
     },
     getResume({}, n) {
       return request.post(api.selectVitae, n);
-    }
+    },
+    getResumeList({}, n) {
+      return request.post(api.selectMyVitae, n);
+    },
   }
 }

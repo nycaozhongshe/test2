@@ -52,7 +52,7 @@
             </div>
             <div class="my-resume-list clearfix">
               <div class="my-resume-item"
-                   v-for="(item,index) in this.$store.state.resume.resumeList"
+                   v-for="(item,index) in resumeList"
               >
                 <img :src="item.vitaeType == '0'? '../../static/pdf.jpg':'../../static/resume.png'" alt=""
                      @click='previewResume(index)'>
@@ -159,7 +159,8 @@
         imageUrl: '',
         uploadData: {},
         loading: true,
-        api
+        api,
+        resumeList: []
       }
     },
     methods: {
@@ -204,7 +205,7 @@
       },
       delResume() {
         let delIndex = this.delId;
-        let id = this.$store.state.resume.resumeList[delIndex].vitae_id;
+        let id = this.resumeList[delIndex].vitae_id;
         this.loading = true;
         axios({
           method: 'post',
@@ -222,7 +223,17 @@
               if (data.code == 0) {
                 let id2 = this.$store.state.userInfo.id;
                 this.writeUserInfo(data.data.wbUserDTO);
-                this.actionResumeList({"id": id2});
+                this.$store.dispatch('getResumeList', {id: id2}).then(res => {
+                  if (res.data.code == 0 || res.data.code == 1001) {
+                    if (res.data.data.ruv) {
+                      // state.resume.resumeList = res.data.data.ruv;
+                      this.resumeList = res.data.data.ruv;
+                    } else {
+                      // state.resume.resumeList = [];
+                      this.resumeList = [];
+                    }
+                  }
+                })
                 this.loading = false;
                 // this.actionDeliverList({"id": id});
               }
@@ -231,7 +242,7 @@
         })
       },
       previewResume(index) {
-        let id = this.$store.state.resume.resumeList[index].vitae_id;
+        let id = this.resumeList[index].vitae_id;
         let newWin = window.open(window.location.origin + '/#/loadingPage/');
 
         let pdfURL = '';
@@ -292,7 +303,7 @@
         this.$message.warning('请刷新后再次上传');
       },
       changeResume(index) {
-        let id = this.$store.state.resume.resumeList[index].vitae_id;
+        let id = this.resumeList[index].vitae_id;
         this.$router.push('/editResume/' + id);
       }
     },
@@ -323,7 +334,18 @@
             this.imageUrl = '';
           }
           let id = this.$store.state.userInfo.id;
-          this.actionResumeList({"id": id});
+          // this.actionResumeList({"id": id});
+          this.$store.dispatch('getResumeList', {id: id}).then(res => {
+            if (res.data.code == 0 || res.data.code == 1001) {
+              if (res.data.data.ruv) {
+                // state.resume.resumeList = res.data.data.ruv;
+                this.resumeList = res.data.data.ruv;
+              } else {
+                // state.resume.resumeList = [];
+                this.resumeList = [];
+              }
+            }
+          })
           axios({
             method: 'post',
             url: api.selectDeliveryRecord,

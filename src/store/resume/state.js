@@ -43,7 +43,7 @@ let resumeState = {
   ],
   moduleLength: 2,
   resumeData: {
-    vitae_photo: 'wangjiashengsijilao',
+    vitae_photo: '',
     vitae_name: '',
     vitae_email: '',
     vitae_mobile: '',

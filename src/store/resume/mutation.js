@@ -1,4 +1,5 @@
 import {arrUpDown, type2index} from "../../components/resume/js/utils";
+import tmp from '../../components/resume/js/app'
 
 
 let mutations = {
@@ -73,6 +74,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'internship');
       status[i].status = false;
+      form.internship[0] = tmp.internship
     }
     if (!!form.work[0].company_name_wo) {
       let i = type2index(status, 'work');
@@ -80,6 +82,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'work');
       status[i].status = false;
+      form.work[0] = tmp.work
     }
     if (!!form.science[0].science_name) {
       let i = type2index(status, 'science');
@@ -87,6 +90,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'science');
       status[i].status = false;
+      form.science[0] = tmp.science
     }
     if (!!form.project[0].case_name) {
       let i = type2index(status, 'project');
@@ -94,6 +98,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'project');
       status[i].status = false;
+      form.project[0] = tmp.project
     }
     if (!!form.practice[0].practice_name) {
       let i = type2index(status, 'practice');
@@ -101,6 +106,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'practice');
       status[i].status = false;
+      form.practice[0] = tmp.practice
     }
     if (!!form.skill_professional) {
       let i = type2index(status, 'skill');
@@ -108,6 +114,17 @@ let mutations = {
     } else {
       let i = type2index(status, 'skill');
       status[i].status = false;
+      form.skill = tmp.skill
+    }
+    let j = 0;
+    for (let i = 0; i < status.length; i++) {
+      let k = status[i];
+      if (k.status) {
+        k.s = j;
+        j++;
+      } else {
+        k.s = 10;
+      }
     }
   }
 }

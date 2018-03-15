@@ -1,18 +1,36 @@
 <template>
-    <div class="resume-util">
-      <ul class="resume-util-list">
-        <li class="resume-util-list-item"> <i>个人信息</i></li>
-        <li class="resume-util-list-item"> <i>教育经历</i></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['internship']}"> <i @click="addModule('internship')">实习经历</i> <span v-if="statusList['internship']" @click="removeModule('internship')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['work']}"> <i @click="addModule('work')">工作经历</i> <span v-if="statusList['work']" @click="removeModule('work')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['science']}"> <i @click="addModule('science')">学术研究</i> <span v-if="statusList['science']" @click="removeModule('science')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['project']}"> <i @click="addModule('project')">项目经历</i> <span v-if="statusList['project']" @click="removeModule('project')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['practice']}"> <i @click="addModule('practice')">活动实践</i> <span v-if="statusList['practice']" @click="removeModule('practice')">-</span></li>
-        <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['skill']}"> <i @click="addModule('skill')">技能证书</i> <span v-if="statusList['skill']" @click="removeModule('skill')">-</span></li>
-      </ul>
-      <div class="save" @click="saveResume" v-if="$router.currentRoute.params.op === 'new'">保存</div>
-      <div class="save" @click="changeResume" v-else>保存更改</div>
-    </div>
+  <div class="resume-util">
+    <ul class="resume-util-list">
+      <li class="resume-util-list-item"><i>个人信息</i></li>
+      <li class="resume-util-list-item"><i>教育经历</i></li>
+      <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['internship']}">
+        <i @click="addModule('internship')">实习经历</i>
+        <span v-if="statusList['internship']" @click="removeModule('internship')">-</span>
+      </li>
+      <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['work']}">
+        <i @click="addModule('work')">工作经历</i>
+        <span v-if="statusList['work']" @click="removeModule('work')">-</span>
+      </li>
+      <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['science']}">
+        <i @click="addModule('science')">学术研究</i>
+        <span v-if="statusList['science']" @click="removeModule('science')">-</span>
+      </li>
+      <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['project']}">
+        <i @click="addModule('project')">项目经历</i>
+        <span v-if="statusList['project']" @click="removeModule('project')">-</span>
+      </li>
+      <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['practice']}">
+        <i @click="addModule('practice')">活动实践</i>
+        <span v-if="statusList['practice']" @click="removeModule('practice')">-</span>
+      </li>
+      <li class="resume-util-list-item" :class="{'resume-util-list-item-able': statusList['skill']}">
+        <i @click="addModule('skill')">技能证书</i>
+        <span v-if="statusList['skill']" @click="removeModule('skill')">-</span>
+      </li>
+    </ul>
+    <div class="save" @click="saveResume" v-if="$router.currentRoute.params.op === 'new'">保存</div>
+    <div class="save" @click="changeResume" v-else>保存更改</div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -63,18 +81,22 @@
 <script>
   import bus from './js/bus'
   import {type2index} from './js/utils'
+  import tmp from '../resume/js/app'
+
   export default {
     methods: {
       addModule(type) {
         const index = type2index(this.$store.state.moduleStatus, type);
-        if(!this.$store.state.moduleStatus[index].status) {
+        if (!this.$store.state.moduleStatus[index].status) {
+          console.log(!this.$store.state.moduleStatus[index].status);
           bus.$emit('changeModuleStatus', index);
         }
       },
       removeModule(type) {
         const index = type2index(this.$store.state.moduleStatus, type);
-        if(this.$store.state.moduleStatus[index].status) {
+        if (this.$store.state.moduleStatus[index].status) {
           bus.$emit('changeModuleStatus', index);
+          this.$store.commit('writeResumeData', {type: type, data: [tmp[type]]})
         }
       },
       saveResume() {
@@ -87,7 +109,7 @@
         let form = JSON.parse(JSON.stringify(this.$store.state.resumeData));
         form.vitae_city = JSON.stringify(form.vitae_city);
         form.id = this.$store.state.userInfo.id;
-        this.$store.dispatch('sendResume', form).then( res => {
+        this.$store.dispatch('sendResume', form).then(res => {
           if (res.data.code === '0') {
             loading.close();
             this.$message({
@@ -138,7 +160,7 @@
 
 
         form.vitae_id = this.$router.currentRoute.params.op;
-        this.$store.dispatch('changeResume', form).then( res => {
+        this.$store.dispatch('changeResume', form).then(res => {
           if (res.data.code === '0') {
             loading.close();
             this.$message({

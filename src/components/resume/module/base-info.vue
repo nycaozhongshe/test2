@@ -272,7 +272,7 @@
           type: type,
           data: data
         })
-      }
+      },
     },
     computed: {
       vitae_name: {
