@@ -74,7 +74,7 @@
         }
       },
       watch: {
-        'projectList': {
+        projectList: {
           handler: function (newVal, oldVal) {
             this.$store.commit('writeResumeData', {
               type: 'project',

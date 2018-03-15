@@ -25,6 +25,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      // fs: path.join(__dirname, './static/virtual-fs.js')
+      'fs': 'static/scripts/virtual-fs.js'
     }
   },
   module: {
@@ -64,5 +66,5 @@ module.exports = {
         }
       }
     ]
-  }
+  },
 }

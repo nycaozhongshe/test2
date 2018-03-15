@@ -7,7 +7,9 @@
         :on-success="handleAvatarSuccess"
         :before-upload="beforeAvatarUpload"
         :headers="headerObj">
-        <img v-if="$store.state.resumeData.vitae_photo" :src="this.api.url + $store.state.resumeData.vitae_photo" class="avatar">
+        <img v-if="$store.state.resumeData.vitae_photo"
+
+             :src="this.api.url + $store.state.resumeData.vitae_photo" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
     </div>
@@ -74,7 +76,7 @@
         this.$store.commit('writeResumeData', {type: 'vitae_photo', data: this.resUrl})
       },
       beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
+        const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
         const isLt2M = file.size / 1024 / 1024 < 2;
 
         if (!isJPG) {

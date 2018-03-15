@@ -3,12 +3,12 @@
       <div class="left">
         <util></util>
       </div>
-      <div class="center">
+      <div class="center" ref="center">
         <show></show>
       </div>
-      <!--<div class="right">-->
-        <!--<tip></tip>-->
-      <!--</div>-->
+      <div class="right">
+        <tip :render-element="ele"></tip>
+      </div>
     </div>
 </template>
 
@@ -47,6 +47,7 @@
   import util from './util'
   import tip from './tip'
   import '../../assets/icon/iconfont'
+
   export default {
     components: {
       show,
@@ -141,7 +142,8 @@
           skill_language: '',
           skill_computer: '',
           skill_others: '',
-        }
+        },
+        ele: {}
       }
     },
     created() {
@@ -168,7 +170,11 @@
       } else {
         let data = this.resumeData;
         this.$store.commit('changeResumeData', data);
+        this.$store.commit('initModuleStatus', {});
       }
+    },
+    mounted() {
+      this.ele = this.$refs.center;
     }
   }
 </script>

@@ -27,12 +27,12 @@
                 <span class="input-title">求职意向:</span>
                 <select name="job-for" class="module-input" v-model="vitae_direction" :class="{colorGred: vitae_direction ===  ''}">
                   <option label="请选择" disabled selected hidden></option>
-                  <option label="投资银行" style="color: #1a1a1a" value="投资银行"></option>
-                  <option label="证券研究" style="color: #1a1a1a" value="证券研究"></option>
-                  <option label="资产管理" style="color: #1a1a1a" value="资产管理"></option>
-                  <option label="固定收益" style="color: #1a1a1a" value="固定收益"></option>
-                  <option label="私募股权" style="color: #1a1a1a" value="私募股权"></option>
-                  <option label="银⾏保险" style="color: #1a1a1a" value="银⾏保险"></option>
+                  <option label="投资银行" >投资银行</option>
+                  <option label="证券研究" >证券研究</option>
+                  <option label="资产管理" >资产管理</option>
+                  <option label="固定收益" >固定收益</option>
+                  <option label="私募股权" >私募股权</option>
+                  <option label="银⾏保险" >银⾏保险</option>
                   <option label="其他" style="color: #1a1a1a" value="其他"></option>
                 </select>
               </div>

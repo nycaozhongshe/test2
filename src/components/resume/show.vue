@@ -69,6 +69,11 @@
   .module-item {
     position: relative;
     border-bottom: 1px dashed #cfcfcf;
+    &:hover {
+      .arr {
+        visibility: visible;
+      }
+    }
     .arr {
       position: absolute;
       left: 0;
@@ -76,6 +81,7 @@
       width: 20px;
       border-radius: 50%;
       z-index: 2;
+      visibility: hidden;
       &.arr-up {
         top: 40px;
         background-color: #c20c0c;
