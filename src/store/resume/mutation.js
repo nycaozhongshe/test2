@@ -119,7 +119,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'internship');
       status[i].status = false;
-      form.internship[0] = JSON.parse(JSON.stringify(tmp.internship))
+      form.internship = [JSON.parse(JSON.stringify(tmp.internship))]
     }
     if (!!form.work && !!form.work[0].company_name_wo) {
       let i = type2index(status, 'work');
@@ -127,7 +127,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'work');
       status[i].status = false;
-      form.work[0] = JSON.parse(JSON.stringify(tmp.work))
+      form.work = [JSON.parse(JSON.stringify(tmp.work))]
     }
     if (!!form.science && !!form.science[0].science_name) {
       let i = type2index(status, 'science');
@@ -135,7 +135,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'science');
       status[i].status = false;
-      form.science[0] = JSON.parse(JSON.stringify(tmp.science))
+      form.science = [JSON.parse(JSON.stringify(tmp.science))]
     }
     if (!!form.project && !!form.project[0].case_name) {
       let i = type2index(status, 'project');
@@ -143,7 +143,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'project');
       status[i].status = false;
-      form.project[0] = JSON.parse(JSON.stringify(tmp.project))
+      form.project = [JSON.parse(JSON.stringify(tmp.project))]
     }
     if (!!form.practice && !!form.practice[0].practice_name) {
       let i = type2index(status, 'practice');
@@ -151,7 +151,7 @@ let mutations = {
     } else {
       let i = type2index(status, 'practice');
       status[i].status = false;
-      form.practice[0] = JSON.parse(JSON.stringify(tmp.practice))
+      form.practice = [JSON.parse(JSON.stringify(tmp.practice))]
     }
     if (!!form.skill_professional) {
       let i = type2index(status, 'skill');

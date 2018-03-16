@@ -1,6 +1,7 @@
 <template>
   <div class="resume-tip">
     <button class="btn" @click="getPDF">生成pdf</button>
+    <a target="_blank" :href="url">预览</a>
   </div>
 </template>
 
@@ -13,6 +14,7 @@
     ],
     methods: {
       getPDF() {
+        let vm = this;
         html2canvas(this.renderElement).then(function (canvas) {
           // document.body.appendChild(canvas);
           let imagedata = canvas.toDataURL('image/png');
@@ -23,13 +25,18 @@
                 width: 500,
               }
             ],
-          }).open();
+          }).getDataUrl( url => {
+            // window.open(url);
+            // vm.url = url;
+            console.log(url);
+          });
         });
       }
     },
     data() {
       return {
-        pdf: {}
+        pdf: {},
+        url: ''
       }
     },
   }
