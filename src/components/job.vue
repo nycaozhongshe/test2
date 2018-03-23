@@ -474,7 +474,6 @@
         })
       },
       selectPosition(obj) {
-        console.log(2);
         this.jobShowNum = 5;
         let pf = this.positionFilter;
         Object.assign(pf, obj);
@@ -492,7 +491,6 @@
           url: api.selectPosition,
           data: pf
         }).then((res) => {
-          console.log(3);
           this.jobList = res.data.data.rpDTO;
           this.count = res.data.data.num;
           this.loading = false;
@@ -584,12 +582,12 @@
           this.$store.dispatch('searchByKeyWord', {keyword: this.keyword}).then(res => {
             let data = res.data.data;
             if (data) {
-              console.log(data);
               if (data.operation === 1) {
                 this.$router.push('/job/' + this.keyword);
               } else if (data.operation === 0) {
                 let id = data.rpDTO[0].id;
-                window.open(window.location.origin + '/#/position/' + id);
+                this.$router.push('/position/' + id)
+                // window.open(window.location.origin + '/#/position/' + id);
               }
             } else {
               this.$message.error('未能查询到相关职位');
@@ -598,7 +596,6 @@
         } else {
           this.$message.error('请输入有效搜索内容');
         }
-
       }
     },
     computed: {
@@ -622,7 +619,6 @@
         url: api.selectPosition,
         data: this.positionFilter
       }).then((res) => {
-        console.log(5);
         if (+res.data.code >= 0) {
           this.jobList = res.data.data.rpDTO;
           this.loading = false;
