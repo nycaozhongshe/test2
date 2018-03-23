@@ -1,4 +1,6 @@
 import resumeActions from "./resume/actions";
+import request from '../utils/request'
+import api from '../assets/datas/api'
 
 let actions = {
 
@@ -84,6 +86,16 @@ let actions = {
   //加载简历修改
   actionLoadResume(context, n) {
     context.commit('commitLoadResume', n);
+  },
+
+  //根据职位id搜索
+  searchByPosition({}, n) {
+    return request.post(api.selectePositionByIndex, n)
+  },
+
+  //根据关键词搜索
+  searchByKeyWord({}, n) {
+    return request.post(api.selectePositionByKeyword, n)
   }
 }
 // Object.assign(actions, resumeActions)

@@ -3,7 +3,7 @@
       <div class="content">
 
         <div class="container clearfix">
-          <router-link to="/editResume/new">
+          <router-link to="/fillResume">
             <div class="btn btn1">
               在线填写
             </div>

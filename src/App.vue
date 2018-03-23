@@ -10,7 +10,7 @@
             <router-link class="nav" active-class="router-active" to="/index">首页</router-link>
           </li>
           <li class="fl">
-            <router-link class="nav" active-class="router-active" to="/job">求职信息</router-link>
+            <router-link class="nav" active-class="router-active" to="/job/all">求职信息</router-link>
           </li>
           <li class="fl">
             <router-link class="nav" active-class="router-active" to="/resumeEntry">简历中心</router-link>
@@ -18,10 +18,7 @@
         </ul>
         <div class="fr search-header">
           <!--<div class="search">-->
-          <!--<form>-->
-          <!--<input type="text" placeholder="Search" class="fl">-->
-          <!--<button><i class="el-icon-search"></i></button>-->
-          <!--</form>-->
+            <!--<search></search>-->
           <!--</div>-->
           <span class="reglog" v-if="this.$store.state.showLR">
             <span v-if='!this.$store.state.isLR' style="vertical-align: top;">
@@ -34,10 +31,13 @@
                 <el-dropdown>
                   <router-link to="/user" style="text-decoration: #C20C0C"><icon name="user-circle"></icon>&nbsp;个人中心&nbsp;&nbsp;</router-link>
                   <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item> <router-link to="/user" style="color: #666666;">个人信息</router-link></el-dropdown-item>
-                    <el-dropdown-item> <router-link to="/resume" style="color: #666666;">我的简历</router-link></el-dropdown-item>
-                    <el-dropdown-item> <router-link to="/myposition" style="color: #666666;">我的职位</router-link></el-dropdown-item>
-                    <el-dropdown-item> <router-link to="/myposition" style="color: #666666;" @click="logout">退出登录</router-link></el-dropdown-item>
+                    <el-dropdown-item> <router-link to="/user"
+                                                    style="color: #666666;">个人信息</router-link></el-dropdown-item>
+                    <el-dropdown-item> <router-link to="/resume"
+                                                    style="color: #666666;">我的简历</router-link></el-dropdown-item>
+                    <el-dropdown-item> <router-link to="/myposition"
+                                                    style="color: #666666;">我的职位</router-link></el-dropdown-item>
+                    <el-dropdown-item> <span style="color: #666666;" @click="logout">退出登录</span></el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </span>
@@ -84,7 +84,7 @@
                   隐私政策
                 </a>
               </td>
-              <td>备案信息：津ICP备15002434号-1</td>
+              <td>备案信息：粤ICP备17117010号-2</td>
               <td style="cursor: pointer;" @click="callUsDialogVisible = true">联系我们</td>
             </tr>
           </table>
@@ -124,12 +124,16 @@
   import axios from 'axios'
   import {mapMutations} from 'vuex'
   import api from '../src/assets/datas/api'
+  import search from './components/search/search'
 
   // document.oncontextmenu = new Function("event.returnValue=false");
   // document.onselectstart = new Function("event.returnValue=false");
 
   export default {
     name: 'app',
+    components: {
+      search
+    },
     data() {
       return {
         callUsDialogVisible: false,
@@ -213,18 +217,18 @@
       //   alert('pc');
       // }
       var phoneWidth = parseInt(window.screen.width),
-        phoneScale = phoneWidth/640,
+        phoneScale = phoneWidth / 640,
         ua = navigator.userAgent;
 
-      if(ua.match(/(iPhone|iPod|Android|ios)/i)){
+      if (ua.match(/(iPhone|iPod|Android|ios)/i)) {
         alert('为了获得更好的用户体验，建议于PC端打开本网站');
       }
-      if (/Android (\d+\.\d+)/.test(ua)){
+      if (/Android (\d+\.\d+)/.test(ua)) {
 
         var version = parseFloat(RegExp.$1);
-        if(version > 2.3){
-          document.write('<meta name="viewport" content="width=device-width, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
-        }else{
+        if (version > 2.3) {
+          document.write('<meta name="viewport" content="width=device-width, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+        } else {
           document.write('<meta name="viewport" content="width=device-width, target-densitydpi=device-dpi">');
         }
       } else {

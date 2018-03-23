@@ -109,6 +109,11 @@ let api = {
   //获取首页
   getBanner: 'wbedu_api/wbedu/carouselFigure/getBanner',
 
+  //职位id搜索
+  selectePositionByIndex: 'wbedu_api/wbedu/recruit/selectePositionByIndex',
+
+  //职位关键字搜做
+  selectePositionByKeyword: 'wbedu_api/wbedu/recruit/selectePositionByImport'
 }
 
 for (let key in api) {

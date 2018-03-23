@@ -110,7 +110,7 @@
       width="30%"
       :before-close="handleClose">
       <div class="btnbox">
-        <button id="filbtn" @click="$router.push('/editResume/new');">在线填写</button>
+        <button id="filbtn" @click="$router.push('/fillResume');">在线填写</button>
         <div id="upbtn">
           <el-upload
             class="upload-demo"
@@ -253,13 +253,13 @@
         }).then((res) => {
           if (res.data.code == 0) {
             pdfURL = res.data.data;
-
+            console.log(pdfURL);
             /**
              * 本地调试用拼接
              */
 
             // if (api.previewMyVitae.includes('39')) {
-            pdfURL = pdfURL.split('wtpwebapps')[1];
+            pdfURL = pdfURL.split('webapps')[1];
             pdfURL = pdfURL.split('pdf')[0].split('\.')[0] + '.pdf';
             // }
 
@@ -304,7 +304,7 @@
       },
       changeResume(index) {
         let id = this.resumeList[index].vitae_id;
-        this.$router.push('/editResume/' + id);
+        this.$router.push('/changeResume/' + id);
       }
     },
     computed: {
@@ -367,7 +367,5 @@
 </style>
 
 <style lang="scss">
-  .el-message {
-    top: 100px !important;
-  }
+
 </style>

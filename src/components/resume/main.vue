@@ -175,6 +175,7 @@
     },
     mounted() {
       this.ele = this.$refs.center;
+      console.log(this.ele.outerHTML);
     }
   }
 </script>

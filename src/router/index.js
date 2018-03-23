@@ -24,6 +24,7 @@ const changePosition = r => require.ensure([], () => r(require('../components/ch
 const aboutWBEDU = r => require.ensure([], () => r(require('../components/aboutWBEDU')), 'aboutWBEDU');
 const editResume = r => require.ensure([], () => r(require('../components/resume/main')), 'editResume');
 const resumeEntry = r => require.ensure([], () => r(require('../components/resume/resumeEntry')), 'resumeEntry');
+const payEntry = r => require.ensure([], () => r(require('../components/pay/payEntry')), 'pay');
 
 import store from '../store'
 
@@ -45,7 +46,7 @@ export default new Router({
     },
     {
       //职位列表
-      path: '/job',
+      path: '/job/:key',
       name: 'job',
       component: job
     },
@@ -182,12 +183,19 @@ export default new Router({
       path: '/editResume/:op',
       name: 'editResume',
       component: editResume,
+      // component: fillResume
     },
     {
       //简历中心入口
       path: '/resumeEntry',
       name: 'resumeEntry',
       component: resumeEntry
+    },
+    {
+      //支付入口
+      path: '/payEntry',
+      name: 'payEntry',
+      component: payEntry
     }
   ]
 })

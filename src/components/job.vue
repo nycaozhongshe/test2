@@ -43,6 +43,15 @@
                   @click="classify = 2;selectPosition({position_type:3})">社招职位
               </li>
             </ul>
+            <div class="position-id-search-box clearfix">
+              <!--<el-input v-model="positionId" placeholder="请输入职位ID"></el-input>-->
+              <div class="input-container">
+                <input type="text" placeholder="请输入职位ID或关键字" v-model="keyword">
+              </div>
+              <div class="search-btn">
+                <el-button type="primary" @click="searchByPositionId">跳转职位</el-button>
+              </div>
+            </div>
           </div>
           <el-row>
             <el-col :span="24">
@@ -122,13 +131,15 @@
                       </template>
                       <div style="margin: 50px 50px 20px 10px;">
                         <h4 style="font-size: 13px;font-weight: bold;margin-bottom: 20px;">
-                          <icon name="caret-right" style="vertical-align: -2px;color: #aaa;"></icon> 职责说明：
+                          <icon name="caret-right" style="vertical-align: -2px;color: #aaa;"></icon>
+                          职责说明：
                         </h4>
                         <ol style="line-height: 1.5rem;margin-left: 1rem;font-size: 12px;">
                           <li class="duty-list" v-html="item.position_work_context"></li>
                         </ol>
                         <h4 style="margin-top: 20px;font-size: 13px;font-weight: bold;margin-bottom: 20px;">
-                          <icon name="caret-right" style="vertical-align: -2px;color: #aaa;"></icon> 任职要求：
+                          <icon name="caret-right" style="vertical-align: -2px;color: #aaa;"></icon>
+                          任职要求：
                         </h4>
                         <ol style="line-height: 1.5rem;margin-left: 1rem;font-size: 12px;">
                           <li class="duty-require" v-html="item.position_work_requir"></li>
@@ -185,7 +196,7 @@
                     :value="item.vitae_id"></el-option>
                 </el-select>
                 <div style="margin-top: 10px;">
-                <span style="cursor: pointer;margin-left: 30px;" @click="$router.push('/editResume/new')">还没有在线简历？去新增</span>
+                <span style="cursor: pointer;margin-left: 30px;" @click="$router.push('/fillResume')">还没有在线简历？去新增</span>
                 </div>
               </span>
             </el-radio>
@@ -239,9 +250,6 @@
 </template>
 <style lang="scss" src="../assets/scss/job.scss" scoped></style>
 <style lang="scss">
-  .el-message {
-    top: 100px !important;
-  }
 
   .el-select-dropdown__item {
     font-size: 12px;
@@ -348,6 +356,7 @@
         pdfDisable: false,
         courList: [{bgColor: '#fff'}],
         bannerList: [],
+        keyword: ''
       }
     },
     methods: {
@@ -465,6 +474,7 @@
         })
       },
       selectPosition(obj) {
+        console.log(2);
         this.jobShowNum = 5;
         let pf = this.positionFilter;
         Object.assign(pf, obj);
@@ -482,6 +492,7 @@
           url: api.selectPosition,
           data: pf
         }).then((res) => {
+          console.log(3);
           this.jobList = res.data.data.rpDTO;
           this.count = res.data.data.num;
           this.loading = false;
@@ -567,6 +578,27 @@
         }).then((res) => {
           this.bannerList = res.data.data;
         })
+      },
+      searchByPositionId() {
+        if (this.keyword) {
+          this.$store.dispatch('searchByKeyWord', {keyword: this.keyword}).then(res => {
+            let data = res.data.data;
+            if (data) {
+              console.log(data);
+              if (data.operation === 1) {
+                this.$router.push('/job/' + this.keyword);
+              } else if (data.operation === 0) {
+                let id = data.rpDTO[0].id;
+                window.open(window.location.origin + '/#/position/' + id);
+              }
+            } else {
+              this.$message.error('未能查询到相关职位');
+            }
+          })
+        } else {
+          this.$message.error('请输入有效搜索内容');
+        }
+
       }
     },
     computed: {
@@ -590,7 +622,8 @@
         url: api.selectPosition,
         data: this.positionFilter
       }).then((res) => {
-        if ( +res.data.code >= 0 ) {
+        console.log(5);
+        if (+res.data.code >= 0) {
           this.jobList = res.data.data.rpDTO;
           this.loading = false;
         } else {

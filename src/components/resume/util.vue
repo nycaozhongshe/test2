@@ -99,6 +99,16 @@
           this.$store.commit('writeResumeData', {type: type, data: [tmp[type]]})
         }
       },
+      getSorting(arr) {
+        let sorting = JSON.parse(JSON.stringify(arr));
+        let result = [];
+        for (let i in sorting) {
+          if (sorting[i].status && sorting[i].type !== 'baseinfo' && sorting[i].type !== 'education') {
+            result.push(sorting[i])
+          }
+        }
+        return result;
+      },
       saveResume() {
         const loading = this.$loading({
           lock: true,
@@ -107,6 +117,8 @@
           background: 'rgba(0, 0, 0, 0.7)'
         })
         let form = JSON.parse(JSON.stringify(this.$store.state.resumeData));
+        let sorting = this.getSorting(this.$store.state.moduleStatus);
+        form.sorting = sorting
         form.vitae_city = JSON.stringify(form.vitae_city);
         form.id = this.$store.state.userInfo.id;
         this.$store.dispatch('sendResume', form).then(res => {
@@ -134,7 +146,8 @@
         delete form.vitae_path;
         delete form.gender;
         delete form.certificate;
-
+        let sorting = this.getSorting(this.$store.state.moduleStatus);
+        form.sorting = sorting
         // delete form.skill_computer
         // delete form.skill_language
         // delete form.skill_others

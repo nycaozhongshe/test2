@@ -631,9 +631,7 @@
               }
             });
             // this.actionResumeForm({form, router});
-            console.log(6);
             setTimeout(() => {
-              console.log(5);
               form.vitea_city = citytemp;
             }, 500)
           } else {

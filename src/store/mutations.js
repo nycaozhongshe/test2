@@ -210,7 +210,7 @@ let mutations = {
   commitRegForm(state, n) {
     n.form.password = state.regtemp;
     n.form.confirm = state.regtemp;
-    n.form.identification = 'reg';
+      n.form.identification = 'reg';
     let router = n.router;
     axios({
       method: 'post',

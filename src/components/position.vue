@@ -113,7 +113,7 @@
                     :value="item.vitae_id"></el-option>
                 </el-select>
                 <div style="margin-top: 10px;">
-                <span style="cursor: pointer;" @click="$router.push('/editResume/new')">还没有在线简历？去新增</span>
+                <span style="cursor: pointer;" @click="$router.push('/fillResume')">还没有在线简历？去新增</span>
                 </div>
               </span>
             </el-radio>
@@ -378,6 +378,7 @@
         data: this.$router.currentRoute.params
       }).then((res) => {
         if ( +res.data.code >= 0 ) {
+          console.log(1);
           this.positionInfo = res.data.data.rpDTO[0];
           this.loading = false;
         } else {
@@ -405,7 +406,5 @@
 </style>
 
 <style lang="scss">
-  .el-message {
-    top: 100px !important;
-  }
+
 </style>

@@ -456,19 +456,49 @@
         }
         return isPDF;
       },
+
+      //获取全部筛选结果
+      getByFilter() {
+        this.axios({
+          method: 'post',
+          url: api.selectPosition,
+          data: this.pageConfig
+        }).then((res) => {
+          this.jobList = res.data.data.rpDTO;
+          this.count = res.data.data.num;
+          this.loading = false;
+        })
+      },
+
+      //获取关键字搜索结果
+      searchByKeyword() {
+        let keyword = this.$router.currentRoute.params.key;
+        this.$store.dispatch('searchByKeyWord', {keyword: keyword}).then( res => {
+          if (res.data.code === '0') {
+            this.jobList = res.data.data.rpDTO;
+            this.count = res.data.data.num;
+            this.loading = false;
+          } else {
+            this.loading = false;
+          }
+        })
+      },
+
+      initTypeIndex() {
+        this.typeActiveIndex = 0;
+        this.industryActiveIndex = 0;
+        this.areaActiveIndex = 0;
+        this.graduateActiveIndex = 0;
+      },
     },
     created: function () {
-
-      //获取全部职位
-      this.axios({
-        method: 'post',
-        url: api.selectPosition,
-        data: this.pageConfig
-      }).then((res) => {
-        this.jobList = res.data.data.rpDTO;
-        this.count = res.data.data.num;
-        this.loading = false;
-      })
+      //判断是否搜索
+      if (this.$router.currentRoute.params.key === 'all') {
+        //获取全部职位
+        this.getByFilter();
+      } else {
+        this.searchByKeyword();
+      }
     },
     computed: {
       headerObj: function () {
@@ -476,6 +506,16 @@
       },
       id: function () {
         return this.$store.state.userInfo.id;
+      },
+    },
+    watch: {
+      $route() {
+        if (this.$route.params.key !== 'all') {
+          this.initTypeIndex();
+          this.searchByKeyword();
+        } else {
+          this.getByFilter();
+        }
       }
     }
   }

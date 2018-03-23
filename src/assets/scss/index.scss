@@ -107,6 +107,11 @@ textarea:-ms-input-placeholder {
   color:$placeColor !important;
 }
 
+
+.el-message {
+  top: 100px !important;
+}
+
 //导航栏激活样式
 .router-active {
   color: $themeColor !important;
@@ -189,15 +194,29 @@ header {
       position: absolute;
       top: 0;
       right: 10px;
+      @media screen and (max-width: 768px){
+        display: none;
+      }
       .search {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        float: left;
-        margin: 15px;
-        position: relative;
-        width: 100px;
-        height: 30px;
+        width: 350px;
+        display: inline-block;
+        overflow: hidden;
+        @media screen and (max-width: 1100px){
+          display: none;
+        }
+        .search-box {
+          input {
+            width: 250px;
+          }
+          button {
+            border: none;
+            width: 50px;
+            height: 30px;
+            background-color: #c20c0c;
+            color: #ffffff;
+            border-radius: 5px;
+          }
+        }
         input {
           -webkit-box-sizing: border-box;
           -moz-box-sizing: border-box;
@@ -214,15 +233,18 @@ header {
           padding: 0 24px 0 12px;
           transition: all 0.3s ease;
         }
-        button {
-          position: absolute;
-          right: 2px;
-          top: 6px;
-          border: none;
-          background: none;
-          width: 16px;
-          height: 18px;
+        a {
+          button {
+            position: absolute;
+            right: 2px;
+            top: 6px;
+            border: none;
+            background: none;
+            width: 16px;
+            height: 18px;
+          }
         }
+
         input::-webkit-input-placeholder { /* WebKit browsers */
           color: #818181;
         }
@@ -256,7 +278,7 @@ header {
         margin-left: 5px;
       }
       .reglog {
-        margin-left: 40px;
+        margin-left: 20px;
         vertical-align: top;
         font-size: 16px;
         a {
@@ -270,63 +292,63 @@ header {
 }
 
 //搜索
-.search-box {
-  height: 250px;
-  background-color: #505F6E;
-  text-align: center;
-  color: #ffffff;
-  position: relative;
-  .search-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    .search-title {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-    .search-in {
-      position: relative;
-      .search-button {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        -webkit-transform: translate(0, -50%);
-        -moz-transform: translate(0, -50%);
-        -ms-transform: translate(0, -50%);
-        -o-transform: translate(0, -50%);
-        transform: translate(0, -50%);
-      }
-      input {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        border: none;
-        border-radius: 5px;
-        padding: 10px;
-        width: 732px;
-        height: 62px;
-        color: #8C9DAC;
-      }
-      input::-webkit-input-placeholder { /* WebKit browsers */
-        color: #818181;
-      }
-      input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-        color: #818181;
-      }
-      input::-moz-placeholder { /* Mozilla Firefox 19+ */
-        color: #818181;
-      }
-      input:-ms-input-placeholder { /* Internet Explorer 10+ */
-        color: #818181;
-      }
-    }
-  }
-}
+//.search-box {
+//  height: 250px;
+//  background-color: #505F6E;
+//  text-align: center;
+//  color: #ffffff;
+//  position: relative;
+//  .search-content {
+//    position: absolute;
+//    top: 50%;
+//    left: 50%;
+//    -webkit-transform: translate(-50%, -50%);
+//    -moz-transform: translate(-50%, -50%);
+//    -ms-transform: translate(-50%, -50%);
+//    -o-transform: translate(-50%, -50%);
+//    transform: translate(-50%, -50%);
+//    .search-title {
+//      font-size: 32px;
+//      margin-bottom: 20px;
+//    }
+//    .search-in {
+//      position: relative;
+//      .search-button {
+//        position: absolute;
+//        right: 20px;
+//        top: 50%;
+//        -webkit-transform: translate(0, -50%);
+//        -moz-transform: translate(0, -50%);
+//        -ms-transform: translate(0, -50%);
+//        -o-transform: translate(0, -50%);
+//        transform: translate(0, -50%);
+//      }
+//      input {
+//        -webkit-box-sizing: border-box;
+//        -moz-box-sizing: border-box;
+//        box-sizing: border-box;
+//        border: none;
+//        border-radius: 5px;
+//        padding: 10px;
+//        width: 732px;
+//        height: 62px;
+//        color: #8C9DAC;
+//      }
+//      input::-webkit-input-placeholder { /* WebKit browsers */
+//        color: #818181;
+//      }
+//      input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+//        color: #818181;
+//      }
+//      input::-moz-placeholder { /* Mozilla Firefox 19+ */
+//        color: #818181;
+//      }
+//      input:-ms-input-placeholder { /* Internet Explorer 10+ */
+//        color: #818181;
+//      }
+//    }
+//  }
+//}
 
 //页脚
 footer {
