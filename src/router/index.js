@@ -145,14 +145,18 @@ export default new Router({
       path: '/pubposition',
       name: 'pubposition',
       component: pubposition,
-      beforeEnter: (to, from, next) => {
-        if (store.state.userInfo.authStatus === 2) {
-          next();
-        } else {
-          alert("请先认证");
-          next("/certify");
-        }
-      }
+      // beforeEnter: (to, from, next) => {
+      //   console.log(store.state.userInfo.authStatus);
+      //   if (store.state.userInfo.authStatus === 2) {
+      //     next();
+      //   } else if (!store.state.userInfo.authStatus) {
+      //     next('/');
+      //   }
+      //   else {
+      //     alert("请先认证");
+      //     next("/certify");
+      //   }
+      // }
     },
     {
       //简历预览

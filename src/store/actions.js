@@ -24,6 +24,10 @@ let actions = {
     context.commit('getUserInfo', n);
   },
 
+  getUserInfo(context, n) {
+    return request.post(api.selectAuthenticationById, n)
+  },
+
   //异步调用提交手机验证码登陆表单
   actionPhoneLogForm(context, n) {
     context.commit('commitPhoneLogForm', n);

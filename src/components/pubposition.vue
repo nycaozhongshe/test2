@@ -263,6 +263,20 @@
       clearGranduateYear() {
         this.pubform.position_graduation_year = '';
       }
+    },
+    created() {
+      window.onbeforeunload = (event) => {
+        event.returnValue = '确定要关闭页面吗？'
+      }
+      this.$store.dispatch('getUserInfo', {}).then( res => {
+        if (+res.data.code === 0) {
+          let data = res.data.data;
+          if (+data.wbUserDTO.authStatus !== 2) {
+            this.$message.error('请先认证');
+            this.$router.replace('/certify');
+          }
+        }
+      })
     }
   }
 </script>
