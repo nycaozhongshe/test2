@@ -21,6 +21,9 @@
               |
               <span>{{positionInfo.position_address}}</span>
             </span>
+            <div class="position-index">
+              职位编号: {{positionInfo.position_index}}
+            </div>
           </div>
           <!--<router-link to="/dbe">-->
           <button @click="renderDialog" class="position-deliver">马上投递</button>

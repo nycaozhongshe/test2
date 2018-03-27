@@ -41,9 +41,10 @@
       }
       .position-desc-info {
         padding: 20px;
-        margin-top: 50px;
+        margin-top: 10px;
         margin-left: 100px;
         float: left;
+        max-width: 280px;
         .position-desc-company {
           color: #202020;
           text-align: right;
@@ -52,7 +53,13 @@
           font-family: quote, 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'simsun', sans-serif;
         }
         .position-desc-tags {
-          float: right;
+          display: block;
+          text-align: right;
+          font-size: 0.75rem;
+          color: #808080;
+          margin-bottom: 10px;
+        }
+        .position-index {
           text-align: right;
           font-size: 0.75rem;
           color: #808080;
