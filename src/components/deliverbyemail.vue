@@ -156,7 +156,14 @@
       deliver() {
         let vm = this;
         console.log(!this.input1.length);
-        if (!this.input1.length || !this.input2.length || !this.input3.length || !this.input4.length || !this.input5.length || !this.dbeMail.length) {
+        console.log(this.dbeMail.replace(/<[^>]+>/g,"").replace(/(^\s*)|(\s*$)/g,""));
+        console.log(this.dbeMail.replace(/<[^>]+>/g,"").replace(/(^\s*)|(\s*$)/g,"").length);
+        if (!this.input1.length
+          || !this.input2.length
+          || !this.input3.length
+          || !this.input4.length
+          || !this.input5.length
+          || !(this.dbeMail.replace(/<[^>]+>/g,"").replace(/(^\s*)|(\s*$)/g,"")).length) {
           this.$message.error('请检查邮件标题和内容是否填写完整');
           return
         }
@@ -218,10 +225,10 @@
       }
     },
     mounted() {
-      this.dbeMail = this.tmp1
+      // this.dbeMail = this.tmp1
     },
     created() {
-      this.dbeMail = sessionStorage.getItem('mailContext') || this.tmp1;
+      this.dbeMail = sessionStorage.getItem('mailContext') || '';
       this.input1 = sessionStorage.getItem('mailTheme1') || '';
       this.input2 = sessionStorage.getItem('mailTheme2') || '';
       this.input3 = sessionStorage.getItem('mailTheme3') || '';

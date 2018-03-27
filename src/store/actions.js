@@ -96,7 +96,9 @@ let actions = {
   //根据关键词搜索
   searchByKeyWord({}, n) {
     return request.post(api.selectePositionByKeyword, n)
-  }
+  },
+
+  //
 }
 // Object.assign(actions, resumeActions)
 

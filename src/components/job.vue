@@ -49,7 +49,11 @@
                 <input type="text" placeholder="请输入职位ID或关键字" v-model="keyword">
               </div>
               <div class="search-btn">
-                <el-button type="primary" @click="searchByPositionId">跳转职位</el-button>
+                <button type="primary" @click="searchByPositionId">
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-search"></use>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -307,6 +311,7 @@
   import api from '../assets/datas/api'
   import {mapActions} from 'vuex'
   import {mapMutations} from 'vuex'
+  import '../assets/icon/iconfont'
 
   export default {
     name: 'job',
@@ -583,6 +588,7 @@
             let data = res.data.data;
             if (data) {
               if (data.operation === 1) {
+                console.log(2);
                 this.$router.push('/job/' + this.keyword);
               } else if (data.operation === 0) {
                 let id = data.rpDTO[0].id;

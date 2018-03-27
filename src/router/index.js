@@ -22,7 +22,7 @@ const loadingPage = r => require.ensure([], () => r(require('../components/loadi
 const changeResume = r => require.ensure([], () => r(require('../components/changeResume')), 'changeResume');
 const changePosition = r => require.ensure([], () => r(require('../components/changePosition')), 'changePosition');
 const aboutWBEDU = r => require.ensure([], () => r(require('../components/aboutWBEDU')), 'aboutWBEDU');
-const editResume = r => require.ensure([], () => r(require('../components/resume/main')), 'editResume');
+// const editResume = r => require.ensure([], () => r(require('../components/resume/main')), 'editResume');
 const resumeEntry = r => require.ensure([], () => r(require('../components/resume/resumeEntry')), 'resumeEntry');
 const payEntry = r => require.ensure([], () => r(require('../components/pay/payEntry')), 'pay');
 
@@ -178,13 +178,13 @@ export default new Router({
       name: 'aboutWBEDU',
       component: aboutWBEDU
     },
-    {
-      //简历编辑
-      path: '/editResume/:op',
-      name: 'editResume',
-      component: editResume,
-      // component: fillResume
-    },
+    // {
+    //   //简历编辑
+    //   path: '/editResume/:op',
+    //   name: 'editResume',
+    //   component: editResume,
+    //   // component: fillResume
+    // },
     {
       //简历中心入口
       path: '/resumeEntry',

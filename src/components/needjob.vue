@@ -3,7 +3,7 @@
     <div>
       <div class="content">
         <!--过滤器容器-->
-        <div class="filter-container">
+        <div class="filter-container" v-if="$router.currentRoute.params.key === 'all'">
           <div class="filter filter-type clearfix">
             <div class="filter-title">类型</div>
             <div class="filter-type-tags filter-tags clearfix">
@@ -57,7 +57,13 @@
               </ul>
             </div>
           </div>
+        </div v-if  >
+
+        <!--搜索内容提示-->
+        <div class="tip" v-else>
+          以下职位显示为搜索"{{$router.currentRoute.params.key}}"的结果
         </div>
+
         <!--职位列表容器-->
         <div class="job-content"
              v-loading="loading"
@@ -418,15 +424,20 @@
         this.loading = true;
         this.pageConfig.first_page = (currentPage - 1) * 5;
         Object.assign(this.pf, this.pageConfig);
-        this.axios({
-          method: 'post',
-          url: api.selectPosition,
-          data: this.pf
-        }).then((res) => {
-          this.jobList = res.data.data.rpDTO;
-          this.count = res.data.data.num;
-          this.loading = false;
-        })
+        if (this.$router.currentRoute.params.key === 'all') {
+          this.axios({
+            method: 'post',
+            url: api.selectPosition,
+            data: this.pf
+          }).then((res) => {
+            this.jobList = res.data.data.rpDTO;
+            this.count = res.data.data.num;
+            this.loading = false;
+          })
+        } else {
+          this.initTypeIndex();
+          this.searchByKeyword(this.pageConfig);
+        }
       },
 
       //简历投递
@@ -471,9 +482,13 @@
       },
 
       //获取关键字搜索结果
-      searchByKeyword() {
+      searchByKeyword(page) {
         let keyword = this.$router.currentRoute.params.key;
-        this.$store.dispatch('searchByKeyWord', {keyword: keyword}).then( res => {
+        let obj = {keyword: keyword};
+        if (page) {
+          Object.assign(obj, page)
+        }
+        this.$store.dispatch('searchByKeyWord', obj).then( res => {
           if (res.data.code === '0') {
             this.jobList = res.data.data.rpDTO;
             this.count = res.data.data.num;
@@ -497,7 +512,7 @@
         //获取全部职位
         this.getByFilter();
       } else {
-        this.searchByKeyword();
+        this.searchByKeyword(this.pageConfig);
       }
     },
     computed: {
@@ -512,7 +527,7 @@
       $route() {
         if (this.$route.params.key !== 'all') {
           this.initTypeIndex();
-          this.searchByKeyword();
+          this.searchByKeyword(this.pageConfig);
         } else {
           this.getByFilter();
         }

@@ -5,6 +5,13 @@
   .content {
     max-width: 990px;
     padding: 0;
+    .tip {
+      margin-top: 80px;
+      border: 1px solid #e6ebf5;
+      background-color: #fff;
+      display: inline-block;
+      padding: 10px;
+    }
   }
   .filter-container {
     padding-top: 90px;
