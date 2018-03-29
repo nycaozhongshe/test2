@@ -66,9 +66,10 @@
     }
   }
   .context {
-    height: 1000px;
+    min-height: 500px;
     padding-top: 35px;
     padding-left: 50px;
+    padding-bottom: 30px;
     .published-container {
       .published-title {
         color: #c20c0c;

@@ -69,19 +69,6 @@
             </tr>
           </table>
         </div>
-        <!--<div class="collected-container">-->
-        <!--<div class="collected-title">我的收藏</div>-->
-        <!--<table class="collected-context">-->
-        <!--<tr class="th">-->
-        <!--<th>公司名称</th>-->
-        <!--<th>时间</th>-->
-        <!--</tr>-->
-        <!--<tr class="td" v-for="(item,index) in 4" :key="index">-->
-        <!--<td>某券商投行部{{index+1}}</td>-->
-        <!--<td>{{new Date().getFullYear()}}-{{new Date().getMonth()}}-{{new Date().getDate()}}</td>-->
-        <!--</tr>-->
-        <!--</table>-->
-        <!--</div>-->
       </div>
     </div>
   </div>

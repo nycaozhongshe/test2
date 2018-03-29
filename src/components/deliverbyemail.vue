@@ -9,16 +9,11 @@
       <div class="dbe-container">
         <div class="dbe-box">
           <div class="dbe-title">邮件投递</div>
-          <div class="dbe-send">
-            简历邮件
-            <div class="dbe-btn" @click="deliver">投递</div>
-          </div>
           <div class="dbe-edit">
-
+            <div class="dbe-edit-title-tip" style="text-align: left;width: 725px;margin: 0 auto;margin-bottom: 20px;font-weight: bold;">
+              邮件标题
+            </div>
             <div class="dbe-edit-title">
-              <div class="dbe-edit-title-tip">
-                邮件标题
-              </div>
               <div class="dbe-edit-title-context">
                 【小金窝】
                 <span><input type="text" placeholder="姓名" v-model="input1">
@@ -56,36 +51,33 @@
               </div>
             </div>
             <div class="dbe-edit-context-title"
-                 style="text-align: left;width: 624px;margin: 0 auto;">
+                 style="text-align: left;width: 725px;margin: 0 auto;margin-bottom: 20px;font-weight: bold;">
               邮件内容
             </div>
             <quill-editor ref="textEditor" v-model="dbeMail"></quill-editor>
           </div>
         </div>
         <div class="template-box">
-          <div class="tmp-title">选择模板</div>
-          <div class="tmp-item tmp-a" @click="dbeMail = tmp1">
-            <div class="tmp-a-title tmp-item-title">
-              <i class="el-icon-plus"
-                 style="margin-right: 10px; font-size: 1.5rem;"></i>模板一
-            </div>
-            <el-input type="textarea" v-model="tmpa" autosize resize="none" readonly class="dbe-tmp"></el-input>
-          </div>
-          <div class="tmp-item tmp-a" @click="dbeMail = tmp2">
-            <div class="tmp-b-title tmp-item-title">
-              <i class="el-icon-plus"
-                 style="margin-right: 10px; font-size: 1.5rem;"></i>模板二
-            </div>
-            <el-input type="textarea" v-model="tmpb" autosize resize="none" readonly class="dbe-tmp"></el-input>
-          </div>
-          <div class="tmp-item tmp-a" @click="dbeMail = tmp3">
-            <div class="tmp-c-title tmp-item-title">
-              <i class="el-icon-plus"
-                 style="margin-right: 10px; font-size: 1.5rem;"></i>模板三
-            </div>
-            <el-input type="textarea" v-model="tmpc" autosize resize="none" readonly class="dbe-tmp"></el-input>
-          </div>
+          <!--<div class="tmp-title">选择模板</div>-->
+          <el-tabs tab-position="left" style="height: 200px;">
+            <el-tab-pane label="模板一">
+              <div class="tmp-item tmp-a" @click="dbeMail = tmp1">
+                <el-input type="textarea" v-model="tmpa" autosize resize="none" readonly class="dbe-tmp"></el-input>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="模板二">
+              <div class="tmp-item tmp-a" @click="dbeMail = tmp2">
+                <el-input type="textarea" v-model="tmpb" autosize resize="none" readonly class="dbe-tmp"></el-input>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="模板三">
+              <div class="tmp-item tmp-a" @click="dbeMail = tmp3">
+                <el-input type="textarea" v-model="tmpc" autosize resize="none" readonly class="dbe-tmp"></el-input>
+              </div>
+            </el-tab-pane>
+          </el-tabs>
         </div>
+        <div class="dbe-btn" @click="deliver">投递</div>
       </div>
     </div>
     <el-dialog title="投递成功" :visible.sync="successTableVisible">
@@ -156,14 +148,14 @@
       deliver() {
         let vm = this;
         console.log(!this.input1.length);
-        console.log(this.dbeMail.replace(/<[^>]+>/g,"").replace(/(^\s*)|(\s*$)/g,""));
-        console.log(this.dbeMail.replace(/<[^>]+>/g,"").replace(/(^\s*)|(\s*$)/g,"").length);
+        console.log(this.dbeMail.replace(/<[^>]+>/g, "").replace(/(^\s*)|(\s*$)/g, ""));
+        console.log(this.dbeMail.replace(/<[^>]+>/g, "").replace(/(^\s*)|(\s*$)/g, "").length);
         if (!this.input1.length
           || !this.input2.length
           || !this.input3.length
           || !this.input4.length
           || !this.input5.length
-          || !(this.dbeMail.replace(/<[^>]+>/g,"").replace(/(^\s*)|(\s*$)/g,"")).length) {
+          || !(this.dbeMail.replace(/<[^>]+>/g, "").replace(/(^\s*)|(\s*$)/g, "")).length) {
           this.$message.error('请检查邮件标题和内容是否填写完整');
           return
         }
@@ -244,12 +236,17 @@
     top: 100px !important;
   }
 
+  .el-tabs--left {
+    height: auto !important;
+  }
+
   .dbe {
     .quill-editor {
-      width: 656px;
+      width: 725px;
       margin: 0 auto;
       border-radius: 11px;
       border: solid 1px #dcdddd;
+      min-height: 280px;
       .ql-toolbar.ql-snow {
         border: none;
         border-bottom: 1px solid #dcdddd;
@@ -259,8 +256,8 @@
       }
     }
     .dbe-edit-title {
-      width: 656px;
-      height: 191px;
+      width: 725px;
+      height: 55px;
       background-color: #ffffff;
       border-radius: 11px;
       border: solid 1px #dcdddd;
@@ -277,7 +274,7 @@
         color: #202020;
       }
       .dbe-edit-title-context {
-        margin-top: 24px;
+        margin-top: 8px;
         position: relative;
         input {
           border: none;
@@ -343,7 +340,7 @@
     }
     .dbe-tmp {
       .el-textarea__inner {
-        border-radius: 13px;
+        border: none;
         margin-bottom: 20px;
         padding-left: 30px;
         cursor: pointer;

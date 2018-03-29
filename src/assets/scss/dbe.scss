@@ -14,6 +14,27 @@
     }
     .dbe-container {
       padding: 42px 54px 95px 172px;
+      .dbe-btn {
+        width: 152px;
+        height: 34px;
+        background-color: #c20c0c;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 16px;
+        //position: absolute;
+        font-size: 0.875rem;
+        color: #ffffff;
+        line-height: 34px;
+        text-align: center;
+        float: right;
+        //top: 50%;
+        //right: 28px;
+        //-webkit-transform: translateY(-50%);
+        //-moz-transform: translateY(-50%);
+        //-ms-transform: translateY(-50%);
+        //-o-transform: translateY(-50%);
+        //transform: translateY(-50%);
+        cursor: pointer;
+      }
       .dbe-box {
         .dbe-title {
           color: #c20c0c;
@@ -35,29 +56,9 @@
           box-sizing: border-box;
           padding-left: 34px;
           position: relative;
-          .dbe-btn {
-            width: 152px;
-            height: 34px;
-            background-color: #c20c0c;
-            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-            border-radius: 16px;
-            position: absolute;
-            font-size: 0.875rem;
-            color: #ffffff;
-            line-height: 34px;
-            text-align: center;
-            top: 50%;
-            right: 28px;
-            -webkit-transform: translateY(-50%);
-            -moz-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            -o-transform: translateY(-50%);
-            transform: translateY(-50%);
-            cursor: pointer;
-          }
         }
         .dbe-edit {
-          margin-top: 88px;
+          //margin-top: 88px;
           //border-radius: 13px;
           //border: solid 1px #dcdddd;
           text-align: center;
@@ -80,8 +81,11 @@
         }
       }
       .template-box {
-        margin-top: 73px;
-        border-top: 2px solid #d8d8d8;
+        margin-top: 5px;
+        //border-top: 2px solid #d8d8d8;
+        border-bottom: 2px solid #d8d8d8;
+        margin-bottom: 25px;
+        padding-top: 30px;
         .tmp-title {
           font-size: 1.5rem;
           color: #c20c0c;
@@ -97,6 +101,9 @@
         .tmp-item {
           width: 656px;
           margin: 0 auto;
+          textarea {
+            height: 300px !important;
+          }
         }
       }
     }

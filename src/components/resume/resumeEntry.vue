@@ -8,7 +8,7 @@
               在线填写
             </div>
           </router-link>
-          <router-link to="/pay">
+          <router-link to="/payEntry">
             <div class="btn btn2">
               人工修改
             </div>

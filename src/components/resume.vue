@@ -253,7 +253,6 @@
         }).then((res) => {
           if (res.data.code == 0) {
             pdfURL = res.data.data;
-            console.log(pdfURL);
             /**
              * 本地调试用拼接
              */

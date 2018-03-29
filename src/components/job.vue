@@ -99,7 +99,7 @@
                     </el-col>
                     <el-col :sm="3" :xs="6">
                       <li class="tags-item tags-more">
-                        <router-link to="/job">更多筛选<i class="el-icon-arrow-right"></i></router-link>
+                        <router-link to="/job/all">更多筛选<i class="el-icon-arrow-right"></i></router-link>
                       </li>
                     </el-col>
                   </el-row>
@@ -588,7 +588,6 @@
             let data = res.data.data;
             if (data) {
               if (data.operation === 1) {
-                console.log(2);
                 this.$router.push('/job/' + this.keyword);
               } else if (data.operation === 0) {
                 let id = data.rpDTO[0].id;

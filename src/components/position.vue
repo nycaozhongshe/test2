@@ -381,7 +381,6 @@
         data: this.$router.currentRoute.params
       }).then((res) => {
         if ( +res.data.code >= 0 ) {
-          console.log(1);
           this.positionInfo = res.data.data.rpDTO[0];
           this.loading = false;
         } else {
