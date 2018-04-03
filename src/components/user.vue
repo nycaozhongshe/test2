@@ -12,7 +12,7 @@
                 :show-file-list="false"
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
-                  :headers="headerObj">
+                :headers="headerObj">
                 <span>更换</span>
               </el-upload>
               更换
@@ -62,15 +62,39 @@
               {{userType}}
             </td>
             <td class="user-operation">
-              <router-link to="/certify">认证</router-link>
-              /
-              <router-link to="/certify">更改</router-link>
+              <router-link to="/certify">认证/更改</router-link>
+            </td>
+          </tr>
+          <tr>
+            <td>邮箱</td>
+            <td>
+              {{email || '未认证邮箱'}}
+            </td>
+            <td class="user-operation">
+              <!--<router-link to="/certify">认证邮箱</router-link>-->
+              <div style="color: #C20C0C;cursor: pointer;" @click="emailDialog = true"
+                   v-if="!$store.state.userInfo.userEmail">领取礼包</div>
             </td>
           </tr>
         </table>
       </div>
     </div>
-    <!--<form enctype="multipart/form-data"></form>-->
+
+    <!--认证邮箱弹出层-->
+    <el-dialog title="认证邮箱" :visible.sync="emailDialog">
+      <el-form>
+        <el-form-item label="邮箱地址" label-width="120px">
+          <el-input v-model="writeEmail" auto-complete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div class="tip" style="padding-left: 120px;color: #C20C0C;">
+        {{tips}}
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="emailDialog = false">取 消</el-button>
+        <el-button type="primary" @click="sendEmail">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -84,51 +108,19 @@
   export default {
     data() {
       return {
+        emailDialog: false,
         uploadHeadPath: api.uploadAHeadImage,
         url: api.url,
-        headPath:'',
+        headPath: '',
         imageUrl: '',
-        userType: ''
+        userType: '',
+        email: '',
+        writeEmail: '',
+        tips: ''
       }
     },
-    created: function () {
-      axios({
-        method: 'post',
-        url: api.selectAuthenticationById,
-        data: {}
-      }).then((res) => {
-        let data = res.data;
-        if (data.code == 0) {
-          this.writeUserInfo(data.data.wbUserDTO);
-          if (this.$store.state.userInfo.headImage) {
-            this.headPath = this.$store.state.userInfo.headImage;
-            this.imageUrl = api.url + this.headPath
-          } else {
-            this.imageUrl = '';
-          }
-          switch (this.$store.state.userInfo.authStatus) {
-            case 2:
-              switch (this.$store.state.userInfo.userType) {
-                case 2:
-                  this.userType = "在职";
-                  break;
-                case 1:
-                  this.userType = "实习生";
-                  break;
-              }
-              break;
-            case 1:
-              this.userType = "未认证";
-              break;
-            case 0:
-              this.userType = "待审核";
-              break;
-            case 3:
-              this.userType = "认证失败";
-              break;
-          }
-        }
-      });
+    created() {
+      this.getUserInfo();
     },
     methods: {
       ...mapActions([
@@ -139,6 +131,46 @@
       ]),
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
+      },
+      getUserInfo() {
+        axios({
+          method: 'post',
+          url: api.selectAuthenticationById,
+          data: {}
+        }).then((res) => {
+          let data = res.data;
+          if (data.code == 0) {
+            this.writeUserInfo(data.data.wbUserDTO);
+            if (this.$store.state.userInfo.headImage) {
+              this.headPath = this.$store.state.userInfo.headImage;
+              this.imageUrl = api.url + this.headPath
+            } else {
+              this.imageUrl = '';
+            }
+            switch (this.$store.state.userInfo.authStatus) {
+              case 2:
+                switch (this.$store.state.userInfo.userType) {
+                  case 2:
+                    this.userType = "在职";
+                    break;
+                  case 1:
+                    this.userType = "实习生";
+                    break;
+                }
+                break;
+              case 1:
+                this.userType = "未认证";
+                break;
+              case 0:
+                this.userType = "待审核";
+                break;
+              case 3:
+                this.userType = "认证失败";
+                break;
+            }
+            this.email = this.$store.state.userInfo.userEmail;
+          }
+        });
       },
       beforeAvatarUpload(file) {
         const isJPG = (file.type === 'image/jpeg' || file.type === 'image/png');
@@ -151,6 +183,29 @@
         }
         return isLt2M && isJPG;
       },
+      sendEmail() {
+        if (!this.isEmail(this.writeEmail)) {
+          this.tips = '请输入正确的邮箱地址';
+          return
+        }
+        this.$store.dispatch('sendEmail', {
+          userEmail: this.writeEmail
+        }).then(res => {
+          if (res.data.code === '0') {
+            let data = res.data.data;
+            this.email = data;
+            this.getUserInfo();
+            this.tips = '';
+            this.emailDialog = false;
+          } else {
+            this.$message.error('服务器出错，请稍后再试');
+          }
+        });
+      },
+      isEmail(str) {
+        const reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+        return reg.test(str);
+      }
     },
     computed: {
       headerObj: function () {

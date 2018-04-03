@@ -33,29 +33,34 @@
           <div class="position-info">
             <div class="position-info-content">
               <h3 class="position-info-content-title position-info-title">
-                工作内容
+                职责说明
                 <div class="position-info-line"></div>
               </h3>
               <div class="position-info-content-list">
                 <ol style="font-size:0.875rem;margin-left:10px">
                   <li v-html="positionInfo.position_work_context"></li>
-                  <!--<li>(2)协助项目执行，包括尽职调查、材料制作、客户维护、协调中介机构等；</li>-->
-                  <!--<li>(3)协助收集相关行业数据等支撑材料。</li>-->
                 </ol>
               </div>
             </div>
             <div class="position-info-require">
               <h3 class="position-info-require-title position-info-title">
-                投递要求
+                任职要求
                 <div class="position-info-line"></div>
               </h3>
               <div class="position-info-require-list">
                 <ol style="font-size:0.875rem;margin-left:10px">
                   <li v-html="positionInfo.position_work_requir"></li>
-                  <!--<li>(2)具有CPA或者财务、法律背景者优先；</li>-->
-                  <!--<li>(3)有相关投行或者固收实习经历者优先；</li>-->
-                  <!--<li>(4)可迅速到岗，实习时间3个月及以上，可接受不定期出差；</li>-->
-                  <!--<li>(5)做事认真、踏实靠谱的男生优先。</li>-->
+                </ol>
+              </div>
+            </div>
+            <div class="position-info-require">
+              <h3 class="position-info-require-title position-info-title">
+                其他
+                <div class="position-info-line"></div>
+              </h3>
+              <div class="position-info-require-list">
+                <ol style="font-size:0.875rem;margin-left:10px">
+                  <li v-html="positionInfo.position_work_other || '无'"></li>
                 </ol>
               </div>
             </div>

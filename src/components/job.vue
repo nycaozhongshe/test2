@@ -127,8 +127,7 @@
                             <span style="margin-right: 20px;">{{item.position_address}}</span>
                             <span style="margin-right: 20px;">{{typeList[item.position_type - 0]}}</span>
                             <span style="margin-right: 20px;">{{yearList[item.position_graduation_year - 0]}}</span>
-                            <!--<span style="margin-right: 20px;">每周实习5天</span>-->
-                            <!--<span style="margin-right: 20px;">发布日期</span>-->
+                            <span style="margin-right: 20px;">职位编号:{{item.position_index}}</span>
                             <span class="fr">{{getDate(item.create_time)}}发布</span>
                           </div>
                         </div>
@@ -147,6 +146,13 @@
                         </h4>
                         <ol style="line-height: 1.5rem;margin-left: 1rem;font-size: 12px;">
                           <li class="duty-require" v-html="item.position_work_requir"></li>
+                        </ol>
+                        <h4 style="margin-top: 20px;font-size: 13px;font-weight: bold;margin-bottom: 20px;">
+                          <icon name="caret-right" style="vertical-align: -2px;color: #aaa;"></icon>
+                          其他：
+                        </h4>
+                        <ol style="line-height: 1.5rem;margin-left: 1rem;font-size: 12px;">
+                          <li class="duty-require" v-html="item.position_work_other || '无'"></li>
                         </ol>
                       </div>
                     </el-collapse-item>
@@ -324,7 +330,7 @@
         courIndex: 0,
         loading: true,
         jobList: [],
-        tagIndex: 0,
+        tagIndex: 1,
         classify: 0,
         positionNumber: 5,
         dialogFormVisible: false,

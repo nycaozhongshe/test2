@@ -102,7 +102,10 @@ let actions = {
     return request.post(api.selectePositionByKeyword, n)
   },
 
-  //
+  //发送邮箱地址
+  sendEmail({}, n) {
+    return request.post(api.pushUserEmail, n);
+  }
 }
 // Object.assign(actions, resumeActions)
 

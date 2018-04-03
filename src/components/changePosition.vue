@@ -178,8 +178,18 @@
               <el-row>
                 <el-col :span="24">
                   <el-form-item>
-                    <el-input type="textarea" placeholder="公司简介(选填)" resize="none" :rows="6"
-                              v-model="pubform.company_introduction"></el-input>
+                    <div class="editor">
+                      <quill-editor v-model="pubform.position_work_other" :options="editorConfig4"></quill-editor>
+                    </div>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row>
+                <el-col :span="24">
+                  <el-form-item>
+                    <div class="editor">
+                      <quill-editor v-model="pubform.company_introduction" :options="editorConfig3"></quill-editor>
+                    </div>
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -241,6 +251,18 @@
             toolbar: ['bold', 'italic', 'underline', 'strike', {'list': 'ordered'}, {'list': 'bullet'}]
           },
           placeholder: '工作要求...'
+        },
+        editorConfig3: {
+          modules: {
+            toolbar: ['bold', 'italic', 'underline', 'strike', {'list': 'ordered'}, {'list': 'bullet'}]
+          },
+          placeholder: '公司简介(选填)...'
+        },
+        editorConfig4: {
+          modules: {
+            toolbar: ['bold', 'italic', 'underline', 'strike', {'list': 'ordered'}, {'list': 'bullet'}]
+          },
+          placeholder: '其他内容(选填)...'
         },
         api,
         loading: true

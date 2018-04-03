@@ -1,6 +1,6 @@
 // let url = 'http://39.104.50.146:8088/';
-let url = 'http://192.168.1.28:8080/';
-// let url = 'http://192.168.1.15:8080/';
+// let url = 'http://192.168.1.28:8080/';
+let url = 'http://192.168.1.15:8080/';
 // let url = 'http://192.168.1.15:9080/';
 // let url = 'http://192.168.1.20:8088/';
 // let url = 'http://39.104.51.142:8088/';
@@ -113,7 +113,10 @@ let api = {
   selectePositionByIndex: 'wbedu_api/wbedu/recruit/selectePositionByIndex',
 
   //职位关键字搜做
-  selectePositionByKeyword: 'wbedu_api/wbedu/recruit/selectePositionByImport'
+  selectePositionByKeyword: 'wbedu_api/wbedu/recruit/selectePositionByImport',
+
+  //发送邮箱地址
+  pushUserEmail: 'wbedu_api/wbedu/active/pushUserEmail',
 }
 
 for (let key in api) {
