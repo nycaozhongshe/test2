@@ -105,6 +105,11 @@ let actions = {
   //发送邮箱地址
   sendEmail({}, n) {
     return request.post(api.pushUserEmail, n);
+  },
+
+  //获取职位列表（首页）
+  selectPosition({}, n) {
+    return request.post(api.selectPosition, n)
   }
 }
 // Object.assign(actions, resumeActions)

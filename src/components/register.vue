@@ -200,7 +200,7 @@
     .el-input--medium {
       font-size: 20px;
       > input {
-        padding-left: 40px !important;
+        padding-left: 50px !important;
       }
     }
 

@@ -130,8 +130,7 @@ let mutations = {
 
           $router.push('/success');
         }
-      }
-      else {
+      } else {
         switch (res.data.code) {
           case '1003':
             state.logInfo = "无效的手机号";
@@ -221,7 +220,7 @@ let mutations = {
         router.push('/success');
         state.regtemp = '';
       } else {
-        alert('注册失败，请重试');
+        alert(res.data.msg);
       }
     }).catch((err) => {
 

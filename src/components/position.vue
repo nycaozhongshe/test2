@@ -84,12 +84,13 @@
             <el-col :span="6" class="similar-card" v-for="(item,index) in simList" :key="index">
               <router-link :to="item.id" target="_blank">
                 <div class="similar-card-box" style="cursor: pointer;">
-                  <div class="similar-card-foot">
+                  <div class="similar-card-title">
                     <div>{{item.position_company}}</div>
-                    <div>{{functionList[item.position_function]}} | {{industryList[item.position_industry]}}</div>
-                    <div>{{item.position_type == 1 ? '实习':item.position_type == 2 ? '校招'
-                      :
-                      '社招' }}
+                  </div>
+                  <div class="similar-card-foot">
+                    <div>{{item.position_depart}}</div>
+                    <div>{{item.position_address}}  {{item.position_type===1?'实习':item.position_type===2?'校招':'社招'}}
+                        {{yearList[item.position_graduation_year]}}
                     </div>
                   </div>
                 </div>
@@ -385,7 +386,7 @@
         url: api.selectPosition,
         data: this.$router.currentRoute.params
       }).then((res) => {
-        if ( +res.data.code >= 0 ) {
+        if (+res.data.code >= 0) {
           this.positionInfo = res.data.data.rpDTO[0];
           this.loading = false;
         } else {

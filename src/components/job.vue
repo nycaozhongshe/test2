@@ -84,7 +84,7 @@
                     </el-col>
                     <el-col :sm="3" :xs="6">
                       <li class="tags-item" :class="{'tags-active':tagIndex == 5}" :tag-index="5"
-                          @click="tagIndex = 5;selectPosition({position_function:5})">私募股权
+                          @click="selectPosition({position_function:5});tagIndex = 5">私募股权
                       </li>
                     </el-col>
                     <el-col :sm="3" :xs="6">
@@ -343,7 +343,12 @@
         pdfList: [],
         fillList: [],
         fileList: [],
-        positionFilter: {position_type: 1},
+        positionFilter: {
+          position_function: 1,
+          position_type: 1,
+          first_page: 0,
+          page_size: 5
+        },
         yearList: ['不限毕业时间',
           new Date().getFullYear() + '年毕业',
           new Date().getFullYear() + 1 + '年毕业',
@@ -415,14 +420,7 @@
         this.classify = event.target.attributes[1].value;
       },
       loadMore() {
-        if (this.jobShowNum >= this.jobList.length) {
-          this.loadMoreBtnMsg = '该条件下无更多职位';
-          this.loadMOreBtnDsb = true;
-        } else {
-          this.jobShowNum += 5;
-          this.loadMoreBtnMsg = '加载更多职位...';
-          this.loadMOreBtnDsb = false;
-        }
+        this.positionFilter.page_size += 5;
       },
       backTop() {
         let timer = setInterval(() => {
@@ -485,35 +483,18 @@
         })
       },
       selectPosition(obj) {
+        console.log(2);
         this.jobShowNum = 5;
-        let pf = this.positionFilter;
-        Object.assign(pf, obj);
-        if (pf.position_type == 0) {
-          delete pf.position_type;
-        } else if (pf.position_industry == 0) {
-          delete pf.position_industry;
-        } else if (pf.position_address == '全部') {
-          delete pf.position_address;
-        } else if (pf.position_graduation_year == '不限') {
-          delete pf.position_graduation_year;
+        Object.assign(this.positionFilter, obj);
+        if (+this.positionFilter.position_type === 0) {
+          delete this.positionFilter.position_type;
+        } else if (+this.positionFilter.position_industry === 0) {
+          delete this.positionFilter.position_industry;
+        } else if (this.positionFilter.position_address === '全部') {
+          delete this.positionFilter.position_address;
+        } else if (this.positionFilter.position_graduation_year === '不限') {
+          delete this.positionFilter.position_graduation_year;
         }
-        this.axios({
-          method: 'post',
-          url: api.selectPosition,
-          data: pf
-        }).then((res) => {
-          this.jobList = res.data.data.rpDTO;
-          this.count = res.data.data.num;
-          this.loading = false;
-          if (this.jobShowNum >= this.jobList.length) {
-            this.loadMoreBtnMsg = '该条件下无更多职位';
-            this.loadMOreBtnDsb = true
-          } else {
-            this.loading = false;
-            this.loadMOreBtnDsb = false;
-            this.loadMoreBtnMsg = '加载更多职位...';
-          }
-        })
       },
 
       //上传前检查文件类型
@@ -590,6 +571,8 @@
       },
       searchByPositionId() {
         if (this.keyword) {
+          this.keyword = this.keyword.slice(0, 9);
+          console.log(this.keyword);
           this.$store.dispatch('searchByKeyWord', {keyword: this.keyword}).then(res => {
             let data = res.data.data;
             if (data) {
@@ -598,7 +581,6 @@
               } else if (data.operation === 0) {
                 let id = data.rpDTO[0].id;
                 this.$router.push('/position/' + id)
-                // window.open(window.location.origin + '/#/position/' + id);
               }
             } else {
               this.$message.error('未能查询到相关职位');
@@ -607,6 +589,9 @@
         } else {
           this.$message.error('请输入有效搜索内容');
         }
+      },
+      getPosition(filter) {
+        return this.$store.dispatch('selectPosition', filter);
       }
     },
     computed: {
@@ -624,21 +609,55 @@
     destroyed() {
       window.removeEventListener('scroll', this.handleScroll);
     },
-    created: function () {
-      this.axios({
-        method: 'post',
-        url: api.selectPosition,
-        data: this.positionFilter
-      }).then((res) => {
+    // created: function () {
+    //   this.axios({
+    //     method: 'post',
+    //     url: api.selectPosition,
+    //     data: this.positionFilter
+    //   }).then((res) => {
+    //     if (+res.data.code >= 0) {
+    //       this.jobList = res.data.data.rpDTO;
+    //       this.loading = false;
+    //     } else {
+    //       this.$message.error('服务器出错')
+    //     }
+    //   });
+    //   this.loadCour();
+    //   this.loadBanner();
+    // },
+    created() {
+      this.getPosition(this.positionFilter).then(res => {
         if (+res.data.code >= 0) {
           this.jobList = res.data.data.rpDTO;
           this.loading = false;
         } else {
           this.$message.error('服务器出错')
         }
-      });
+      })
       this.loadCour();
       this.loadBanner();
+    },
+    watch: {
+      positionFilter: {
+        handler: function (newVal, oldVal) {
+          this.loading = true;
+          this.getPosition(this.positionFilter).then(res => {
+            this.jobList = res.data.data.rpDTO;
+            this.count = res.data.data.num;
+            this.loading = false;
+            if (this.jobShowNum >= this.jobList.length) {
+              this.loadMoreBtnMsg = '该条件下无更多职位';
+              this.loadMOreBtnDsb = true
+            } else {
+              this.loading = false;
+              this.loadMOreBtnDsb = false;
+              this.jobShowNum += 5;
+              this.loadMoreBtnMsg = '加载更多职位...';
+            }
+          })
+        },
+        deep: true
+      }
     }
   }
 </script>
