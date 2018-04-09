@@ -154,7 +154,7 @@
         fileList: [],   //上传附件文件列表
         uploadHeadPath: api.uploadAHeadImage,   //上传头像api
         url: api.url,
-        headPath:'',
+        headPath: '',
         imageUrl: '',
         uploadData: {},
         loading: true,
@@ -181,7 +181,6 @@
       getTime(num) {
         let d = new Date(num);
         let fd = d.getFullYear() + '/' + (+d.getMonth() + 1) + '/' + d.getDate();
-        console.log(d.getMonth());
         let ft = d.getHours() + ':' + d.getMinutes();
         return {fd, ft}
       },
@@ -191,7 +190,17 @@
           this.dialogVisible2 = false;
           this.loading = false;
           let id = this.$store.state.userInfo.id;
-          this.actionResumeList({"id": id});
+          this.actionResumeList({"id": id}).then(res => {
+            if (+res.data.code === 0 || +res.data.code === 1001) {
+              let data = res.data.data;
+              if (data.ruv) {
+                this.resumeList = data.ruv;
+              } else {
+                this.resumeList = [];
+              }
+              this.commitResumeList(this.resumeList)
+            }
+          });
         } else {
           this.$message.error('上传失败，请重试或联系管理员');
         }

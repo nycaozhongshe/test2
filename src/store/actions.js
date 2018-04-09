@@ -65,7 +65,8 @@ let actions = {
 
   //异步获取简历列表
   actionResumeList(context, n) {
-    context.commit('commitResumeList', n);
+    return request.post(api.selectMyVitae, n)
+    // context.commit('commitResumeList', n);
   },
 
   //异步获取投递记录

@@ -327,23 +327,7 @@ let mutations = {
 
   //查看简历列表
   commitResumeList(state, n) {
-    axios({
-      method: 'post',
-      url: api.selectMyVitae,
-      data: n
-    }).then((res) => {
-      if (res.data.code == 0 || res.data.code == 1001) {
-        if (res.data.data.ruv) {
-          state.resume.resumeList = res.data.data.ruv;
-        } else {
-          state.resume.resumeList = [];
-        }
-      }
-    }).catch((err) => {
-      if (err) {
-        console.log(err);
-      }
-    })
+    state.resume.resumeList = n;
   },
 
   //获取投递记录
