@@ -52,8 +52,7 @@
             </div>
             <div class="my-resume-list clearfix">
               <div class="my-resume-item"
-                   v-for="(item,index) in resumeList"
-              >
+                   v-for="(item,index) in resumeList">
                 <img :src="item.vitaeType == '0'? '../../static/pdf.jpg':'../../static/resume.png'" alt=""
                      @click='previewResume(index)'>
                 <div class="my-resume-item-mask">
@@ -181,7 +180,8 @@
       },
       getTime(num) {
         let d = new Date(num);
-        let fd = d.getFullYear() + '/' + d.getMonth() + 1 + '/' + d.getDate();
+        let fd = d.getFullYear() + '/' + (+d.getMonth() + 1) + '/' + d.getDate();
+        console.log(d.getMonth());
         let ft = d.getHours() + ':' + d.getMinutes();
         return {fd, ft}
       },

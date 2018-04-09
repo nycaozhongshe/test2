@@ -13,6 +13,11 @@
               人工修改
             </div>
           </router-link>
+          <router-link to="/resume">
+            <div class="goResume">
+              查看我的简历
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -54,6 +59,21 @@
           transform: translateX(80px);
         }
       }
+      .goResume {
+        position: absolute;
+        left: 50%;
+        top: 425px;
+        height: 60px;
+        width: 280px;
+        background-color: transparent;
+        overflow: hidden;
+        text-align: center;
+        -webkit-transform: translateX(-360px);
+        -moz-transform: translateX(-360px);
+        -ms-transform: translateX(-360px);
+        -o-transform: translateX(-360px);
+        transform: translateX(-360px);
+      }
     }
   }
   @media screen and (max-width: 750px) {
@@ -74,6 +94,20 @@
         background-color: transparent;
         text-indent: -9999em;
         overflow: hidden;
+      }
+      .goResume {
+        position: absolute;
+        left: 50%;
+        top: 425px;
+        height: 60px;
+        width: 280px;
+        background-color: transparent;
+        overflow: hidden;
+        -webkit-transform: translateX(-260px);
+        -moz-transform: translateX(-260px);
+        -ms-transform: translateX(-260px);
+        -o-transform: translateX(-260px);
+        transform: translateX(-260px);
       }
       .btn1 {
         -webkit-transform: translateX(-310px);
