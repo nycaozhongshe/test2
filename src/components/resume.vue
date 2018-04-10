@@ -84,10 +84,21 @@
                   <th>时间</th>
                 </tr>
                 <tr v-for="(item,index) in deliverList">
-                  <td>{{item.position_company}}</td>
+                  <td>{{item.position_name}}</td>
                   <td>{{getDate(item.create_time)}}</td>
                 </tr>
               </table>
+            </div>
+            <div class="my-deliver-page">
+              <span>
+              <el-pagination
+                background
+                layout="prev, pager, next"
+                :page-size="5"
+                :total="count"
+                @current-change="pageChange">
+              </el-pagination>
+              </span>
             </div>
           </div>
         </div>
@@ -159,7 +170,9 @@
         uploadData: {},
         loading: true,
         api,
-        resumeList: []
+        resumeList: [],
+        pageConfig: {"first_page": 0, "page_size": 5},
+        count: 0,   //总页数
       }
     },
     methods: {
@@ -313,7 +326,20 @@
       changeResume(index) {
         let id = this.resumeList[index].vitae_id;
         this.$router.push('/changeResume/' + id);
-      }
+      },
+      pageChange(currentPage) {
+        this.loading = true;
+        this.pageConfig.first_page = (currentPage - 1) * 5;
+        let id = this.$store.state.userInfo.id;
+        this.$store.dispatch('getDeliveryRecord', {id: id, ...this.pageConfig}).then( res => {
+          if (res.data.code === '0') {
+            this.deliverList = res.data.data.rp;
+          } else {
+            this.$message.error('服务器出错，请稍后再试或联系管理员');
+          }
+          this.loading = false;
+        })
+      },
     },
     computed: {
       uploadAdress: function () {
@@ -327,11 +353,7 @@
     beforeCreate: function () {
     },
     created: function () {
-      axios({
-        method: 'post',
-        url: api.selectAuthenticationById,
-        data: {}
-      }).then((res) => {
+      this.$store.dispatch('getUserInfo', {}).then((res) => {
         let data = res.data;
         if (data.code == 0) {
           this.writeUserInfo(data.data.wbUserDTO);
@@ -357,8 +379,9 @@
           axios({
             method: 'post',
             url: api.selectDeliveryRecord,
-            data: {"id": id}
+            data: {"id": id, ...this.pageConfig}
           }).then((res) => {
+            this.count = res.data.data.num;
             this.uploadData = {"id": this.$store.state.userInfo.id};
             this.deliverList = res.data.data.rp;
             this.loading = false;

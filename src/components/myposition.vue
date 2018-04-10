@@ -68,6 +68,16 @@
               <td><i class="el-icon-delete" @click="delPostion(item.id)" style="cursor: pointer;"></i></td>
             </tr>
           </table>
+          <div class="my-position-page">
+              <span>
+              <el-pagination
+                layout="prev, pager, next"
+                :page-size="5"
+                :total="count"
+                @current-change="pageChange">
+              </el-pagination>
+              </span>
+          </div>
         </div>
       </div>
     </div>
@@ -87,7 +97,9 @@
         headPath: '',
         imageUrl: '',
         myPositionList: [],
-        loading: true
+        loading: true,
+        count: 0,
+        pageConfig: {"first_page": 0, "page_size": 5},
       }
     },
     methods: {
@@ -116,7 +128,6 @@
         let formatDate = date.getFullYear() + "/" + (date.getMonth() - 0 + 1) + "/" + date.getDate();
         return formatDate;
       },
-
       //删除职位
       delPostion(id) {
         //确认是否删除
@@ -152,7 +163,20 @@
           });
         });
 
-      }
+      },
+      pageChange(currentPage) {
+        this.loading = true;
+        this.pageConfig.first_page = (currentPage - 1) * 5;
+        let id = this.$store.state.userInfo.id;
+        this.$store.dispatch('getMyPosition', {id: id, ...this.pageConfig}).then( res => {
+          if (res.data.code === '0') {
+            this.myPositionList = res.data.data.rpDTO;
+          } else {
+            this.$message.error('服务器出错，请稍后再试或联系管理员');
+          }
+          this.loading = false;
+        })
+      },
     },
     computed: {
       uploadAdress: function () {
@@ -180,11 +204,8 @@
             this.imageUrl = '';
           }
           id = this.$store.state.userInfo.id;
-          this.axios({
-            method: 'post',
-            url: api.selectMyPosition,
-            data: {"id": id}
-          }).then((res) => {
+          this.$store.dispatch('getMyPosition', {id: id, ...this.pageConfig}).then((res) => {
+            this.count = res.data.data.num;
              this.myPositionList = res.data.data.rpDTO;
              this.loading = false;
           })

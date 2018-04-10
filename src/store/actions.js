@@ -24,8 +24,14 @@ let actions = {
     context.commit('getUserInfo', n);
   },
 
-  getUserInfo(context, n) {
+  //获取用户基本信息
+  getUserInfo({}, n) {
     return request.post(api.selectAuthenticationById, n)
+  },
+
+  //获取发布记录
+  getMyPosition({}, n) {
+    return request.post(api.selectMyPosition, n);
   },
 
   //异步调用提交手机验证码登陆表单
@@ -67,6 +73,10 @@ let actions = {
   actionResumeList(context, n) {
     return request.post(api.selectMyVitae, n)
     // context.commit('commitResumeList', n);
+  },
+
+  getDeliveryRecord({}, n) {
+    return request.post(api.selectDeliveryRecord, n)
   },
 
   //异步获取投递记录

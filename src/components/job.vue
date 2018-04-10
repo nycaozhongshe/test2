@@ -344,7 +344,6 @@
         fillList: [],
         fileList: [],
         positionFilter: {
-          position_function: 1,
           position_type: 1,
           first_page: 0,
           page_size: 5
@@ -483,7 +482,6 @@
         })
       },
       selectPosition(obj) {
-        console.log(2);
         this.jobShowNum = 5;
         Object.assign(this.positionFilter, obj);
         if (+this.positionFilter.position_type === 0) {

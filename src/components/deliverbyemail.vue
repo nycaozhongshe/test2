@@ -147,9 +147,6 @@
       ]),
       deliver() {
         let vm = this;
-        console.log(!this.input1.length);
-        console.log(this.dbeMail.replace(/<[^>]+>/g, "").replace(/(^\s*)|(\s*$)/g, ""));
-        console.log(this.dbeMail.replace(/<[^>]+>/g, "").replace(/(^\s*)|(\s*$)/g, "").length);
         if (!this.input1.length
           || !this.input2.length
           || !this.input3.length
@@ -196,7 +193,6 @@
         // }, 3000)
       },
       hadle() {
-        console.log(1);
       }
     },
     computed: {
