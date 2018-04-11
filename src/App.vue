@@ -159,23 +159,6 @@
       }
     },
     computed: {
-      //监控手机号码
-      // safephone: function () {
-      //   let phone = sessionStorage.getItem('phone');
-      //   if (phone) {
-      //     return phone.slice(0, 3) + '****' + phone.slice(7, 11);
-      //   }
-      //   return '';
-      // },
-      //监控登陆注册按钮显示状态
-      // isLR: {
-      //   get: function () {
-      //     return this.$store.state.isLR;
-      //   },
-      //   set: function (newVal) {
-      //     this.$store.state.isLR = newVal;
-      //   }
-      // },
       //监控登陆状态
       isLogged: {
         get: function () {
@@ -201,20 +184,6 @@
           }
         });
       }
-      // let ua = window.navigator.userAgent;
-      // alert(ua);
-      // let isAndroid = /android/ig.test(ua);
-      // let isIos = /iphone|ipod|ipad/ig.test(ua);
-      // let isMicroMessenger = /MicroMessenger/ig.test(ua);
-      // if (isAndroid) {
-      //   alert('android');
-      //   document.write('<meta name="viewport" content="width=(device-width)/2,initial-scale=1">')
-      // } else if (isIos) {
-      //   alert('ios');
-      //   document.write('<meta name="viewport" content="width=device-width,initial-scale=0.5">')
-      // } else {
-      //   alert('pc');
-      // }
       var phoneWidth = parseInt(window.screen.width),
         phoneScale = phoneWidth / 640,
         ua = navigator.userAgent;
@@ -235,33 +204,26 @@
       }
     },
     mounted() {
-      console.log('          _____                    _____                    _____          \n' +
-        '         /\\    \\                  /\\    \\                  /\\    \\         \n' +
-        '        /::\\    \\                /::\\    \\                /::\\    \\        \n' +
-        '       /::::\\    \\              /::::\\    \\              /::::\\    \\       \n' +
-        '      /::::::\\    \\            /::::::\\    \\            /::::::\\    \\      \n' +
-        '     /:::/\\:::\\    \\          /:::/\\:::\\    \\          /:::/\\:::\\    \\     \n' +
-        '    /:::/__\\:::\\    \\        /:::/__\\:::\\    \\        /:::/__\\:::\\    \\    \n' +
-        '   /::::\\   \\:::\\    \\      /::::\\   \\:::\\    \\      /::::\\   \\:::\\    \\   \n' +
-        '  /::::::\\   \\:::\\    \\    /::::::\\   \\:::\\    \\    /::::::\\   \\:::\\    \\  \n' +
-        ' /:::/\\:::\\   \\:::\\____\\  /:::/\\:::\\   \\:::\\    \\  /:::/\\:::\\   \\:::\\    \\ \n' +
-        '/:::/  \\:::\\   \\:::|    |/:::/  \\:::\\   \\:::\\____\\/:::/__\\:::\\   \\:::\\____\\\n' +
-        '\\::/   |::::\\  /:::|____|\\::/    \\:::\\  /:::/    /\\:::\\   \\:::\\   \\::/    /\n' +
-        ' \\/____|:::::\\/:::/    /  \\/____/ \\:::\\/:::/    /  \\:::\\   \\:::\\   \\/____/ \n' +
-        '       |:::::::::/    /            \\::::::/    /    \\:::\\   \\:::\\    \\     \n' +
-        '       |::|\\::::/    /              \\::::/    /      \\:::\\   \\:::\\____\\    \n' +
-        '       |::| \\::/____/               /:::/    /        \\:::\\   \\::/    /    \n' +
-        '       |::|  ~|                    /:::/    /          \\:::\\   \\/____/     \n' +
-        '       |::|   |                   /:::/    /            \\:::\\    \\         \n' +
-        '       \\::|   |                  /:::/    /              \\:::\\____\\        \n' +
-        '        \\:|   |                  \\::/    /                \\::/    /        \n' +
-        '         \\|___|                   \\/____/                  \\/____/         \n' +
-        '                                                                           ')
+      console.log('________ _______ __________\n' +
+                  '___  __ \\___    |___  ____/\n' +
+                  '__  /_/ /__  /| |__  __/   \n' +
+                  '_  _, _/ _  ___ |_  /___   \n' +
+                  '/_/ |_|  /_/  |_|/_____/   \n' +
+                  '                           ')
     },
     beforeUpdate: function () {
       this.safephone = this.$store.state.userInfo.mobile;
     }
   }
 </script>
-
+<style lang="scss">
+  .el-dropdown-menu__item {
+    a {
+      width: 100%;
+      height: 100%;
+      line-height: 36px;
+      display: inline-block;
+    }
+  }
+</style>
 <style lang="scss" src="./assets/scss/index.scss"></style>

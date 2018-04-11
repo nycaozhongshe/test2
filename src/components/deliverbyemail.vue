@@ -10,7 +10,8 @@
         <div class="dbe-box">
           <div class="dbe-title">邮件投递</div>
           <div class="dbe-edit">
-            <div class="dbe-edit-title-tip" style="text-align: left;width: 725px;margin: 0 auto;margin-bottom: 20px;font-weight: bold;">
+            <div class="dbe-edit-title-tip"
+                 style="text-align: left;width: 725px;margin: 0 auto;margin-bottom: 20px;font-weight: bold;">
               邮件标题
             </div>
             <div class="dbe-edit-title">
@@ -160,11 +161,7 @@
         this.$store.commit('writeIdList3', {"context": context, "theme": this.theme});
         let n = this.$store.state.idList;
         this.loading = true;
-        this.axios({
-          method: 'post',
-          url: api.deliverVitae,
-          data: n
-        }).then((res) => {
+        this.$store.dispatch('deliver', n).then((res) => {
           this.loading = false;
           if (res.data.code == 0) {
             this.$message('发送成功');
@@ -187,10 +184,6 @@
             console.log(err);
           }
         });
-        // this.successTableVisible = true;
-        // setTimeout(() => {
-        //   this.$router.go(-1);
-        // }, 3000)
       },
       hadle() {
       }

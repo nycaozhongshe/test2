@@ -180,7 +180,6 @@
         'actionResumeList',
         'actionDeliverList',
         'actionPreviewResume',
-        'actionGetUserInfo'
       ]),
       ...mapMutations([
         'getUserInfo',
@@ -229,11 +228,7 @@
         let delIndex = this.delId;
         let id = this.resumeList[delIndex].vitae_id;
         this.loading = true;
-        axios({
-          method: 'post',
-          url: api.updateVitaeDeleted,
-          data: {"id": id}
-        }).then((res) => {
+        this.$store.dispatch('delResume', {id: id}).then((res) => {
           let data = res.data;
           if (data.code == 0) {
             axios({
@@ -331,7 +326,7 @@
         this.loading = true;
         this.pageConfig.first_page = (currentPage - 1) * 5;
         let id = this.$store.state.userInfo.id;
-        this.$store.dispatch('getDeliveryRecord', {id: id, ...this.pageConfig}).then( res => {
+        this.$store.dispatch('getDeliveryRecord', {id: id, ...this.pageConfig}).then(res => {
           if (res.data.code === '0') {
             this.deliverList = res.data.data.rp;
           } else {

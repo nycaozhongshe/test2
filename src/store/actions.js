@@ -14,14 +14,11 @@ let actions = {
     context.commit('commitLogForm', n);
   },
 
+
+
   //异步调用提交发送手机验证码表单
   actionSendMessage(context, n) {
     context.commit('commitSendMessage', n);
-  },
-
-  //异步获取用户基本信息
-  actionGetUserInfo(context, n) {
-    context.commit('getUserInfo', n);
   },
 
   //获取用户基本信息
@@ -32,6 +29,16 @@ let actions = {
   //获取发布记录
   getMyPosition({}, n) {
     return request.post(api.selectMyPosition, n);
+  },
+
+  //简历投递
+  deliver({}, n) {
+    return request.post(api.deliverVitae, n);
+  },
+
+  //删除简历
+  delResume({}, n) {
+    return request.post(api.updateVitaeDeleted, n)
   },
 
   //异步调用提交手机验证码登陆表单

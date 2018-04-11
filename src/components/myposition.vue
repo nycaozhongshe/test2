@@ -103,9 +103,6 @@
       }
     },
     methods: {
-      ...mapActions([
-        'actionGetUserInfo'
-      ]),
       ...mapMutations([
         'writeUserInfo'
       ]),

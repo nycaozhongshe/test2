@@ -100,9 +100,7 @@
 
 <script>
 
-  import {mapActions} from 'vuex'
   import {mapMutations} from 'vuex'
-  import axios from 'axios'
   import api from '../assets/datas/api'
 
   export default {
@@ -123,9 +121,6 @@
       this.getUserInfo();
     },
     methods: {
-      ...mapActions([
-        'actionGetUserInfo'
-      ]),
       ...mapMutations([
         'writeUserInfo'
       ]),
@@ -133,11 +128,7 @@
         this.imageUrl = URL.createObjectURL(file.raw);
       },
       getUserInfo() {
-        axios({
-          method: 'post',
-          url: api.selectAuthenticationById,
-          data: {}
-        }).then((res) => {
+        this.$store.dispatch('getUserInfo', {}).then((res) => {
           let data = res.data;
           if (data.code == 0) {
             this.writeUserInfo(data.data.wbUserDTO);
@@ -214,18 +205,6 @@
       uploadAdress: function () {
         return api.uploadVitaeAddress
       },
-      // headPath: {
-      //   get: function () {
-      //     if (this.$store.state.userInfo.headImage) {
-      //       return this.$store.state.userInfo.headImage;
-      //     } else {
-      //       return '';
-      //     }
-      //   },
-      //   set: function (val) {
-      //     this.$store.state.userInfo.headImage = val;
-      //   }
-      // }
     }
   }
 </script>
