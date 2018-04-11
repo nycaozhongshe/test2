@@ -157,9 +157,6 @@
           }
         })
       },
-      // resetForm(formName) {
-      //   this.$refs[formName].resetFields();
-      // },
       changeStatus() {
         if (this.certifyForm.userType === '2') {
           this.statusTip = '在职证明/企业名片';
@@ -182,22 +179,14 @@
       },
       beforeProofUpload(file) {
         const isJPG = (file.type === 'image/jpeg' || file.type === 'image/png');
-        // const isLt2M = file.size / 1024 / 1024 < 2;
         if (!isJPG) {
           this.$message.error('上传头像图片只能是 JPG或PNG 格式!');
         }
-        // if (!isLt2M) {
-        //   this.$message.error('上传头像图片大小不能超过 2MB!');
-        // }
         return isJPG;
       },
     },
     created: function () {
       this.phone = sessionStorage.getItem('phone');
-      let id = sessionStorage.getItem('userId');
-      let form = {"id": id};
-      // let router = this.$router;
-      // this.commitIsCertify({form, router});
       this.axios({
         method: 'post',
         url: api.selectAuthenticationById,
@@ -212,14 +201,12 @@
           }
         }
       });
-
     },
     computed: {
       headerObj: function () {
         return {'token': sessionStorage.getItem('token'), 'userId': sessionStorage.getItem('userId')}
       }
     },
-    watch: {}
   }
 </script>
 

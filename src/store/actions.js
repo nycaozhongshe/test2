@@ -9,6 +9,11 @@ let actions = {
     context.commit('commitRegForm', n);
   },
 
+  //提交注冊
+  submitRegForm({}, n) {
+    return request.post(api.userRegister, n);
+  },
+
   //异步调用提交密码登陆表单
   actionLogForm(context, n) {
     context.commit('commitLogForm', n);

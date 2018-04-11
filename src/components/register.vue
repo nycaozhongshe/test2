@@ -152,7 +152,15 @@
           let form = this[formName];
           if (valid) {
             delete this[formName].isAgree;
-            this.actionRegForm({form, router});
+            // this.actionRegForm({form, router});
+            this.$store.dispatch('submitRegForm', {form, router}).then(res => {
+              if (res.data.code === '0') {
+                router.push('/success');
+                this.$store.commit('clearRegtemp', {});
+              } else {
+                this.$message.error(res.data.msg);
+              }
+            })
             this.inputType = 'password';
             this.inputType2 = 'password';
             setTimeout(() => {

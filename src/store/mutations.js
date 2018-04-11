@@ -205,26 +205,9 @@ let mutations = {
     });
   },
 
-  //提交注册表单
-  commitRegForm(state, n) {
-    n.form.password = state.regtemp;
-    n.form.confirm = state.regtemp;
-      n.form.identification = 'reg';
-    let router = n.router;
-    axios({
-      method: 'post',
-      url: api.userRegister,
-      data: n.form,
-    }).then((res) => {
-      if (res.data.code == 0) {
-        router.push('/success');
-        state.regtemp = '';
-      } else {
-        alert(res.data.msg);
-      }
-    }).catch((err) => {
-
-    });
+  //清空regtemp
+  clearRegtemp(state, n) {
+    state.regtemp = '';
   },
 
   //提交重置密码表单
@@ -355,43 +338,6 @@ let mutations = {
       }
     });
   },
-
-  //加载城市列表
-  // commitLoadCity(state, n) {
-  //   axios({
-  //     method: 'post',
-  //     url: api.selectByPid,
-  //     data: n
-  //   }).then((res) => {
-  //     let data = res.data;
-  //     let list = data.data.list;
-  //     for (let i = 0; i < list.length; i++) {
-  //       state.cityList.push({value: '', name: '', cities: []});
-  //       state.cityList[i].value = list[i].id;
-  //       state.cityList[i].label = list[i].name;
-  //       state.cityIdList.push(list[i].id);
-  //     }
-  //   })
-  // },
-
-  //加载子城市列表
-  // commitLoadChildrenCity(state, n) {
-  //   axios({
-  //     method: 'post',
-  //     url: api.selectByPid,
-  //     data: n
-  //   }).then((res) => {
-  //     let data = res.data;
-  //     let list = data.data.list;
-  //     let index = state.cityIdList.indexOf(n.pid);
-  //     for (let i = 0; i < list.length; i++) {
-  //       state.cityList[index].cities.push({value: '', label: ''});
-  //       state.cityList[index].cities[i].value = list[i].name;
-  //       state.cityList[index].cities[i].label = list[i].name;
-  //     }
-  //     console.log(state.cityList);
-  //   })
-  // },
 
   //加载修改简历数据
   commitLoadResume(state, n) {
