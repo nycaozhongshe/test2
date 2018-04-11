@@ -127,7 +127,6 @@
             ref="resUpload"
             :action="uploadAdress"
             :show-file-list="false"
-            :on-preview="handlePreview"
             :on-exceed="handleExceed"
             :file-list="fileList"
             :headers="headerObj"
@@ -198,9 +197,8 @@
       },
       resumeUpload(res) {
         this.$refs.resUpload.clearFiles;
-        if (res.code == '0') {
+        if (res.code === '0') {
           this.dialogVisible2 = false;
-          this.loading = false;
           let id = this.$store.state.userInfo.id;
           this.actionResumeList({"id": id}).then(res => {
             if (+res.data.code === 0 || +res.data.code === 1001) {
@@ -210,14 +208,16 @@
               } else {
                 this.resumeList = [];
               }
-              this.commitResumeList(this.resumeList)
+              this.$store.commit('commitResumeList', this.resumeList);
             }
           });
         } else {
           this.$message.error('上传失败，请重试或联系管理员');
         }
+        this.loading = false;
       },
       beforePdfUpload(file) {
+        this.loading = true;
         const isPDF = file.type === 'application/pdf';
         if (!isPDF) {
           this.$message.error('只能上传pdf');
@@ -310,9 +310,6 @@
           })
           .catch(_ => {
           });
-      },
-      handlePreview(file) {
-
       },
       handleExceed(files, fileList) {
         fileList = [];

@@ -193,7 +193,7 @@
         data: {}
       }).then((res) => {
         let data = res.data;
-        if (data.code == 0) {
+        if (data.code === '0') {
           if (this.$store.state.userInfo.authStatus === 2 || this.$store.state.userInfo.authStatus === 0) {
             this.certifyForm.realName = this.$store.state.userInfo.realName;
             this.certifyForm.gender = JSON.stringify(this.$store.state.userInfo.gender);
