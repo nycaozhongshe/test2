@@ -100,7 +100,7 @@
         loading: true,
         count: 0,
         numPerPage: 50,
-        pageConfig: {first_page: 0, page_size: this.numPerPage},
+        // pageConfig: {first_page: 0, page_size: this.numPerPage},
       }
     },
     methods: {
@@ -182,6 +182,11 @@
       },
       headerObj: function () {
         return {'token': sessionStorage.getItem('token'), 'userId': sessionStorage.getItem('userId')}
+      },
+      pageConfig() {
+        return {
+          first_page: 0, page_size: this.numPerPage
+        }
       }
     },
     created: function () {

@@ -170,9 +170,8 @@
         loading: true,
         api,
         resumeList: [],
-        pageConfig: {"first_page": 0, "page_size": this.numPerPage},
+        numPerPage: 5,  //每页数量
         count: 0,   //总页数
-        numPerPage: 5  //每页数量
       }
     },
     methods: {
@@ -341,7 +340,9 @@
       headerObj: function () {
         return {'token': sessionStorage.getItem('token'), 'userId': sessionStorage.getItem('userId')}
       },
-
+      pageConfig() {
+        return {"first_page": 0, "page_size": this.numPerPage};
+      },
     },
     beforeCreate: function () {
     },

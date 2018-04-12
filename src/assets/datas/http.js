@@ -5,7 +5,6 @@ import { Message } from 'element-ui';
 
 axios.interceptors.request.use(
   config => {
-    console.log(config.data);
     config.data = JSON.stringify(config.data);
     config.headers = {
       'Content-Type': 'application/json'
