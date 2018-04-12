@@ -330,7 +330,7 @@
         courIndex: 0,
         loading: true,
         jobList: [],
-        tagIndex: 1,
+        tagIndex: 0,
         classify: 0,
         positionNumber: 5,
         dialogFormVisible: false,
@@ -344,6 +344,7 @@
         fillList: [],
         fileList: [],
         positionFilter: {
+          position_function: 0,
           position_type: 1,
           first_page: 0,
           page_size: 5
@@ -643,7 +644,7 @@
             this.jobList = res.data.data.rpDTO;
             this.count = res.data.data.num;
             this.loading = false;
-            if (this.jobShowNum >= this.jobList.length) {
+            if (this.jobShowNum >= this.count) {
               this.loadMoreBtnMsg = '该条件下无更多职位';
               this.loadMOreBtnDsb = true
             } else {
