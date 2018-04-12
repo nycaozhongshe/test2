@@ -147,13 +147,16 @@
         });
       },
       submitForm(formName) {
+        console.log(0);
         this.$refs[formName].validate((valid) => {
           let router = this.$router;
           let form = this[formName];
           if (valid) {
+            console.log(1);
             delete this[formName].isAgree;
+            console.log(2);
             // this.actionRegForm({form, router});
-            this.$store.dispatch('submitRegForm', {form, router}).then(res => {
+            this.$store.dispatch('submitRegForm', form).then(res => {
               if (res.data.code === '0') {
                 router.push('/success');
                 this.$store.commit('clearRegtemp', {});

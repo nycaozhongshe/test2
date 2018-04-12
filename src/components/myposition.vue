@@ -72,7 +72,7 @@
               <span>
               <el-pagination
                 layout="prev, pager, next"
-                :page-size="5"
+                :page-size="numPerPage"
                 :total="count"
                 @current-change="pageChange">
               </el-pagination>
@@ -99,7 +99,8 @@
         myPositionList: [],
         loading: true,
         count: 0,
-        pageConfig: {"first_page": 0, "page_size": 5},
+        numPerPage: 50,
+        pageConfig: {first_page: 0, page_size: this.numPerPage},
       }
     },
     methods: {
@@ -163,7 +164,7 @@
       },
       pageChange(currentPage) {
         this.loading = true;
-        this.pageConfig.first_page = (currentPage - 1) * 5;
+        this.pageConfig.first_page = (currentPage - 1) * this.numPerPage;
         let id = this.$store.state.userInfo.id;
         this.$store.dispatch('getMyPosition', {id: id, ...this.pageConfig}).then( res => {
           if (res.data.code === '0') {
