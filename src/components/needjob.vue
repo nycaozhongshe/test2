@@ -462,10 +462,17 @@
       //文件上传前检查文件类型
       beforePdfUpload(file) {
         const isPDF = file.type === 'application/pdf';
+        const isLt2M = file.size / 1024 / 1024 < 0.9;
+
         if (!isPDF) {
           this.$message.error('只能上传pdf');
         }
-        return isPDF;
+
+        if (!isLt2M) {
+          this.$message.error('上传头像pdf大小不能超过 900k!');
+        }
+
+        return isPDF && isLt2M;
       },
 
       //获取全部筛选结果

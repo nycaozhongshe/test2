@@ -217,12 +217,18 @@
         this.loading = false;
       },
       beforePdfUpload(file) {
-        this.loading = true;
         const isPDF = file.type === 'application/pdf';
+        const isLt2M = file.size / 1024 / 1024 < 0.9;
+
         if (!isPDF) {
           this.$message.error('只能上传pdf');
         }
-        return isPDF;
+
+        if (!isLt2M) {
+          this.$message.error('上传头像pdf大小不能超过 900k!');
+        }
+
+        return isPDF && isLt2M;
       },
       delResume() {
         let delIndex = this.delId;
