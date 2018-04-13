@@ -19,22 +19,24 @@ axios.interceptors.request.use(
 );
 
 axios.interceptors.response.use((response) => {
-  if (response.status === 404) {
-    router.push('/404');
-  } else if (response.data === 'FAIL') {
-    alert('服务器出错，请联系管理员');
-  } else if (response.data === 'INTERCEPT') {
-    alert('登陆超时，请重新登陆');
-    sessionStorage.clear('token');
-    sessionStorage.clear('logged');
-    sessionStorage.clear('userId');
-    sessionStorage.clear('phone');
-    router.push('/login');
-  } else if (+response.data.code < 0 ) {
-    Message.error(response.data.msg)
+  console.log(response.config.method);
+  if (response.config.method !== 'options') {
+    if (response.status === 404) {
+      router.push('/404');
+    } else if (response.data === 'FAIL') {
+      alert('服务器出错，请联系管理员');
+    } else if (response.data === 'INTERCEPT') {
+      alert('登陆超时，请重新登陆');
+      sessionStorage.clear('token');
+      sessionStorage.clear('logged');
+      sessionStorage.clear('userId');
+      sessionStorage.clear('phone');
+      router.push('/login');
+    } else if (+response.data.code < 0 ) {
+      Message.error(response.data.msg)
+    }
   }
   return response;
 }, (error) => {
-  // router.push('/404');
   return Promise.reject(error);
 });
