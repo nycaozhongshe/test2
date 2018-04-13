@@ -353,7 +353,7 @@
           this.writeUserInfo(data.data.wbUserDTO);
           if (this.$store.state.userInfo.headImage) {
             this.headPath = this.$store.state.userInfo.headImage;
-            this.imageUrl = api.url + this.headPath
+            this.imageUrl = this.headPath
           } else {
             this.imageUrl = '';
           }

@@ -147,15 +147,14 @@
         });
       },
       submitForm(formName) {
-        console.log(0);
         this.$refs[formName].validate((valid) => {
           let router = this.$router;
           let form = this[formName];
           if (valid) {
-            console.log(1);
             delete this[formName].isAgree;
-            console.log(2);
-            // this.actionRegForm({form, router});
+            form.identification = 'reg';
+            form.password = md5(form.password);
+            form.confirm = md5(form.confirm);
             this.$store.dispatch('submitRegForm', form).then(res => {
               if (res.data.code === '0') {
                 router.push('/success');
@@ -169,6 +168,7 @@
             setTimeout(() => {
               this.regForm.password = '';
               this.regForm.confirm = '';
+              this[formName].isAgree = true;
             }, 1000);
 
           } else {
